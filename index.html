@@ -1,122 +1,437 @@
-<!-- ==================== -->
-<!-- 可自定义的文字内容部分 -->
-<!-- ==================== -->
-
-<!-- 1. 浏览器标题和动画文字 -->
-<title>你的网站标题</title>
-<script type="text/javascript">
-  message = "你的自定义动画文字 (ﾉ´ヮ`)ﾉ*: ･ﾟ"; // 修改这里的文字
-</script>
-
-<!-- 2. 页眉主标题和副标题 -->
-<div id='header-text'>
-  <span style='font-size:6em;font-family:Faith_Collapsing;color:#48393d;'>你的主标题</span><br>
-  <span style='font-size:1.7em;font-family:Sanari;color:#48393d;'>你的网站域名或副标题 </span>
-</div>
-
-<!-- 3. 顶部滚动公告 -->
-<div id='marquee-bar'>
-  <marquee scrollamount=12>
-    你的滚动公告文字 | 最后更新: 日期    
-  </marquee>
-</div>
-
-<!-- 4. 状态信息 -->
-<div id='status'>
-  <span style='font-family:Faith_Collapsing;color:#9c7a7c;font-size:1.2em;'>
-    你的状态标题...
-  </span>
-  <span style='font-size:0.9em;'>
-    <p>feeling: <a href="你的心情链接"><img src="心情图片URL"></a>
-    <p>listening to: 你正在听的音乐
-    <p>thinking about: 你的想法
-    <p>last update: 最后更新日期
-  </span>
-</div>
-
-<!-- 5. 欢迎文本 -->
-<div id='main-inner'>
-  <p>你的欢迎内容...
-  <p>更多介绍文字...
-</div>
-
-<!-- 6. 更新日志 -->
-<div id='to-do'>
-  <span style='font-size:0.9em;color:#9c7a7c;'>
-    <span style='color:pink;'>Updates:</span>
-    <hr>
-    <p>日期 - 更新内容1
-    <p>日期 - 更新内容2
-  </span>
-</div>
-
-<!-- 7. 导航菜单 -->
-<div id='navigation'>
-  <a href='/home'>
-    <div id='button'>首页</div>
-  </a>
-  <a href='/about'>
-    <div id='button'>关于我</div>
-  </a>
-  <!-- 添加更多导航链接 -->
-</div>
-
-<!-- 8. 页脚信息 -->
-<div id='footer'>
-  你的版权信息 © 日期-forever ♥ 其他信息
-</div>
-
-<!-- ==================== -->
-<!-- 可自定义的图片部分 -->
-<!-- ==================== -->
-
-<!-- 1. 网站图标 -->
-<link rel="shortcut icon" href="你的favicon.ico或图片URL">
-
-<!-- 2. 背景图片 -->
-<style>
-  body {
-    background-image:url('你的背景图片URL');
-  }
-</style>
-
-<!-- 3. 头像图片 -->
-<div id='status'>
-  <img src='你的头像图片URL' style='width:120px;border:1px solid #858585;'>
-</div>
-
-<!-- 4. 装饰图片 -->
-<img src='你的装饰图片URL' style='position:absolute;width:350px;'>
-<img src='你的页眉装饰图片URL' style='float:right;height:570px;'>
-
-<!-- 5. 按钮和徽章 -->
-<div id='fun-stuff'>
-  <img src='你的按钮图片URL' style='border-radius:5px;border:1px solid #858585;'><br>
-  <!-- 友情链接图片 -->
-  <a href="朋友网站URL">
-    <img src="朋友网站按钮图片URL">
-  </a>
-</div>
-
-<!-- ==================== -->
-<!-- 可自定义的功能部分 -->
-<!-- ==================== -->
-
-<!-- 1. 状态显示 (Status Cafe) -->
-<div id="statuscafe">
-  <div id="statuscafe-username"></div>
-  <div id="statuscafe-content"></div>
-</div>
-<script src="https://status.cafe/current-status.js?name=你的StatusCafe用户名" defer></script>
-
-<!-- 2. 聊天框 -->
-<iframe src="你的聊天框嵌入代码URL" width="250" height="300"></iframe>
-
-<!-- 3. 网站计数器 -->
-<!-- 替换为你自己的计数器代码 -->
-<script language="javascript" src="//counter1.fc2.com/counter.php?id=你的计数器ID&main=1"></script>
-
-<!-- 4. 心情状态 -->
-<a href="你的imood个人页面链接">
-  <img src="https://moods.imood.com/display/uname-你的imood用户名/imood.gif">
-</a>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的二次元小窝</title>
+    <style>
+        /* === 全局样式 === */
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f5e6ff; /* 浅紫色背景 */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        /* === 像素风边框 === */
+        .pixel-border {
+            border: 3px solid #d9a3ff;
+            box-shadow: 5px 5px 0 #e8ccff;
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        /* === 顶部Banner === */
+        #banner {
+            width: 100%;
+            height: 200px; /* 自定义高度 */
+            background-color: #e8ccff;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 4px solid #d9a3ff;
+        }
+        
+        #banner-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        /* === 主要内容区域 === */
+        #main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* === 左侧导航栏 === */
+        #left-sidebar {
+            width: 200px;
+            margin-right: 20px;
+        }
+        
+        .nav-links {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-links a {
+            display: block;
+            padding: 8px 10px;
+            background-color: #f0d5ff;
+            color: #6a3093;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid #d9a3ff;
+        }
+        
+        .nav-links a:hover {
+            background-color: #d9a3ff;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        /* === 中间内容区 === */
+        #main-content {
+            flex: 1;
+            margin-right: 20px;
+        }
+        
+        /* 头像区域 */
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar-img {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #d9a3ff;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        /* 评论区域 */
+        .comment {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f0ff;
+            border-left: 4px solid #d9a3ff;
+        }
+        
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #d9a3ff;
+            font-family: inherit;
+        }
+        
+        .comment-form button {
+            background-color: #d9a3ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .comment-form button:hover {
+            background-color: #c28fe6;
+        }
+        
+        /* === 右侧边栏 === */
+        #right-sidebar {
+            width: 200px;
+        }
+        
+        /* 日历样式 */
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar th, .calendar td {
+            border: 1px solid #e8ccff;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .calendar th {
+            background-color: #f0d5ff;
+        }
+        
+        .calendar .today {
+            background-color: #d9a3ff;
+            color: white;
+        }
+        
+        /* 社交媒体链接 */
+        .social-links {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .social-links li {
+            margin-bottom: 10px;
+        }
+        
+        .social-links a {
+            display: block;
+            padding: 8px 10px;
+            background-color: #f0d5ff;
+            color: #6a3093;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #d9a3ff;
+            color: white;
+        }
+        
+        /* === 页脚 === */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #e8ccff;
+            border-top: 4px solid #d9a3ff;
+        }
+        
+        /* === 像素风装饰元素 === */
+        .pixel-divider {
+            height: 4px;
+            background-color: #d9a3ff;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .pixel-divider:before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #f5e6ff;
+            position: absolute;
+            top: -3px;
+            left: 20px;
+            transform: rotate(45deg);
+        }
+        
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            #main-container {
+                flex-direction: column;
+            }
+            
+            #left-sidebar, #main-content, #right-sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === Banner区域 === -->
+    <!-- 在这里替换成你自己的Banner图片 -->
+    <div id="banner">
+        <img id="banner-img" src="https://via.placeholder.com/1200x200/e8ccff/d9a3ff?text=My+Cute+Banner" alt="网站Banner">
+    </div>
+    
+    <div id="main-container">
+        <!-- === 左侧导航栏 === -->
+        <div id="left-sidebar">
+            <div class="pixel-border">
+                <h2>导航</h2>
+                <ul class="nav-links">
+                    <!-- 在这里添加/修改你的导航链接 -->
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">博客</a></li>
+                    <li><a href="#">相册</a></li>
+                    <li><a href="#">作品集</a></li>
+                    <li><a href="#">关于我</a></li>
+                    <li><a href="#">友情链接</a></li>
+                </ul>
+            </div>
+            
+            <div class="pixel-border">
+                <h2>友情链接</h2>
+                <ul class="nav-links">
+                    <!-- 在这里添加/修改友情链接 -->
+                    <li><a href="https://neocities.org" target="_blank">Neocities</a></li>
+                    <li><a href="https://example.com" target="_blank">示例网站1</a></li>
+                    <li><a href="https://example.com" target="_blank">示例网站2</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- === 中间主要内容 === -->
+        <div id="main-content">
+            <div class="pixel-border">
+                <div class="avatar-section">
+                    <!-- 在这里替换成你自己的头像 -->
+                    <img class="avatar-img" src="https://via.placeholder.com/100/f0d5ff/d9a3ff?text=头像" alt="我的头像">
+                    <div>
+                        <h1>欢迎来到我的小窝!</h1>
+                        <p>你好呀~我是[你的名字]</p>
+                    </div>
+                </div>
+                
+                <div class="pixel-divider"></div>
+                
+                <!-- 在这里修改自我介绍内容 -->
+                <h2>关于我</h2>
+                <p>你好呀~我是[你的名字]，一个热爱二次元、像素艺术和Y2K美学的爱好者！</p>
+                <p>这个网站是我在互联网上的小天地，分享我的生活、兴趣和创作。</p>
+                <p>我喜欢收集可爱的像素小物，画简单的像素画，还有玩复古游戏！</p>
+                <p>希望你能在这里找到有趣的内容~</p>
+                
+                <div class="pixel-divider"></div>
+                
+                <h2>最新动态</h2>
+                <p>2023.11.01 - 更新了新的像素艺术作品！</p>
+                <p>2023.10.15 - 添加了新的博客文章</p>
+                <p>2023.09.30 - 网站重新设计完成！</p>
+            </div>
+            
+            <div class="pixel-border">
+                <h2>留言板</h2>
+                <!-- 留言列表 -->
+                <div id="comments">
+                    <div class="comment">
+                        <strong>访客1</strong> - 2023.11.02
+                        <p>你的网站好可爱！我喜欢这种风格~</p>
+                    </div>
+                    <div class="comment">
+                        <strong>访客2</strong> - 2023.11.01
+                        <p>像素风太棒了！让我想起了老式电脑游戏。</p>
+                    </div>
+                </div>
+                
+                <!-- 留言表单 -->
+                <h3>留下你的评论</h3>
+                <form class="comment-form" id="comment-form">
+                    <textarea rows="4" placeholder="写下你想说的话..."></textarea>
+                    <button type="submit">提交评论</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- === 右侧边栏 === -->
+        <div id="right-sidebar">
+            <div class="pixel-border">
+                <h2>日历</h2>
+                <!-- 日历会自动显示当前月份 -->
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th colspan="7" id="calendar-month">2023年11月</th>
+                        </tr>
+                        <tr>
+                            <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- 日历内容由JavaScript生成 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pixel-border">
+                <h2>社交媒体</h2>
+                <ul class="social-links">
+                    <!-- 在这里替换成你自己的社交媒体链接 -->
+                    <li><a href="https://instagram.com/yourusername" target="_blank">Instagram</a></li>
+                    <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
+                    <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+                    <li><a href="mailto:youremail@example.com">电子邮件</a></li>
+                </ul>
+            </div>
+            
+            <div class="pixel-border">
+                <h2>网站统计</h2>
+                <p>访客数: 1234</p>
+                <p>建立日期: 2023.10.01</p>
+                <p>最后更新: 2023.11.02</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- === 页脚 === -->
+    <footer>
+        <p>© 2023 我的二次元小窝 | 使用HTML和CSS制作</p>
+    </footer>
+    
+    <script>
+        // === 日历生成脚本 ===
+        function generateCalendar() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+            
+            // 设置月份标题
+            document.getElementById('calendar-month').textContent = 
+                `${year}年${month + 1}月`;
+            
+            // 获取当月第一天是星期几
+            const firstDay = new Date(year, month, 1).getDay();
+            
+            // 获取当月天数
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // 生成日历表格
+            let calendarHTML = '';
+            let date = 1;
+            
+            for (let i = 0; i < 6; i++) {
+                // 最多需要6行(周)
+                if (date > daysInMonth) break;
+                
+                calendarHTML += '<tr>';
+                
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        // 第一周，前面的空白格子
+                        calendarHTML += '<td></td>';
+                    } else if (date > daysInMonth) {
+                        // 最后一周，后面的空白格子
+                        calendarHTML += '<td></td>';
+                    } else {
+                        // 正常日期格子
+                        if (date === today) {
+                            calendarHTML += `<td class="today">${date}</td>`;
+                        } else {
+                            calendarHTML += `<td>${date}</td>`;
+                        }
+                        date++;
+                    }
+                }
+                
+                calendarHTML += '</tr>';
+            }
+            
+            document.getElementById('calendar-body').innerHTML = calendarHTML;
+        }
+        
+        // === 评论表单处理 ===
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const textarea = this.querySelector('textarea');
+            const commentText = textarea.value.trim();
+            
+            if (commentText) {
+                const now = new Date();
+                const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
+                
+                const commentHTML = `
+                    <div class="comment">
+                        <strong>访客</strong> - ${dateStr}
+                        <p>${commentText}</p>
+                    </div>
+                `;
+                
+                document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
+                textarea.value = '';
+            }
+        });
+        
+        // 页面加载时生成日历
+        window.onload = generateCalendar;
+    </script>
+</body>
+</html>
