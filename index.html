@@ -3,156 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayii's Pixel Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 像素风格字体 -->
+    <title>Kayii的像素小窝</title>
+    <!-- 引入像素风格字体和图标 -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 像素风基础样式 */
+        /* === 基础样式 === */
         :root {
-            --bg-color: #f5e6ff;  /* 浅紫色背景 */
-            --card-color: #ffffff;
-            --pixel-border: 4px solid #8a2be2; /* 紫色像素边框 */
-            --text-color: #4b0082;
-            --accent-color: #9370db;
+            --main-color: #FF9FF3; /* 粉紫色 */
+            --secondary-color: #FECA57; /* 亮黄色 */
+            --bg-color: #FFF9F2; /* 奶油白背景 */
+            --text-color: #5F27CD; /* 深紫色文字 */
+            --pixel-border: 3px solid #000; /* 像素黑边 */
         }
-        
+
         body {
             font-family: 'Press Start 2P', cursive;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 0;
+            line-height: 1.5;
+            image-rendering: pixelated;
+        }
+
+        /* === 顶部Banner === */
+        .banner {
+            width: 100%;
+            height: 200px; /* 可调整高度 */
+            background-image: url('你的banner图片.jpg'); /* 替换你的banner图 */
+            background-size: cover;
+            background-position: center;
+            border-bottom: var(--pixel-border);
+            margin-bottom: 20px;
+        }
+
+        /* === 三栏布局 === */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === 左侧链接区 === */
+        .left-column {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            image-rendering: pixelated; /* 让图片有像素感 */
+            gap: 15px;
         }
-        
-        /* 像素风卡片 */
-        .card {
-            background: var(--card-color);
+
+        .link-box {
+            background-color: white;
             border: var(--pixel-border);
-            border-radius: 0; /* 去掉圆角，保持像素感 */
-            padding: 20px;
-            margin: 15px 0;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 8px 8px 0 #d8bfd8; /* 像素阴影 */
+            padding: 15px;
+            box-shadow: 5px 5px 0 var(--secondary-color);
         }
-        
-        /* 像素头像 */
+
+        .link-btn {
+            display: block;
+            background: var(--main-color);
+            color: white !important;
+            padding: 10px;
+            margin: 8px 0;
+            text-decoration: none;
+            border: var(--pixel-border);
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .link-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0 var(--secondary-color);
+        }
+
+        /* === 中间内容区 === */
+        .middle-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         .avatar {
             width: 120px;
             height: 120px;
             border: var(--pixel-border);
-            image-rendering: pixelated;
             margin: 0 auto;
             display: block;
         }
-        
-        /* 像素按钮 */
-        .links {
+
+        /* === 右侧边栏 === */
+        .right-column {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
         }
-        
-        .link-btn {
-            padding: 10px 15px;
-            background: var(--accent-color);
-            color: white !important;
-            border: var(--pixel-border);
-            text-decoration: none;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
-            transition: 0.2s;
-        }
-        
-        .link-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0 #d8bfd8;
-        }
-        
-        /* 像素日历 */
+
         .calendar {
             width: 100%;
-            height: 400px;
+            height: 300px;
             border: var(--pixel-border);
         }
-        
-        /* 页脚 */
-        footer {
-            margin-top: 30px;
+
+        .social-box {
+            background: white;
+            border: var(--pixel-border);
+            padding: 15px;
             text-align: center;
-            font-size: 10px;
         }
-        
-        /* 像素风格分隔线 */
-        hr {
-            border: none;
-            border-top: var(--pixel-border);
-            margin: 20px 0;
+
+        .social-icon {
+            font-size: 24px;
+            margin: 0 10px;
+            color: var(--text-color);
+        }
+
+        /* === 评论区 === */
+        #disqus_thread {
+            background: white;
+            border: var(--pixel-border);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* === 响应式设计（手机适配）=== */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 像素风头像 & 标题 -->
-    <div class="card" style="text-align: center;">
-        <img src="你的头像.jpg" alt="Kayii" class="avatar">
-        <h1>KAYII.LOL</h1>
-        <p>WELCOME TO MY PIXEL WORLD!</p>
-    </div>
-    
-    <!-- 自我介绍 -->
-    <div class="card">
-        <h2><i class="fas fa-user"></i> ABOUT ME</h2>
-        <hr>
-        <p>这里是你的自我介绍，可以用简单的像素风文字描述自己~</p>
-    </div>
-    
-    <!-- 超链接区 -->
-    <div class="card">
-        <h2><i class="fas fa-link"></i> LINKS</h2>
-        <hr>
-        <div class="links">
-            <a href="https://github.com" class="link-btn" target="_blank">
-                <i class="fab fa-github"></i> GITHUB
-            </a>
-            <a href="https://twitter.com" class="link-btn" target="_blank">
-                <i class="fab fa-twitter"></i> TWITTER
-            </a>
-            <!-- 更多链接 -->
+    <!-- === 顶部Banner大图 === -->
+    <!-- 替换说明：把'你的banner图片.jpg'换成你自己的图片文件 -->
+    <div class="banner"></div>
+
+    <!-- === 三栏主要内容区 === -->
+    <div class="container">
+        <!-- 左侧链接区 -->
+        <div class="left-column">
+            <div class="link-box">
+                <h2>📚 我的博客</h2>
+                <!-- 替换说明：修改href和文字即可 -->
+                <a href="你的博客链接" class="link-btn">技术笔记</a>
+                <a href="#" class="link-btn">生活随笔</a>
+                <a href="#" class="link-btn">作品集</a>
+            </div>
+
+            <div class="link-box">
+                <h2>🔗 常用链接</h2>
+                <a href="#" class="link-btn">GitHub</a>
+                <a href="#" class="link-btn">B站</a>
+                <a href="#" class="link-btn">Steam</a>
+            </div>
+        </div>
+
+        <!-- 中间主要内容 -->
+        <div class="middle-column">
+            <div class="link-box" style="text-align: center;">
+                <!-- 替换说明：更换头像图片 -->
+                <img src="你的头像.jpg" alt="头像" class="avatar">
+                <h1>你好呀！我是Kayii</h1>
+                <p>欢迎来到我的像素小窝~</p>
+            </div>
+
+            <div class="link-box">
+                <h2>👾 关于我</h2>
+                <!-- 替换说明：在这里写自我介绍 -->
+                <p>这里可以写你的自我介绍，比如：</p>
+                <p>我是来自XX的二次元爱好者，喜欢像素游戏和Y2K美学...</p>
+                <p>目前正在学习前端开发！</p>
+            </div>
+
+            <!-- 评论区 -->
+            <div class="link-box">
+                <h2>💬 留言板</h2>
+                <div id="disqus_thread"></div>
+            </div>
+        </div>
+
+        <!-- 右侧边栏 -->
+        <div class="right-column">
+            <div class="link-box">
+                <h2>📅 日历</h2>
+                <!-- 替换说明：换成你的Google日历嵌入代码 -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia%2FShanghai" 
+                        class="calendar" frameborder="0"></iframe>
+            </div>
+
+            <div class="social-box">
+                <h2>🌟 找到我</h2>
+                <!-- 替换说明：修改href中的链接 -->
+                <a href="你的Instagram链接" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="你的Twitter链接" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
+            </div>
         </div>
     </div>
-    
-    <!-- 像素风日历 -->
-    <div class="card">
-        <h2><i class="fas fa-calendar"></i> CALENDAR</h2>
-        <hr>
-        <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia%2FShanghai" 
-                class="calendar" frameborder="0" scrolling="no"></iframe>
-    </div>
-    
-    <!-- 评论区 -->
-    <div class="card">
-        <h2><i class="fas fa-comments"></i> GUESTBOOK</h2>
-        <hr>
-        <div id="disqus_thread"></div>
-    </div>
-    
-    <footer>
-        <p>© 2025 KAYII.LOL | MADE WITH ❤️ AND PIXELS</p>
-    </footer>
-    
-    <!-- Disqus 评论 -->
+
+    <!-- === Disqus评论系统 === -->
+    <!-- 替换说明：注册Disqus后替换YOUR_DISQUS_SHORTNAME -->
     <script>
         var disqus_config = function () {
             this.page.url = 'https://kayii.lol';
-            this.page.identifier = 'kayii-pixel-home';
+            this.page.identifier = 'kayii-homepage';
         };
         (function() {
             var d = document, s = d.createElement('script');
