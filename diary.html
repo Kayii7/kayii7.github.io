@@ -1,29 +1,298 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>我的日记</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>我的日记</h1>
-        </header>
-        
-        <main>
-            <div class="entry">
-                <h2>2023年10月15日</h2>
-                <p>这里是你的日记内容...</p>
-            </div>
-            
-            <!-- 可以添加更多日记条目 -->
-        </main>
-        
-        <footer>
-            <p>© 2023 我的日记</p>
-        </footer>
-    </div>
+  <head>
+	  
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>
+		  Kaiya's diary
+      </title>
+  	  <link rel="shortcut icon" href="">
+	  
+	  <style>
+		  
+		  
+		  body {
+		  background-image:url('https://chokoreto.neocities.org/dotbg.png');
+		  font-family:'Ms Gothic';
+		  font-size:1em;
+		  color:#858585;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+		  display: flex;
+		  overflow:hidden;
+	      }
+		  
+		  @font-face {
+		  font-family: 'Sanari';src:url(https://files.catbox.moe/r7hi0v.ttf);
+
+	      }
+		  
+		  h1 {
+			  font-size:2.3em;
+			  font-family:'Sanari';
+			  color: pink;
+			  text-shadow: #858585 3px 0px 0px
+		  }
+		  
+		  h2 {
+			  font-size:1.2em;
+			  font-family:'Sanari';
+			  color:pink;
+			  text-shadow: #858585 2px 0px 0px
+		  }
+		  
+		  h3 {
+			  font-size:0.95em;
+			  font-family:'Sanari';
+		  }
+		  
+		  #padding {
+			  width:500px;
+			  height:auto;
+			  display:flex;
+			  padding:10px;
+		  }
+		  
+		  #center {
+			  width: 450px;
+			  height:600px;
+			  display: inline-block;
+			  padding-top:40px;
+			  padding-bottom:20px;
+			  padding-left:20px;
+			  padding-right:20px;
+			  border-radius:5px;
+			  margin:auto;
+			  background-image:url('https://chokoreto.neocities.org/checkbg.png');
+			  -webkit-box-shadow: 12px 12px 25px -23px rgba(66, 68, 90, 1);
+			  -moz-box-shadow: 12px 12px 25px -23px rgba(66, 68, 90, 1);
+			  box-shadow: 12px 12px 25px -23px rgba(66, 68, 90, 1);
+		  }
+		  
+		  #center-inner {
+			  width:85%;
+			  height:90%;
+			  display: inline-block;
+              border-radius:10px;
+			  background:white;
+			  padding-top:0px;
+			  padding-bottom:30px;
+			  padding-left:30px;
+			  padding-right:30px;
+			  border: 1px dotted grey;
+			  overflow-y:scroll;
+			  overflow-x:hidden;
+			  
+			  
+		  }
+		  
+		  #circle {
+			  width:32px;
+			  height:545px;
+			  display:inline-block;
+			  margin-top:60px;
+			  margin-right:-30px;
+			  position:relative;
+			  display:flex;
+			  background-image:url(https://chokoreto.neocities.org/circle.webp);
+		  }
+		  #figure {
+			  position:absolute;
+			  
+		  }
+		  
+		  #heading {
+			  width:400px;
+			  height:148px;
+			  position:absolute;
+			  background:white;
+			  margin-left:-10px;
+			  margin-bottom:150px;
+
+		  }
+		  
+		  #space {
+			  width:100%;
+			  height:150px;
+		  }
+		  
+		  #entry {
+			  width:90%;
+			  min-height:100px;
+			  background:url('https://chokoreto.neocities.org/dotbg.png');
+			  border-radius:10px;
+			  overflow:auto;
+			  border: 1px pink solid;
+			  padding-bottom:25px;
+			  padding-top:5px;
+			  padding-left:15px;
+			  padding-right:15px;
+			  margin-top:20px;
+			  margin-bottom:20px;
+			  
+		  }
+		  
+		  hr {
+			  border-top: 1px dashed pink;
+		  }
+		  
+		  #home {
+			  width:150px;
+			  height:15px;
+			  padding:10px;
+			  background: rgb(250,230,239);
+			  background: linear-gradient(0deg, rgba(250,230,239,1) 37%, rgba(252,240,246,1) 55%, rgba(254,250,252,1) 95%);
+			  font-family:'Sanari';
+			  border: 1px #858585 solid;
+			  margin-top:5px;
+			  border-radius:10px;
+		  }
+		  
+		  #calendar-outer {
+			  width:auto;
+			  height:200px;
+			  padding:20px;
+			  display:inline-block;
+			  background:url('https://chokoreto.neocities.org/checkbg.png');
+			  border-radius:10px;
+			  font-family:'Sanari';
+			  font-size:0.8em;
+			  margin:auto;
+			  float:right;
+		  }
+		  
+		  #calendar {
+			  width:auto;
+			  height:auto;
+			  background:white;
+			  border-radius:10px;
+			  padding:5px;
+			  border: 1px dotted grey;
+			  font-family:'Sanari';
+			  font-size:1em;
+			  
+		  }
+		  
+
+		  
+		  a:link {
+		    color: #858585;
+		    background-color: transparent;
+		    text-decoration: none;
+		  }
+
+		  a:visited {
+		    color: #858585;
+		    background-color: transparent;
+		    text-decoration: none;
+		  }
+
+		  a:hover {
+		    color: #858585;
+		    background-color: transparent;
+		    text-decoration: underline;
+		  }
+
+		  a:active {
+		    color: #858585;
+		    background-color: transparent;
+		    text-decoration: none;
+		  }
+		  
+		  /* width */
+		  ::-webkit-scrollbar {
+		    width: 7px;
+		  }
+
+		  /* Track */
+		  ::-webkit-scrollbar-track {
+  		    background-image:url('https://chokoreto.neocities.org/dotbg.png');
+  			border-radius:5px;
+		  }
+
+		  /* Handle */
+		  ::-webkit-scrollbar-thumb {
+			  background: rgb(250,230,239);
+			  background: linear-gradient(0deg, rgba(250,230,239,1) 37%, rgba(252,240,246,1) 55%, rgba(254,250,252,1) 95%);
+			border-radius:2px;
+		  }
+		  
+		  </style>
+		  <body>
+			  <style type="text/css">* {cursor: url(https://cur.cursors-4u.net/others/oth-5/oth505.cur), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2009/12/10/pink-pencil.html" target="_blank" title="Pink Pencil"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Pink Pencil" style="position:absolute; top: 0px; right: 0px;" /></a>
+			  
+
+		  
+			  
+		  <div id='padding'>
+			  
+				  
+
+			  
+		  		  <div id='circle'> 
+				  </div>
+				  
+		  <div id='center'>
+			  
+		  <div id='center-inner'>
+		  <div id='heading'>
+		  <h1> Kaiya's sweet diary </h1>
+		  <h3>here I'll post entries about my life
+		  and you can check what I'm up to ! I'll try
+		  to update it everyday :3</h3>
+		  <hr>
+	  </div>
+	  <div id='space'></div>
+		  
+		  <!-- entries start here -->
+		  
+		  
+    
+
+		  
+		 
+		  
+		  
+		
+		  
+		  
+		  <div id='entry'>
+		  <h2>date: 8th April 2024 <br>
+		      title: Jonathan shrine!</h2>
+			  <p>Hello people of the internet, I'm working very hard on my website and
+				 I've been coding a Jonathan Joestar shrine :3<br>
+				 I love the way it looks so far but no spoilers yet!
+				 You can have this image of chibi Jonathan plushie (that sadly
+				 has no front hair, because my dog chewed it off...)<br>
+<img src='https://chokoreto.neocities.org/diary/diary1.webp' 
+style='width:160px;border-radius:10px;'>
+<br>
+Anyway enjoy the pic! ( ; ω ; )</p>
+		  </div>
+		  
+		  
+		
+		   
+ 		
+		   
+		   
+  		
+		   
+	
+
+
+
+         <!-- entries end here -->
+		  </div>
+		  <center>
+		  <a href='https://chokoreto.neocities.org/home'>
+		  <div id='home'>
+		  go home?
+	      </div>
+	  </a>
+	  </center>
+	  </div>
+	  
+  </div>
 </body>
-</html>
