@@ -1,230 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayii's Room</title>
-    <!-- 引入像素风格字体和图标 -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>你的酷站</title>
     <style>
-        /* === 基础样式 === */
-        :root {
-            --main-color: #FF9FF3; /* 主色调 - 粉紫色 */
-            --secondary-color: #FECA57; /* 辅助色 - 亮黄色 */
-            --bg-color: #FFF9F2; /* 背景色 - 奶油白 */
-            --text-color: #5F27CD; /* 文字色 - 深紫色 */
-            --pixel-border: 3px solid #000; /* 像素黑边 */
-        }
-
+        /* === 千禧风CSS === */
         body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background: #000 url('https://i.imgur.com/像素背景.gif');
+            color: #0f0;
+            font-family: 'VT323', monospace;
             margin: 0;
-            padding: 0;
-            line-height: 1.5;
+            padding: 20px;
             image-rendering: pixelated;
         }
-
-        /* === 顶部Banner === */
-        .banner {
-            width: 100%;
-            height: 200px; /* 可调整高度 */
-            background-image: url('banner.jpg'); /* https://github.com/Kayii7/kayii7.github.io/commit/2fb73d89c51ce674d1058f13bffc8f2d14ac3a9b */
-            background-size: cover;
-            background-position: center;
-            border-bottom: var(--pixel-border);
-            margin-bottom: 20px;
+        .glow-text {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+            animation: blink 1s infinite;
         }
-
-        /* === 三栏布局 === */
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* === 左侧链接区 === */
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .link-box {
-            background-color: white;
-            border: var(--pixel-border);
-            padding: 15px;
-            box-shadow: 5px 5px 0 var(--secondary-color);
-        }
-
-        .link-btn {
-            display: block;
-            background: var(--main-color);
-            color: white !important;
-            padding: 10px;
-            margin: 8px 0;
-            text-decoration: none;
-            border: var(--pixel-border);
-            text-align: center;
-            transition: all 0.2s;
-            font-size: 12px;
-        }
-
-        .link-btn:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 3px 3px 0 var(--secondary-color);
-        }
-
-        /* === 中间内容区 === */
-        .middle-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border: var(--pixel-border);
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* === 右侧边栏 === */
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .calendar {
-            width: 100%;
-            height: 300px;
-            border: var(--pixel-border);
-        }
-
-        .social-box {
-            background: white;
-            border: var(--pixel-border);
-            padding: 15px;
-            text-align: center;
-        }
-
-        .social-icon {
-            font-size: 24px;
-            margin: 0 10px;
-            color: var(--text-color);
-        }
-
-        /* === 评论区 === */
-        #disqus_thread {
-            background: white;
-            border: var(--pixel-border);
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* === 响应式设计（手机适配）=== */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        /* 更多样式见下方完整模板 */
     </style>
 </head>
 <body>
-    <!-- === 顶部Banner大图 === -->
-    <!-- https://github.com/Kayii7/kayii7.github.io/commit/2fb73d89c51ce674d1058f13bffc8f2d14ac3a9b -->
-    <div class="banner"></div>
-
-    <!-- === 三栏主要内容区 === -->
-    <div class="container">
-        <!-- 左侧链接区 -->
-        <div class="left-column">
-            
-            </div>
-
-            <div class="link-box">
-                <h2>🔗 常用链接</h2>
-                <!-- 🟢🟢🟢 修改这些链接和文字 🟢🟢🟢 -->
-                <a href="https://github.com/你的用户名" class="link-btn">GitHub</a>
-                <a href="https://bilibili.com/你的主页" class="link-btn">B站</a>
-                <a href="https://store.steampowered.com" class="link-btn">Steam</a>
-            </div>
+    <center>
+        <!-- 你的LOGO -->
+        <img src="你的logo.gif" width="200" style="border: 3px dashed #ff0;">
+        
+        <!-- 导航菜单 -->
+        <marquee>🚀 欢迎来到我的网站！</marquee>
+        
+        <!-- 内容区 -->
+        <div style="border: 4px dotted #f0f; padding: 20px;">
+            <h1 class="glow-text">你的主标题</h1>
+            <p>这里写你的自我介绍...</p>
         </div>
+    </center>
 
-        <!-- 中间主要内容 -->
-        <div class="middle-column">
-            <div class="link-box" style="text-align: center;">
-                <!-- 🟢🟢🟢 替换头像图片 🟢🟢🟢 -->
-                <!-- 1. 准备一张正方形头像(建议200x200像素) -->
-                <!-- 2. 命名为avatar.jpg并上传 -->
-                <!-- 3. 确保和html文件在同一个文件夹 -->
-                <img src="avatar.jpg" alt="头像" class="avatar">
-                <h1>你好呀！我是Kayii</h1>
-                <p>欢迎来到我的像素小窝~</p>
-            </div>
-
-            <div class="link-box">
-                <h2>👾 关于我</h2>
-                <!-- 🟢🟢🟢 在这里写自我介绍 🟢🟢🟢 -->
-                <p>我是Kayii，一个热爱二次元和像素艺术的创作者！</p>
-                <p>这个网站是我用代码搭建的小天地~</p>
-                <p>平时喜欢玩游戏、画画和写代码！</p>
-                <p>欢迎来和我交朋友！(≧▽≦)</p>
-            </div>
-
-            <!-- 评论区 -->
-            <div class="link-box">
-                <h2>💬 留言板</h2>
-                <div id="disqus_thread"></div>
-            </div>
-        </div>
-
-        <!-- 右侧边栏 -->
-        <div class="right-column">
-            <div class="link-box">
-                <h2>📅 日历</h2>
-                <!-- 🟢🟢🟢 设置Google日历 🟢🟢🟢 -->
-                <!-- 1. 登录Google日历 → 设置 → 日历设置 -->
-                <!-- 2. 找到"嵌入代码"并复制 -->
-                <!-- 3. 替换下面的iframe代码 -->
-                <iframe src="https://calendar.google.com/calendar/embed?src=你的日历ID&ctz=Asia%2FShanghai" 
-                        class="calendar" frameborder="0"></iframe>
-            </div>
-
-            <div class="social-box">
-                <h2>🌟 找到我</h2>
-                <!-- 🟢🟢🟢 修改社交链接 🟢🟢🟢 -->
-                <a href="https://instagram.com/你的账号" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/你的账号" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="https://discord.gg/你的邀请链接" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- === Disqus评论系统 === -->
-    <!-- 🟢🟢🟢 设置评论区 🟢🟢🟢 -->
-    <!-- 1. 访问 https://disqus.com/ 注册账号 -->
-    <!-- 2. 创建新站点(选择免费版) -->
-    <!-- 3. 记住你的shortname -->
-    <!-- 4. 替换下面的YOUR_DISQUS_SHORTNAME -->
-    <script>
-        var disqus_config = function () {
-            this.page.url = 'https://kayii.lol'; // 你的网站地址
-            this.page.identifier = 'kayii-homepage';
-        };
-        (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
+    <!-- 访客计数器 -->
+    <img src="https://www.cutercounter.com/hits.php?id=xxxx&nd=6&style=3" border="0">
 </body>
 </html>
