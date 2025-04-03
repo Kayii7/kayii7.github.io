@@ -138,25 +138,30 @@
             background-color: #c28fe6;
         }
         
-        /* 日历样式 */
+        /* 日历样式 - 已修复边框问题 */
         .calendar {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate; /* 修改为separate解决边框冲突 */
+            border-spacing: 0;
+            border: 2px solid #e8ccff; /* 添加外边框 */
         }
         
         .calendar th, .calendar td {
             border: 1px solid #e8ccff;
             padding: 5px;
             text-align: center;
+            background-color: white; /* 添加白色背景 */
         }
         
         .calendar th {
             background-color: #f0d5ff;
+            border-bottom: 2px solid #d9a3ff; /* 加强表头边框 */
         }
         
         .calendar .today {
             background-color: #d9a3ff;
             color: white;
+            font-weight: bold;
         }
         
         /* 社交媒体链接 */
@@ -229,7 +234,6 @@
 <body>
     <!-- === Banner区域 === -->
     <!-- 【自定义】替换下面的图片URL为你自己的Banner图片 -->
-    <!-- 上传到GitHub后，格式应该是：https://你的用户名.github.io/图片路径 -->
     <div id="banner">
         <img id="banner-img" src="https://kayii7.github.io/images/banner.png" alt="网站Banner">
     </div>
@@ -246,17 +250,6 @@
                     <li><a href="#">相册</a></li>
                     <li><a href="#">作品集</a></li>
                     <li><a href="#">关于我</a></li>
-                    <li><a href="#">友情链接</a></li>
-                </ul>
-            </div>
-            
-            <div class="pixel-border">
-                <h2>友情链接</h2>
-                <ul class="nav-links">
-                    <!-- 【自定义】修改下面的友情链接 -->
-                    <li><a href="https://neocities.org" target="_blank">Neocities</a></li>
-                    <li><a href="https://example.com" target="_blank">示例网站1</a></li>
-                    <li><a href="https://example.com" target="_blank">示例网站2</a></li>
                 </ul>
             </div>
         </div>
@@ -266,7 +259,6 @@
             <div class="pixel-border">
                 <div class="avatar-section">
                     <!-- 【自定义】替换下面的图片URL为你自己的头像 -->
-                    <!-- 上传到GitHub后，格式应该是：https://你的用户名.github.io/图片路径 -->
                     <img class="avatar-img" src="https://kayii7.github.io/images/avatar.png" alt="我的头像">
                     <div>
                         <h1>Kayii's Room</h1>
@@ -423,4 +415,3 @@
     </script>
 </body>
 </html>
-
