@@ -7,13 +7,18 @@
     <style>
         /* === 全局样式 === */
         body {
-            font-family: 'Courier New', monospace;
-            background-color: #f5e6ff;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+    font-family: 'Courier New', monospace;
+    background-color: #F1E3F0;
+    /* 新增波点背景效果 */
+    background-image: radial-gradient(#F8EEE4 15%, transparent 16%),
+                     radial-gradient(#F8EEE4 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
         
         /* === 像素风边框 === */
         .pixel-border {
