@@ -1,0 +1,145 @@
+# 本地操作示例
+git clone https://github.com/kayii7/kayii7.github.io.git
+cd 你的用户名.github.io
+# 复制所有下载的文件到此文件夹
+git add .
+git commit -m "<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 浏览器标签上显示的网站标题  -->
+    <title>Kayii</title>
+    <!-- 网站介绍 -->
+    <meta name="description" content="Kayii 的小站">
+    <!-- 网站关键字 -->
+    
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="./static/style.css?v=1.2.0">
+    <link rel="stylesheet" href="./static/APlayer-1.10.1/dist/APlayer.min.css">
+
+    <!-- 自定义设置 -->
+    <style>
+        body {
+            /*背景图片URL 可使用随机图片API 两张照片 一张背景 一张卡片左侧  */
+            background-image: url("/static//background.png");
+        }
+
+        .photo-bg {
+            /* 卡片左侧图片 */
+            background-image: url("/static/left.png");
+        }
+    </style>
+    <script>
+        // 音乐设置
+        let meting_music_api = "https://kayii.moe/meting-api/";// meting api
+        // let meting_music_api = "/meting-api/test.php";// meting api
+        let music_server = "netease"; // 音乐服务：网易云 netease 参见 meting api支持的服务
+        let music_type = "playlist"; // 歌曲类型：歌单playlist 单首歌曲 song  专辑 album
+        let music_id = "8896575510"; // 歌单ID或歌曲ID或者专辑ID 20173709 29732992
+        let music_order = "random"; // 音频循环顺序, 顺序播放： 'list', 随机播放：'random'
+        let music_mini = false; // mini模式 吸底模式开启后此选项实效 true / fals---e
+        let music_fixed = false; // 吸底模式
+        let music_volume = 0.7; // 默认音量
+        let music_autoplay = false; // 自动播放
+        let music_loop = "all"; // 音频循环播放, 可选值: 'all', 'one', 'none' ，分别为全部循环，单曲循环，不循环
+        // TODO 一言设置
+        window.onload = () => {
+            let run = () => {
+                let seconds = Math.round((new Date() - 1701464820 * 1000) / 1000);
+                let days = Math.floor(seconds / (24 * 3600));
+                seconds %= 24 * 3600;
+                let hours = Math.floor(seconds / 3600);
+                seconds %= 3600;
+                let minutes = Math.floor(seconds / 60);
+                seconds %= 60;
+                document.querySelector("#run").innerHTML = `Kayii 的网站已经存在 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+            }
+            run();
+            setInterval(run, 1000);
+        }
+
+    </script>
+    <!-- end 自定义设置 -->
+</head>
+
+<body>
+    <!-- <div class="kz-video">
+        <video src="./static/video/lty.mp4" autoplay="autoplay" loop muted playsinline="" webkit-playsinline=""></video>
+    </div> -->
+    <div id="main" class="container">
+        <div class="row my-card justify-content-center">
+            <div class="col-lg-4 photo-bg"></div>
+            <div class="col-lg-8 card">
+                <p id="run" style="text-align: right"></p>
+                <!-- 大标题 -->
+                <h1>KayiiKawaii</h1>
+                <!-- 标题下的一段话 -->
+                <p>
+                  没有勇敢的猫猫，只有痛苦的工作。
+                </p>
+                <!-- 这个是一言  -->
+                <!-- <p id="hitokoto_text">:D 一言获取中...</p> -->
+             
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- 导航按钮组 -->
+                        <button data-href="https://blog.kayii.moe" data-title="Blog" data-window="current" data-anim="4"
+                            data-area-w="80%" data-area-h="90%" data-shade="false"
+                            class="kz-nav-btn btn col-lg-4" style="background-color: #7c29b0; color: #FFF;">博客</button>
+
+                        <button data-href="https://note.kayii.moe" data-title="Note" data-window="current"
+                            data-anim="4" data-area-w="80%" data-area-h="90%" data-shade="false"
+                            class="kz-nav-btn btn col-lg-4" style="background-color: #a24fd5; color: #FFF;">资料</button>
+
+                    
+                        <!-- end 导航按钮组 -->
+                    </div>
+                    <!--<div class="row">-->
+                        
+                        
+                        
+                    <!--    <button data-href="https://photos.kayii.moe" data-title="Photos" data-window="newtab"-->
+                    <!--        data-anim="4" data-area-w="80%" data-area-h="90%" data-shade="false"-->
+                    <!--        class="kz-nav-btn btn col-lg-4" style="background-color: #a24fd5; color: #FFF;">图片</button>-->
+                    <!--</div>-->
+                </div>
+                <!-- aplayer inner -->
+                <div id="aplayer-inner" class="aplayer"></div>
+                <!-- end aplayer inner -->
+                <ul class="social mt-1">
+                    <li><a href="https://instagram.com/mymysleelee">
+                        <img width="20px" height="20px" src="/static/ins.png">
+                    </a>
+                    </li>
+                </ul>
+
+                <footer>
+                    <p>
+                        Copyright 2023~2024 - Now 
+                        <a href="https://kayii.moe/" target="_blank">Kayii.moe</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- aplayer -->
+    <div id="aplayer-fixed" class="aplayer"></div>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./static/APlayer-1.10.1/dist/APlayer.min.js"></script>
+    <script src="./static/Meting.min.js"></script>
+    <!-- end_aplayer -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script defer src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="./static/layer-v3.5.1/layer/layer.js"></script>
+
+    <script src="./static/main.js"></script>
+
+</html>"
+git push
