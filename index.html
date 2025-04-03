@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kayii</title>
+    <meta name="description" content="Kayii 的小站">
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    
+    <!-- 使用CDN资源 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/APlayer.min.css">
+    <link rel="stylesheet" href="/static/style.css?v=1.2.1">
+
+    <style>
+        body {
+            background-image: url("/static/background.png");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .photo-bg {
+            background-image: url("/static/left.png");
+            background-size: cover;
+        }
+    </style>
+    
+    <script>
+        // 音乐设置
+        const meting_music_api = "https://kayii.moe/meting-api/";
+        const music_server = "netease";
+        const music_type = "playlist";
+        const music_id = "8896575510";
+        const music_order = "random";
+        const music_mini = false;
+        const music_fixed = false;
+        const music_volume = 0.7;
+        const music_autoplay = false;
+        const music_loop = "all";
+
+        // 运行时间计算
+        window.addEventListener('DOMContentLoaded', () => {
+            const updateRunTime = () => {
+                const startTimestamp = 1701464820 * 1000;
+                const now = new Date();
+                const diff = now - startTimestamp;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById("run").textContent = 
+                    `Kayii 的网站已经存在 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+            };
+            
+            updateRunTime();
+            setInterval(updateRunTime, 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="main" class="container">
+        <div class="row my-card justify-content-center">
+            <div class="col-lg-4 photo-bg"></div>
+            <div class="col-lg-8 card">
+                <p id="run" style="text-align: right"></p>
+                <h1>KayiiKawaii</h1>
+                <p>没有勇敢的猫猫，只有痛苦的工作。</p>
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <button data-href="https://blog.kayii.moe" 
+                                class="kz-nav-btn btn col-lg-4" 
+                                style="background-color: #7c29b0; color: #FFF;">博客</button>
+                        <button data-href="https://note.kayii.moe" 
+                                class="kz-nav-btn btn col-lg-4" 
+                                style="background-color: #a24fd5; color: #FFF;">资料</button>
+                    </div>
+                </div>
+                
+                <div id="aplayer-inner" class="aplayer"></div>
+                
+                <ul class="social mt-1">
+                    <li>
+                        <a href="https://instagram.com/mymysleelee">
+                            <img width="20" height="20" src="/static/ins.png" alt="Instagram">
+                        </a>
+                    </li>
+                </ul>
+
+                <footer>
+                    <p>Copyright 2023~2024 - Now 
+                       <a href="https://kayii.moe/" target="_blank">Kayii.moe</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音乐播放器 -->
+    <div id="aplayer-fixed" class="aplayer"></div>
+    
+    <!-- JS资源 -->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="/static/APlayer.min.js"></script>
+    <script src="/static/Meting.min.js"></script>
+    <script src="/static/main.js"></script>
+</body>
+</html>
