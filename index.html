@@ -1,832 +1,122 @@
-<html>
-  <head>
-	  
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>
-		  Chokoreto!
-      </title>
-  	<script type="text/javascript">
-  		message = "Chokoreto! (ﾉ´ヮ`)ﾉ*: ･ﾟ	 ";
-  		function step() {
-  			message = message.substr(1) + message.substr(0,1);
-  			document.title = message.substr(0,15);
-  		}
-  	</script>
-		
-  	  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1120056306049495160/1237064016308998228/cover.jpeg?ex=663a4925&is=6638f7a5&hm=4c39559e85768c3111d0fd2c06e6bbd3df23efd2c39f224b9f2805ccc7833daf&">
-	  
-	  
-      </head>
-	  
-	  <style>
-		  
-		  
-		  
-		  body {
-		  background-image:url('https://chokoreto.neocities.org/resources/dotbg.png');
-		  font-family:'Ms Gothic';
-		  font-size:1em;
-		  color:#858585;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-		  display: flex; 
-		  
-	      }
-		  
-		  @font-face {
-		  font-family: 'Sanari';src:url('https://files.catbox.moe/r7hi0v.ttf');
+<!-- ==================== -->
+<!-- 可自定义的文字内容部分 -->
+<!-- ==================== -->
 
-	      }
-		  
-		  @font-face {
-		  font-family: 'Deutschlands';src:url('https://files.catbox.moe/uaa7ph.ttf');
+<!-- 1. 浏览器标题和动画文字 -->
+<title>你的网站标题</title>
+<script type="text/javascript">
+  message = "你的自定义动画文字 (ﾉ´ヮ`)ﾉ*: ･ﾟ"; // 修改这里的文字
+</script>
 
-	      }
-		  
-		  @font-face {
-		  font-family: 'Faith_Collapsing';src:url('https://files.catbox.moe/d7rfa7.ttf');
-	      }
-		  
-		  a:link {
-		    color: #48393d;
-		    background-color: transparent;
-		    text-decoration: none;
-		  }
+<!-- 2. 页眉主标题和副标题 -->
+<div id='header-text'>
+  <span style='font-size:6em;font-family:Faith_Collapsing;color:#48393d;'>你的主标题</span><br>
+  <span style='font-size:1.7em;font-family:Sanari;color:#48393d;'>你的网站域名或副标题 </span>
+</div>
 
-		  a:visited {
-		    color: #48393d;
-		    background-color: transparent;
-		    text-decoration: none;
-		  }
+<!-- 3. 顶部滚动公告 -->
+<div id='marquee-bar'>
+  <marquee scrollamount=12>
+    你的滚动公告文字 | 最后更新: 日期    
+  </marquee>
+</div>
 
-		  a:hover {
-		    color: #48393d;
-		    background-color: transparent;
-		    text-decoration: underline;
-		  }
-
-		  a:active {
-		    color: #48393d;
-		    background-color: transparent;
-		    text-decoration: none;
-		  }
-
-		  
-		  
-		  #layout {
-		  width:900px;
-		  height:auto;
-		  margin:auto;
-		  }
-		  
-		  #cookie {
-		  width:auto;
-		  height:auto;
-		  padding:7px;
-	      border-width: 8px;
-	      border-style: solid;
-	      border-image:url('https://chokoreto.neocities.org/resources/darkcookie.png') 9 fill round;
-		  }
-		  
-		  #header {
-		  width:auto;
-		  height:270px;
-		  overflow:hidden;
-		  border-radius: 10px 10px 0px 0px;
-		  padding-left:20px;
-		  border:1px solid #858585;
-		  background:url('https://chokoreto.neocities.org/pinkpolka.png');
-		  
-		  
-		  
-		  
-		  animation: background 40s linear infinite	
-		  }
-		  
-		  @keyframes background {
-		    0% {
-		      background-position:0% 0%;
-		    }
-
-		    100% {
-		      background-position:100% 0%;
-		    }
-		  }
-	      
-		  
-		  #header-text {
-		  float:left;
-		  line-height:55px;
-		  text-shadow: 0px 0px 10px rgba(216, 109, 173, 1);
-		  position:absolute;
-		  }
-		  
-	  
-		  #marquee-bar {
-		  width:auto;
-		  height:20px;
-		  padding:10px;
-		  border: 1px solid #858585;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  font-family:'Sanari';
-		  color:#feebf0;
-		  
-		  
-		  }
-		  
-		  #background {
-		  width:auto;
-		  height:auto;
-		  background:white;
-		  border:1px solid #858585;
-		  overflow:hidden;
-		  background:url('https://chokoreto.neocities.org/dotbg.png');
-		  }
-
-		  #row-1 {
-		  width:auto;
-		  height:auto;
-		  margin:auto;
-		  display: flex;
-		  flex-wrap: wrap;
-		  padding-top:5px;
-		  }
-		  
-		  #left {
-		  width:190px;
-		  height:770px;	
-		  display:inline-block;
-		  margin:auto;
-		  	
-	      }
-		  
-		  #center {
-		  width:650px;
-		  height:770px;
-		  display:inline-block;
-		  margin:auto;
-		  font-family:'Sanari';
-		  float:right;
-		  
-		  	
-		  }
-		  
-		  
-		  
-		  #main {
-		  width:610px;
-		  height:730px;
-		  margin:auto;
-		  padding:10px;
-	      border: 1px dashed pink;
-	      border-width: 8px;
-	      border-style: solid;
-	      border-image:url('https://chokoreto.neocities.org/resources/border.png') 8 fill round;
-		  
-		  
-
-
-		  }
-		  
-		  #main-inner {
-		  width:350px;
-		  height:auto;
-		  margin-bottom:10px;
-		  padding:15px;
-		  background:white;
-		  border-radius:10px;
-		  border:1px dotted #9c7a7c;
-		  font-size:0.9em;
-		  color:#9c7a7c;
-		  display:inline-block;
-		  float:left;
-		  
-	  }
-		  
-		  #status {
-		  width:150px;
-		  height:300px;
-		  margin:auto;
-		  padding:15px;
-		  background:white;
-		  border:1px solid #858585;
-		  
-		  }
-		  
-		  #calendar {
-		  width:170px;
-		  height:212px;
-		  margin:auto;
-		  background:white;
-		  border:1px solid #858585;
-		  overflow:hidden;	
-		  padding-left:4px;
-		  padding-right:6px;
-		  }
-		  
-		  #button-top {
-		  width:170px;
-		  height:30px;
-		  padding:5px;
-		  border-top:1px solid #858585;
-		  border-left:1px solid #858585;
-		  border-right:1px solid #858585;
-		  border-radius: 10px 10px 0px 0px;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  font-family:'Deutschlands';
-		  color:#feebf0;
-		  font-size:1.5em;
-		  margin:auto;
-		  text-shadow: 0px 0px 6px rgba(216, 109, 173, 1);
-
-		  }
-		  
-		  #button-big {
-		  width:170px;
-		  height:30px;
-		  padding:5px;
-		  border-left:1px solid #858585;
-		  border-right:1px solid #858585;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  font-family:'Deutschlands';
-		  color:#feebf0;
-		  font-size:1.5em;
-		  margin:auto;
-		  text-shadow: 0px 0px 6px rgba(216, 109, 173, 1);
-		  
-
-		  }
-		  
-		  #navigation {
-		  width:150px;
-		  height:auto;
-		  padding:15px;
-		  background:white;
-		  border:1px solid #858585;	
-		  margin:auto;
-		  }
-		  
-		  #button {
-			  width: auto;
-			  height: 16px;
-			  padding:5px;
-			  border-bottom: 1px dotted #9c7a7c;
-			  font-size:0.9em;
-			  color:#858585;
-			  
-		  }
-		  
-
-		  
-		  #footer {
-			  width:auto;
-			  height:20px;
-			  padding:10px;
-			  border: 1px solid #858585;
-			  background: rgb(136,107,116);
-			  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-			  font-family:'Sanari';
-			  color:#feebf0;
-		  }
-		  
-		  #clock {
-		  width:160px;
-		  height:30px;
-		  margin:auto;
-		  padding:10px;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  border-radius: 10px 10px 0px 0px;
-		  border-top:1px solid #858585;
-		  border-left:1px solid #858585;
-		  border-right:1px solid #858585;
-		  }
-		  
-		  #txt {
-		  color:#feebf0;
-		  font-size:2em;
-		  font-family:'Deutschlands';
-		  text-shadow: 0px 0px 6px rgba(216, 109, 173, 1);
-		  }
-		  
-		  
-		  #fun-stuff {
-		  width:160px;
-		  height:60px;
-		  margin:auto;
-		  padding:10px;
-		  background:white;
-		  border:1px solid #858585;
-		  font-size:0.9em;
-		  overflow-y:scroll;
-		  border-radius: 0px 0px 10px 10px;
-		  
-		  }
-		  
-		  #clap {
-		  width:150px;
-		  height:15px;
-		  margin:auto;
-		  padding:15px;
-		  background:white;
-		  border:1px solid #858585;
-		  font-size:0.9em;
-		  border-radius: 0px 0px 10px 10px;
-		  }
-		  
-		  #big-box {
-		  width:610px;
-		  min-height:245px;
-		  margin:auto;
-		  margin-top:10px;
-		  display: flex;
-		  flex-wrap: wrap;
-		  }
-		  
-		  #small-box-left {
-		  width:250px;
-		  height:350px;
-		  border:1px solid #858585;
-		  background:white;
-		  margin-right:5px;
-		  display:inline-block;
-		  border-radius: 0px 0px 0px 10px;
-		  background:url('https://chokoreto.neocities.org/dotbg.png');
-
-		  }
-
-		  
-		  #small-box-right {
-		  width:200px;
-		  height:200px;
-		  border:1px solid #858585;
-		  background:white;
-		  margin-left:10px;
-		  display:inline-block;
-		  overflow-x:hidden;
-		  overflow-y:auto;
-		  background:url('https://chokoreto.neocities.org/dotbg.png');
-		  float:right;
-		  }
-		  
-		  #chatbox-title {
-		  width:240px;
-		  height:30px;
-		  padding:5px;
-		  border-bottom:1px solid #858585;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  font-family:'Deutschlands';
-		  color:#feebf0;
-		  font-size:1.5em;
-		  text-shadow: 0px 0px 6px rgba(216, 109, 173, 1);
-		  
-		  }
-		  
-		  #webrings-title {
-		  width:225px;
-		  height:30px;
-		  padding:5px;
-		  border-bottom:1px solid #858585;
-		  background: rgb(136,107,116);
-		  background: linear-gradient(0deg, rgba(136,107,116,1) 44%, rgba(249,223,231,1) 100%);
-		  font-family:'Deutschlands';
-		  color:#feebf0;
-		  font-size:1.5em;
-		  margin:auto;
-		  text-shadow: 0px 0px 6px rgba(216, 109, 173, 1);
-		  }
-		  
-		  
-		  
-		  #statuscafe {
-			  width:120px;
-			  margin-top:45px;
-			  margin-left:50px;
-		  }
-		  #statuscafe-username {
-		      margin-bottom: .5em;
-		  }
-		  #statuscafe-content {
-		      margin: 0 1em 0em 0em;
-		  }
-		  
-		  #bubble {
-			  width:200px;
-			  height:200px;
-			  background:url('https://chokoreto.neocities.org/resources/bubble.png');
-              position:absolute;
-			  margin-left:800px;
-			  margin-top:110px;
-		  	
-		  }
-		  
-		  #calendar {
-		  			  width:200px;
-		  			  height:170px;
-		  			  padding:10px;
-		  			  background:white;
-		  			  border:1px dotted #9c7a7c;
-		  			  border-radius:10px;
-			          float:left;
-		  			  font-family:'Sanari';
-		  			  font-size:1em;
-					  display:inline-block;
-					  float:right;
-		  		  }
-          
-		   #to-do {
-			   width:200px;
-			   height:145px;
-			   padding:10px;
-  			  background:white;
-  			  border:1px dotted #9c7a7c;
-  			  border-radius:10px;
-	          float:right;
-  			  font-family:'Sanari';
-  			  font-size:1em;
-			  display:inline-block;
-			  margin-top:5px;
-			  overflow-y:scroll;
-			 
-				  	
-				  }
-				  
-		    #pic {
-	  		  width:150px;
-	  		  height:170px;
-	  		  margin:auto;
-	  		  padding:15px;
-	  		  background:white;
-	  		  border:1px solid #858585;
-
-				  	
-				  }
-		  
-		  
-				  /* width */
-				  ::-webkit-scrollbar {
-				    width: 9px;
-				  }
-
-				  /* Track */
-				  ::-webkit-scrollbar-track {
-				    background: #ffffff;
-				  }
-
-				  /* Handle */
-				  ::-webkit-scrollbar-thumb {
-				    background:url('https://chokoreto.neocities.org/resources/dotbg.png');
-					border-radius:10px;
-				  }
-
-		    
-      </style>
-	  <body onload="startTime()">
-	  <body onload="setInterval(step,100)">
-    
-	 
-	  <img src='https://chokoreto.neocities.org/resources/chenfigure.png' 
-	  style='width:350px;position:absolute;margin-top:770px;margin-left:700px;'>
-	  <div id='layout'>
-	  <div id='cookie'>
-      <div id='header'>
-		  
-	 <div id='bubble'>
-		 
-	 	<div id="statuscafe"><div id="statuscafe-username"></div><div id="statuscafe-content"></div></div><script src="https://status.cafe/current-status.js?name=chokoreto" defer></script>
-		
-	 </div>
-	  
-	  <div id='header-text'>
-		  <br><br><br>
-	  <span style='font-size:6em;font-family:Faith_Collapsing;color:#48393d;'>Chokoreto room</span><br>
-	  <span style='font-size:1.7em;font-family:Sanari;color:#48393d;'>chokoreto.neocities.org </span>
-	  <span style='font-size:1.7em;color:#48393d;'>♬ ♪</span>
-  </div>
-  
-      <img src='https://chokoreto.neocities.org/resources/kaiyahead.png'
-	  style='float:right;height:570px;margin-top:-160px;margin-right:-80px;'>
- 
-      </div>
-	  
-	  <div id='marquee-bar'>
-	  <marquee scrollamount=12>
-	   Chokoreto ver. 3.0 STILL IN DEVELOPMENT, running on sugar fuel since 2024!! (ﾉ´ヮ`)ﾉ*:･ﾟ～
-	   			    |   last update: Tue 1 Apr    
-	  </marquee>
-	  
-	  </div>
-	  <div id='background'>
-	  <div id='row-1'>
-	  <div id='left'>
-	  <div id='clock'>
-	  	<center>
-		<div id="txt">HH:MM:SS</div>
-
-		<script>
-		function startTime() {
-		  const today = new Date();
-		  let h = today.getHours();
-		  let m = today.getMinutes();
-		  let s = today.getSeconds();
-		  m = checkTime(m);
-		  s = checkTime(s);
-		  document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
-		  setTimeout(startTime, 1000);
-		}
-
-		function checkTime(i) {
-		  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-		  return i;
-		}
-		</script>
-	
-	  </div>
-	  <div id='status'>
-	
-		  <center>
-		  <img src='https://chokoreto.neocities.org/resources/pfp.png' style='width:120px;border:1px solid #858585;'>
-  
-
-	  </center>
-	  <span style='font-family:Faith_Collapsing;color:#9c7a7c;font-size:1.2em;'>
-	  the webprincess is currently... 
-	  </span>
-  
-  
-	  <span style='font-size:0.9em;'>
-		  <br>
-	  <p>feeling: <a href="https://www.imood.com/users/chokoreto"><img src="https://moods.imood.com/display/uname-chokoreto/imood.gif" alt="The current mood of chokoreto at www.imood.com" border="0"></a>
-	  <p>listening to: trapnest
-	  <p>thinking about: happy thoughts
-	  <p>last update: 1/4/2025
-	  </span>
-	
-	  </div>
-      <div id='button-big'>Navigation ♪</div>
-	  <div id='navigation'>
-	  	
-		<a href='/home'>
-		<div id='button'>
-			<img src=''>home</div>
-	    </a>
-		<a href='/webmaster'>
-		<div id='button'>webmaster</div>
-	    </a>
-		<a href='/diary'>
-		<div id='button'>diary</div>
-	    </a>
-		<a href='/resources'>
-		<div id='button'><s>resources</s> <span style='font-size:0.9em;float:right;'><i>soon...</i></span></div> 
-	    </a>
-		<a href='/jonathan'>
-		<div id='button'>jonathan shrine</div>
-	    </a>
-    	<a href='https://neocities.org/site/chokoreto/'>
-	    <div id='button'>neocities profile</div>
-        </a>
-    	<a href='https://instagram.com/purrdere'>
-	    <div id='button'>personal instagram</div>
-        </a>
-		
-	  </div>
-
-	  
-	    <div id='button-big'>Buttons</div>
-	    <div id='fun-stuff'>
-	  	  <center>
-	  <img src='https://chokoreto.neocities.org/buttons/chokoretobutton2.gif' style='border-radius:5px;border:1px solid #858585;'><br>
-	     <textarea style="width:110px;height: 30px;">&lt;a href='https://chokoreto.neocities.org/'&gt;&lt;img src="https://chokoreto.neocities.org/buttons/chokoretobutton2.gif"&gt;&lt;/a&gt;
-
-	    </textarea>
-		<br><br>
-		<hr>
-		<p>Friends:</p>
-
-        <a href="https://cocopie.neocities.org/">
-		<img src="https://chokoreto.neocities.org/buttons/cocopie.gif"></a>
-		
-		<a href="https://jubiland.neocities.org/" target="_blank">
-		<img src="https://i.ibb.co/bHJp4Ns/IMG-9627.png" width="88" height="31"
-		alt="jubiland!"></a>
-		
-		<a href="https://ribbondoll.neocities.org/"; target="_blank">
-		 <img src="https://files.catbox.moe/9mehwe.jpg"></a>
-		 
- 		<a href='https://touhouproject.neocities.org'>
- 		<img src='https://chokoreto.neocities.org/buttons/touhouproject.gif' style="image-rendering: pixelated"></a> 
-		
-		<a href="https://tomboyish.neocities.org/"><img src="https://tomboyish.neocities.org/images/88x31/alicesite.gif"></a>
-
-	    </div>
-	  
-	    
-	   
-	  
-	  </div>
-	  <div id='center'>
-	  <div id='main'>
-
-	  <div id='main-inner'>
-	
-	  <img src='https://chokoreto.neocities.org/resources/ribbon.png' style='float:right;width:110px;'>
-	  
-	  <p>Welcome to my <span style='color:pink;'>cutesy tomboyish kitty corner</span>! I'm Kaiya and I've created this page to share my passion for <span style='color:pink;'>all
-		  things cute</span>. Besides that I'm also a (not as active) 2000-2010s anime-styled artist and a self-titled neko princess. 
-		 <p> Feel free to click around my website, leave a message in the chat or maybe link my website to yours! Make sure
-		  to let me know!<br> <span style='color:pink;'>(* ^ ω ^)	</span>. Thank you so much for visiting !!!
-		  Blowing virtual kisses! 
-		  <br>
-		  <p><span style="background-color:#ffeff3;"> disclaimer:</span> Please do not copy or heavily reference! (art and/or code) I worked very hard on my website.. Feel free to get inspired! Let's keep the internet friendly, thank you ~
-		  
-		  
-		  
-	  </div>
-	  <div id='calendar'>
-		<script language="JavaScript">
-					   monthnames = new Array(
-					   "January",
-					   "February",
-					   "March",
-					   "April",
-					   "May",
-					   "June",
-					   "July",
-					   "August",
-					   "September",
-					   "October",
-					   "November",
-					   "December");
-					   var linkcount=0;
-					   function addlink(month, day, href) {
-					   var entry = new Array(3);
-					   entry[0] = month;
-					   entry[1] = day;
-					   entry[2] = href;
-					   this[linkcount++] = entry;
-					   }
-					   Array.prototype.addlink = addlink;
-					   linkdays = new Array();
-					   monthdays = new Array(12);
-					   monthdays[0]=31;
-					   monthdays[1]=28;
-					   monthdays[2]=31;
-					   monthdays[3]=30;
-					   monthdays[4]=31;
-					   monthdays[5]=30;
-					   monthdays[6]=31;
-					   monthdays[7]=31;
-					   monthdays[8]=30;
-					   monthdays[9]=31;
-					   monthdays[10]=30;
-					   monthdays[11]=31;
-					   todayDate=new Date();
-					   thisday=todayDate.getDay();
-					   thismonth=todayDate.getMonth();
-					   thisdate=todayDate.getDate();
-					   thisyear=todayDate.getYear();
-					   thisyear = thisyear % 100;
-					   thisyear = ((thisyear < 50) ? (2000 + thisyear) : (1900 + thisyear));
-					   if (((thisyear % 4 == 0) 
-					   && !(thisyear % 100 == 0))
-					   ||(thisyear % 400 == 0)) monthdays[1]++;
-					   startspaces=thisdate;
-					   while (startspaces > 7) startspaces-=7;
-					   startspaces = thisday - startspaces + 1;
-					   if (startspaces < 0) startspaces+=7;
-					   document.write("<table border=0 bgcolor=white ");
-					   document.write("bordercolor=grey>");
-					   document.write("<tr><td colspan=7><center><font color='#9c7a7c'><div class='header'>" 
-					   + monthnames[thismonth] + " " + thisyear 
-					   + "</font></strong></center></td></tr>");
-					   document.write("<tr>");
-					   document.write("<td align=center  class='weekend'>Sun</td>");
-					   document.write("<td align=center class='day-of-week'>Mon</td>");
-					   document.write("<td align=center class='day-of-week'>Tue</td>");
-					   document.write("<td align=center class='day-of-week'>Wed</td>");
-					   document.write("<td align=center class='day-of-week'>Thu</td>");
-					   document.write("<td align=center class='day-of-week'>Fri</td>");
-					   document.write("<td align=center  class='weekend'>Sat</td>"); 
-					   document.write("</tr>");
-					   document.write("<tr>");
-					   for (s=0;s<startspaces;s++) {
-					   document.write("<td> </td>");
-					   }
-					   count=1;
-					   while (count <= monthdays[thismonth]) {
-					       for (b = startspaces; b < 7; b++) {
-					         linktrue = false;
-					         document.write("<td class='" + (count <= monthdays[thismonth] ? "" : "empty") + "'>");
-					   for (c=0;c<linkdays.length;c++) {
-					   if (linkdays[c] != null) {
-					   if ((linkdays[c][0]==thismonth + 1) && (linkdays[c][1]==count)) {
-					   document.write("<a href=\"" + linkdays[c][2] + "\">");
-					   linktrue=true;
-					         }
-					      }
-					   }
-					   if (count==thisdate) {
-					   document.write("<font color=‘pink’ font family=’Sanari’><strong>");
-					   }
-					   if (count <= monthdays[thismonth]) {
-					   document.write(count);
-					   }
-					   else {
-					   document.write(" ");
-					   }
-					   if (count==thisdate) {
-					   document.write("</strong></font>");
-					   }
-					   if (linktrue)
-					   document.write("</a>");
-					   document.write("</td>");
-					   count++;
-					   }
-					   document.write("</tr>");
-					   document.write("<tr>");
-					   startspaces=0;
-					   }
-					   document.write("</table></p>");
-					   // End -->
-					   </script>
-	  </div>
-	  <div id='to-do'>
-	  <center>
-	  <span style='font-size:0.9em;color:#9c7a7c;'>
-	  <span style='color:pink;'>Updates:</span>
-	  <hr>
-	  <p>31/3/25 - I'm happy to say I finally made the
-	  website accessible for those who are unable to view
-	  it on a computer!
-	  
-	  <p>0/0/00 - TBA
-	  <p>0/0/00 - TBA
-	  <p>0/0/00 - TBA
-		  <br><br>
-	  <p>Waiting for something to happen ... ?
-		  <img src='https://chokoreto.neocities.org/mewo-omori.gif' style='width:30px;'>
-	  </center>
+<!-- 4. 状态信息 -->
+<div id='status'>
+  <span style='font-family:Faith_Collapsing;color:#9c7a7c;font-size:1.2em;'>
+    你的状态标题...
   </span>
-	  </div>
+  <span style='font-size:0.9em;'>
+    <p>feeling: <a href="你的心情链接"><img src="心情图片URL"></a>
+    <p>listening to: 你正在听的音乐
+    <p>thinking about: 你的想法
+    <p>last update: 最后更新日期
+  </span>
+</div>
 
-	  
-	  <div id='big-box'>
-	  	<div id='small-box-left'>
-	  	<div id='chatbox-title'>Chatbox</div>
-		<iframe src="https://www5.cbox.ws/box/?boxid=948253&boxtag=0a2ruS" width="250" height="300" allowtransparency="yes" allow="autoplay" frameborder="0" margin="auto" scrolling="auto"></iframe>
-	  	</div>
-		<div id='small-box-right'>
-			<div id='webrings-title'>Webrings, etc...</div>
-			<center>
-			<br>
-			<script src="https://snewberry.neocities.org/catfolk/webstring.js"></script>
-			<a href='https://aidia.pink/Beastars/'><img src='https://aidia.pink/Beastars/Haru50.png' style='border:gray 1px solid;width:50px;'></a>
-			<a href='https://guts.treasure-chest.org/index.php'><img src='https://chokoreto.neocities.org/guts.jpg'></a>
-			<br>
-			<a href="https://web.archive.org/web/20080702000153/http://princessportal.com/the-princess-code/"><img src="https://web.archive.org/web/20080702000153im_/http://img.photobucket.com/albums/v106/kitari/pcbanner.gif" alt="The Princess Code" border="0"></a>
-			<br>
-		    *vocaring<br> placeholder*
-			<br>
+<!-- 5. 欢迎文本 -->
+<div id='main-inner'>
+  <p>你的欢迎内容...
+  <p>更多介绍文字...
+</div>
 
+<!-- 6. 更新日志 -->
+<div id='to-do'>
+  <span style='font-size:0.9em;color:#9c7a7c;'>
+    <span style='color:pink;'>Updates:</span>
+    <hr>
+    <p>日期 - 更新内容1
+    <p>日期 - 更新内容2
+  </span>
+</div>
 
-			<a href="https://pkmn.caelestis.nu" rel="noopener noreferrer" style="border: 0px none; background: transparent;" title="I Choose You! :: YourPokemonNameHere"><img src="furret.png" style="margin-top:-20px;"></a>
-		</div>
-			
+<!-- 7. 导航菜单 -->
+<div id='navigation'>
+  <a href='/home'>
+    <div id='button'>首页</div>
+  </a>
+  <a href='/about'>
+    <div id='button'>关于我</div>
+  </a>
+  <!-- 添加更多导航链接 -->
+</div>
 
-			
-		</center>
-		</div>
-		
-		
-	  </div>
-	  
-	  </div>
-	 
+<!-- 8. 页脚信息 -->
+<div id='footer'>
+  你的版权信息 © 日期-forever ♥ 其他信息
+</div>
 
-	 
-	  </div>
-	  
+<!-- ==================== -->
+<!-- 可自定义的图片部分 -->
+<!-- ==================== -->
 
-	  
+<!-- 1. 网站图标 -->
+<link rel="shortcut icon" href="你的favicon.ico或图片URL">
 
-	  
-	  <center>
-	  <div id='footer'>Chokoreto<span style='font-family:ms gothic;'> © </span>31/03/2024-forever<span style='font-family:ms gothic;'> ♥ </span>carefully coded with love <span style='font-family:ms gothic;'> ♥ </span>
-	  
-	  <!-- FC2 Counter  Starts here -->
-	  <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=39404166&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=39404166&main=1" /></noscript>
-	  <!-- FC2 Counter  Ends here -->
-	  
-	  </div>
-  </center>
-	  </div>
-	
-  </body>
-  </html>
-		  
+<!-- 2. 背景图片 -->
+<style>
+  body {
+    background-image:url('你的背景图片URL');
+  }
+</style>
+
+<!-- 3. 头像图片 -->
+<div id='status'>
+  <img src='你的头像图片URL' style='width:120px;border:1px solid #858585;'>
+</div>
+
+<!-- 4. 装饰图片 -->
+<img src='你的装饰图片URL' style='position:absolute;width:350px;'>
+<img src='你的页眉装饰图片URL' style='float:right;height:570px;'>
+
+<!-- 5. 按钮和徽章 -->
+<div id='fun-stuff'>
+  <img src='你的按钮图片URL' style='border-radius:5px;border:1px solid #858585;'><br>
+  <!-- 友情链接图片 -->
+  <a href="朋友网站URL">
+    <img src="朋友网站按钮图片URL">
+  </a>
+</div>
+
+<!-- ==================== -->
+<!-- 可自定义的功能部分 -->
+<!-- ==================== -->
+
+<!-- 1. 状态显示 (Status Cafe) -->
+<div id="statuscafe">
+  <div id="statuscafe-username"></div>
+  <div id="statuscafe-content"></div>
+</div>
+<script src="https://status.cafe/current-status.js?name=你的StatusCafe用户名" defer></script>
+
+<!-- 2. 聊天框 -->
+<iframe src="你的聊天框嵌入代码URL" width="250" height="300"></iframe>
+
+<!-- 3. 网站计数器 -->
+<!-- 替换为你自己的计数器代码 -->
+<script language="javascript" src="//counter1.fc2.com/counter.php?id=你的计数器ID&main=1"></script>
+
+<!-- 4. 心情状态 -->
+<a href="你的imood个人页面链接">
+  <img src="https://moods.imood.com/display/uname-你的imood用户名/imood.gif">
+</a>
