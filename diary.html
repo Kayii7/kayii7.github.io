@@ -1,42 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-    <!-- 共用head部分与index.html相同 -->
-    <title>Kayii's Diary</title>
+    <title>我的日记</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 共用Banner部分 -->
-    <div id="banner">
-        <img src="images/diary-banner.png" alt="日记封面">
-    </div>
-
-    <div id="main-container">
-        <!-- 左侧导航栏（与首页一致） -->
-        <div id="left-sidebar">...</div>
-
-        <!-- 中间日记内容区 -->
-        <div id="main-content">
-            <div class="pixel-border">
-                <h1>📅 像素日记本</h1>
-                
-                <!-- 单篇日记模板 -->
-                <article class="diary-post">
-                    <h2>2024.07.15 ☀️</h2>
-                    <div class="diary-content">
-                        <p>今天画了新的像素小动物！用了粉紫色和薄荷绿的配色~</p>
-                        <img src="images/diary-20240715.png" alt="像素画" class="pixel-art">
-                    </div>
-                    <div class="diary-footer">
-                        <span>🎵 正在听: Y2K Retro Wave</span>
-                    </div>
-                </article>
-
-                <!-- 更多日记... -->
+    <div class="container">
+        <header>
+            <h1>我的日记</h1>
+        </header>
+        
+        <main>
+            <div class="entry">
+                <h2>2023年10月15日</h2>
+                <p>这里是你的日记内容...</p>
             </div>
-        </div>
-
-        <!-- 右侧边栏（与首页一致） -->
-        <div id="right-sidebar">...</div>
+            
+            <!-- 可以添加更多日记条目 -->
+        </main>
+        
+        <footer>
+            <p>© 2023 我的日记</p>
+        </footer>
     </div>
 </body>
 </html>
