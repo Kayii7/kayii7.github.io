@@ -298,54 +298,52 @@
                     
                 
                 <!-- 留言表单 -->
-                <h3>留言</h3>
-                <form class="comment-form" id="comment-form">
-                    <textarea rows="4" placeholder="写下你想说的话...如果可以请告诉我你是谁！"></textarea>
-                    <button type="submit">提交评论</button>
-                </form>
-            </div>
-        </div>
-        
-        <!-- === 右侧边栏 === -->
-        <div id="right-sidebar">
-            <div class="pixel-border">
-                <h2>日历</h2>
-                <!-- 日历会自动显示当前月份 -->
-                <table class="calendar">
-                    <thead>
-                        <tr>
-                            <th colspan="7" id="calendar-month">2023年11月</th>
-                        </tr>
-                        <tr>
-                            <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body">
-                        <!-- 日历内容由JavaScript生成 -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="pixel-border">
-                <h2>社交媒体</h2>
-                <ul class="social-links">
-                    <!-- 在这里替换成你自己的社交媒体链接 -->
-                    <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-                    <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
-                    <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
-                    <li><a href="mailto:youremail@example.com">电子邮件</a></li>
-                </ul>
-            </div>
-             <div class="pixel-border">
-                <h2>网站统计</h2>
-                <p>访客数: 1234</p>
-                <p>建立日期: 2023.10.01</p>
-                <p>最后更新: 2023.11.02</p>
-            
-            </div>
-        </div>
+<h3>留言</h3>
+<form class="comment-form" id="comment-form">
+    <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
+    <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+    <button type="submit">提交评论</button>
+</form>
+
+<!-- 右侧边栏 -->
+<div id="right-sidebar">
+    <div class="pixel-border">
+        <h2>日历</h2>
+        <table class="calendar">
+            <thead>
+                <tr>
+                    <th colspan="7" id="calendar-month"></th>
+                </tr>
+                <tr>
+                    <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
     </div>
     
+    <div class="pixel-border">
+        <h2>社交媒体</h2>
+        <ul class="social-links">
+            <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
+            <li><a href="https://twitter.com/你的实际用户名" target="_blank">Twitter</a></li>
+            <li><a href="https://github.com/Kayii7" target="_blank">GitHub</a></li>
+            <li><a href="mailto:你的真实邮箱">电子邮件</a></li>
+        </ul>
+    </div>
+    
+    <div class="pixel-border">
+        <h2>网站统计</h2>
+        <p>访客数: <span id="visitor-count">1234</span></p>
+        <p>建立日期: 2024.03.01</p>
+        <p>最后更新: <span id="last-updated"></span></p>
+    </div>
+</div>
+
+<script>
+// 自动更新最后修改日期
+document.getElementById('last-updated').textContent = new Date().toLocaleDateString('zh-CN');
+</script>
     <!-- === 页脚 === -->
     <footer>
         <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
