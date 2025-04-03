@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayii's Room</title>
+    <title>Kayii的像素小窝</title>
     <!-- 引入像素风格字体和图标 -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* === 基础样式 === */
         :root {
-            --main-color: #FF9FF3; /* 粉紫色 */
-            --secondary-color: #FECA57; /* 亮黄色 */
-            --bg-color: #FFF9F2; /* 奶油白背景 */
-            --text-color: #5F27CD; /* 深紫色文字 */
+            --main-color: #FF9FF3; /* 主色调 - 粉紫色 */
+            --secondary-color: #FECA57; /* 辅助色 - 亮黄色 */
+            --bg-color: #FFF9F2; /* 背景色 - 奶油白 */
+            --text-color: #5F27CD; /* 文字色 - 深紫色 */
             --pixel-border: 3px solid #000; /* 像素黑边 */
         }
 
@@ -31,7 +31,7 @@
         .banner {
             width: 100%;
             height: 200px; /* 可调整高度 */
-            background-image: url(https://github.com/Kayii7/kayii7.github.io/commit/2fb73d89c51ce674d1058f13bffc8f2d14ac3a9b); /* 替换你的banner图 */
+            background-image: url('banner.jpg'); /* 🟢🟢🟢 替换为你的banner图片文件名 🟢🟢🟢 */
             background-size: cover;
             background-position: center;
             border-bottom: var(--pixel-border);
@@ -72,6 +72,7 @@
             border: var(--pixel-border);
             text-align: center;
             transition: all 0.2s;
+            font-size: 12px;
         }
 
         .link-btn:hover {
@@ -138,8 +139,11 @@
 </head>
 <body>
     <!-- === 顶部Banner大图 === -->
-    <!-- 替换说明：把'你的banner图片.jpg'换成你自己的图片文件 -->
-    <div class="https://github.com/Kayii7/kayii7.github.io/commit/2fb73d89c51ce674d1058f13bffc8f2d14ac3a9b"></div>
+    <!-- 🟢🟢🟢 自定义说明：
+         1. 准备一张宽屏图片(建议1200x300像素)
+         2. 命名为banner.jpg并上传到GitHub
+         3. 确保图片和html文件在同一个文件夹 🟢🟢🟢 -->
+    <div class="banner"></div>
 
     <!-- === 三栏主要内容区 === -->
     <div class="container">
@@ -147,35 +151,40 @@
         <div class="left-column">
             <div class="link-box">
                 <h2>📚 我的博客</h2>
-                <!-- 替换说明：修改href和文字即可 -->
-                <a href="你的博客链接" class="link-btn">技术笔记</a>
-                <a href="#" class="link-btn">生活随笔</a>
-                <a href="#" class="link-btn">作品集</a>
+                <!-- 🟢🟢🟢 修改这些链接和文字 🟢🟢🟢 -->
+                <a href="https://你的博客链接1" class="link-btn">技术笔记</a>
+                <a href="https://你的博客链接2" class="link-btn">生活随笔</a>
+                <a href="https://你的博客链接3" class="link-btn">作品集</a>
             </div>
 
             <div class="link-box">
                 <h2>🔗 常用链接</h2>
-                <a href="#" class="link-btn">GitHub</a>
-                <a href="#" class="link-btn">B站</a>
-                <a href="#" class="link-btn">Steam</a>
+                <!-- 🟢🟢🟢 修改这些链接和文字 🟢🟢🟢 -->
+                <a href="https://github.com/你的用户名" class="link-btn">GitHub</a>
+                <a href="https://bilibili.com/你的主页" class="link-btn">B站</a>
+                <a href="https://store.steampowered.com" class="link-btn">Steam</a>
             </div>
         </div>
 
         <!-- 中间主要内容 -->
         <div class="middle-column">
             <div class="link-box" style="text-align: center;">
-                <!-- 替换说明：更换头像图片 -->
-                <img src="你的头像.jpg" alt="头像" class="avatar">
+                <!-- 🟢🟢🟢 替换头像图片 🟢🟢🟢 -->
+                <!-- 1. 准备一张正方形头像(建议200x200像素) -->
+                <!-- 2. 命名为avatar.jpg并上传 -->
+                <!-- 3. 确保和html文件在同一个文件夹 -->
+                <img src="avatar.jpg" alt="头像" class="avatar">
                 <h1>你好呀！我是Kayii</h1>
                 <p>欢迎来到我的像素小窝~</p>
             </div>
 
             <div class="link-box">
                 <h2>👾 关于我</h2>
-                <!-- 替换说明：在这里写自我介绍 -->
-                <p>这里可以写你的自我介绍，比如：</p>
-                <p>我是来自XX的二次元爱好者，喜欢像素游戏和Y2K美学...</p>
-                <p>目前正在学习前端开发！</p>
+                <!-- 🟢🟢🟢 在这里写自我介绍 🟢🟢🟢 -->
+                <p>我是Kayii，一个热爱二次元和像素艺术的创作者！</p>
+                <p>这个网站是我用代码搭建的小天地~</p>
+                <p>平时喜欢玩游戏、画画和写代码！</p>
+                <p>欢迎来和我交朋友！(≧▽≦)</p>
             </div>
 
             <!-- 评论区 -->
@@ -189,26 +198,33 @@
         <div class="right-column">
             <div class="link-box">
                 <h2>📅 日历</h2>
-                <!-- 替换说明：换成你的Google日历嵌入代码 -->
-                <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia%2FShanghai" 
+                <!-- 🟢🟢🟢 设置Google日历 🟢🟢🟢 -->
+                <!-- 1. 登录Google日历 → 设置 → 日历设置 -->
+                <!-- 2. 找到"嵌入代码"并复制 -->
+                <!-- 3. 替换下面的iframe代码 -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=你的日历ID&ctz=Asia%2FShanghai" 
                         class="calendar" frameborder="0"></iframe>
             </div>
 
             <div class="social-box">
                 <h2>🌟 找到我</h2>
-                <!-- 替换说明：修改href中的链接 -->
-                <a href="你的Instagram链接" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="你的Twitter链接" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
+                <!-- 🟢🟢🟢 修改社交链接 🟢🟢🟢 -->
+                <a href="https://instagram.com/你的账号" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/你的账号" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/你的邀请链接" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
             </div>
         </div>
     </div>
 
     <!-- === Disqus评论系统 === -->
-    <!-- 替换说明：注册Disqus后替换YOUR_DISQUS_SHORTNAME -->
+    <!-- 🟢🟢🟢 设置评论区 🟢🟢🟢 -->
+    <!-- 1. 访问 https://disqus.com/ 注册账号 -->
+    <!-- 2. 创建新站点(选择免费版) -->
+    <!-- 3. 记住你的shortname -->
+    <!-- 4. 替换下面的YOUR_DISQUS_SHORTNAME -->
     <script>
         var disqus_config = function () {
-            this.page.url = 'https://kayii.lol';
+            this.page.url = 'https://kayii.lol'; // 你的网站地址
             this.page.identifier = 'kayii-homepage';
         };
         (function() {
