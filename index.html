@@ -8,7 +8,7 @@
         /* === 全局样式 === */
         body {
             font-family: 'Courier New', monospace;
-            background-color: #f5e6ff; /* 浅紫色背景 */
+            background-color: #f5e6ff;
             color: #333;
             margin: 0;
             padding: 0;
@@ -25,9 +25,9 @@
         }
         
         /* === 顶部Banner === */
-        #banner {IMG_5050.PNG
+        #banner {
             width: 100%;
-            height: 200px; /* 自定义高度 */
+            height: 200px;
             background-color: #e8ccff;
             margin-bottom: 20px;
             display: flex;
@@ -54,6 +54,19 @@
         #left-sidebar {
             width: 200px;
             margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* === 中间内容区 === */
+        #main-content {
+            flex: 1;
+            margin-right: 20px;
+        }
+        
+        /* === 右侧边栏 === */
+        #right-sidebar {
+            width: 200px;
+            flex-shrink: 0;
         }
         
         .nav-links {
@@ -79,12 +92,6 @@
             background-color: #d9a3ff;
             color: white;
             transform: translateX(5px);
-        }
-        
-        /* === 中间内容区 === */
-        #main-content {
-            flex: 1;
-            margin-right: 20px;
         }
         
         /* 头像区域 */
@@ -129,11 +136,6 @@
         
         .comment-form button:hover {
             background-color: #c28fe6;
-        }
-        
-        /* === 右侧边栏 === */
-        #right-sidebar {
-            width: 200px;
         }
         
         /* 日历样式 */
@@ -226,9 +228,10 @@
 </head>
 <body>
     <!-- === Banner区域 === -->
-    <!-- 在这里替换成你自己的Banner图片 -->
+    <!-- 【自定义】替换下面的图片URL为你自己的Banner图片 -->
+    <!-- 上传到GitHub后，格式应该是：https://你的用户名.github.io/图片路径 -->
     <div id="banner">
-        <img id="banner-img" src="https://kayii7.github.io/images/mybanner.png" alt="网站Banner">
+        <img id="banner-img" src="https://kayii7.github.io/images/banner.png" alt="网站Banner">
     </div>
     
     <div id="main-container">
@@ -237,7 +240,7 @@
             <div class="pixel-border">
                 <h2>导航</h2>
                 <ul class="nav-links">
-                    <!-- 在这里添加/修改你的导航链接 -->
+                    <!-- 【自定义】修改下面的导航链接 -->
                     <li><a href="#">首页</a></li>
                     <li><a href="#">博客</a></li>
                     <li><a href="#">相册</a></li>
@@ -250,7 +253,7 @@
             <div class="pixel-border">
                 <h2>友情链接</h2>
                 <ul class="nav-links">
-                    <!-- 在这里添加/修改友情链接 -->
+                    <!-- 【自定义】修改下面的友情链接 -->
                     <li><a href="https://neocities.org" target="_blank">Neocities</a></li>
                     <li><a href="https://example.com" target="_blank">示例网站1</a></li>
                     <li><a href="https://example.com" target="_blank">示例网站2</a></li>
@@ -262,8 +265,9 @@
         <div id="main-content">
             <div class="pixel-border">
                 <div class="avatar-section">
-                    <!-- 在这里替换成你自己的头像 -->
-                    <img class="avatar-img" src="https://kayii7.github.io/images/myicon.png" alt="我的头像">
+                    <!-- 【自定义】替换下面的图片URL为你自己的头像 -->
+                    <!-- 上传到GitHub后，格式应该是：https://你的用户名.github.io/图片路径 -->
+                    <img class="avatar-img" src="https://kayii7.github.io/images/avatar.png" alt="我的头像">
                     <div>
                         <h1>Kayii's Room</h1>
                         <p>http://kayii.lol/</p>
@@ -272,7 +276,7 @@
                 
                 <div class="pixel-divider"></div>
                 
-                <!-- 在这里修改自我介绍内容 -->
+                <!-- 【自定义】修改下面的自我介绍内容 -->
                 <h2>关于我</h2>
                 <p>我是Kayii！</p>
                 <p>这个网站是我在互联网上的小天地，分享我的生活、兴趣和创作。</p>
@@ -281,6 +285,7 @@
                 
                 <div class="pixel-divider"></div>
                 
+                <!-- 【自定义】修改下面的最新动态 -->
                 <h2>最新动态</h2>
                 <p>2023.11.01 - 更新了新的像素艺术作品！</p>
                 <p>2023.10.15 - 添加了新的博客文章</p>
@@ -289,63 +294,55 @@
             
             <div class="pixel-border">
                 <h2>留言板</h2>
-                <!-- 留言列表 -->
                 <div id="comments">
                     <div class="comment">
                         <strong>Kayii</strong> - 2025.04.04
                         <p>欢迎留言！</p>
                     </div>
-                    
+                </div>
                 
-                <!-- 留言表单 -->
-<h3>留言</h3>
-<form class="comment-form" id="comment-form">
-    <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
-    <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
-    <button type="submit">提交评论</button>
-</form>
-
-<!-- 右侧边栏 -->
-<div id="right-sidebar">
-    <div class="pixel-border">
-        <h2>日历</h2>
-        <table class="calendar">
-            <thead>
-                <tr>
-                    <th colspan="7" id="calendar-month"></th>
-                </tr>
-                <tr>
-                    <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
-                </tr>
-            </thead>
-            <tbody id="calendar-body"></tbody>
-        </table>
+                <h3>留言</h3>
+                <form class="comment-form" id="comment-form">
+                    <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
+                    <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                    <button type="submit">提交评论</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- === 右侧边栏 === -->
+        <div id="right-sidebar">
+            <div class="pixel-border">
+                <h2>日历</h2>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th colspan="7" id="calendar-month"></th>
+                        </tr>
+                        <tr>
+                            <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body"></tbody>
+                </table>
+            </div>
+            
+            <div class="pixel-border">
+                <h2>社交媒体</h2>
+                <ul class="social-links">
+                    <!-- 【自定义】修改下面的社交媒体链接 -->
+                    <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
+                    <li><a href="https://twitter.com/你的实际用户名" target="_blank">Twitter</a></li>
+                    <li><a href="https://github.com/Kayii7" target="_blank">GitHub</a></li>
+                    <li><a href="mailto:你的真实邮箱">电子邮件</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     
-    <div class="pixel-border">
-        <h2>社交媒体</h2>
-        <ul class="social-links">
-            <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-            <li><a href="https://twitter.com/你的实际用户名" target="_blank">Twitter</a></li>
-            <li><a href="https://github.com/Kayii7" target="_blank">GitHub</a></li>
-            <li><a href="mailto:你的真实邮箱">电子邮件</a></li>
-        </ul>
-    </div>
-    
-    <div class="pixel-border">
-        <h2>网站统计</h2>
-        <p>访客数: <span id="visitor-count">1234</span></p>
-        <p>建立日期: 2024.03.01</p>
-        <p>最后更新: <span id="last-updated"></span></p>
-    </div>
-</div>
-
-<script>
-// 自动更新最后修改日期
-document.getElementById('last-updated').textContent = new Date().toLocaleDateString('zh-CN');
-</script>
     <!-- === 页脚 === -->
     <footer>
+        <!-- 【自定义】修改下面的版权信息 -->
         <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
     </footer>
     
@@ -372,20 +369,16 @@ document.getElementById('last-updated').textContent = new Date().toLocaleDateStr
             let date = 1;
             
             for (let i = 0; i < 6; i++) {
-                // 最多需要6行(周)
                 if (date > daysInMonth) break;
                 
                 calendarHTML += '<tr>';
                 
                 for (let j = 0; j < 7; j++) {
                     if (i === 0 && j < firstDay) {
-                        // 第一周，前面的空白格子
                         calendarHTML += '<td></td>';
                     } else if (date > daysInMonth) {
-                        // 最后一周，后面的空白格子
                         calendarHTML += '<td></td>';
                     } else {
-                        // 正常日期格子
                         if (date === today) {
                             calendarHTML += `<td class="today">${date}</td>`;
                         } else {
@@ -405,15 +398,23 @@ document.getElementById('last-updated').textContent = new Date().toLocaleDateStr
         document.getElementById('comment-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const textarea = this.querySelector('textarea');
-            const commentText = textarea.value.trim();
+            const username = this.querySelector('input[name="username"]').value || '访客';
+            const message = this.querySelector('textarea').value.trim();
             
-           
+            if (message) {
+                const now = new Date();
+                const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
+                
+                const commentHTML = `
+                    <div class="comment">
+                        <strong>${username}</strong> - ${dateStr}
+                        <p>${message}</p>
                     </div>
                 `;
                 
                 document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
-                textarea.value = '';
+                this.querySelector('textarea').value = '';
+                this.querySelector('input[name="username"]').value = '';
             }
         });
         
@@ -422,3 +423,4 @@ document.getElementById('last-updated').textContent = new Date().toLocaleDateStr
     </script>
 </body>
 </html>
+
