@@ -292,19 +292,15 @@
                 <!-- 留言列表 -->
                 <div id="comments">
                     <div class="comment">
-                        <strong>访客1</strong> - 2023.11.02
-                        <p>你的网站好可爱！我喜欢这种风格~</p>
+                        <strong>Kayii</strong> - 2025.04.04
+                        <p>欢迎留言！</p>
                     </div>
-                    <div class="comment">
-                        <strong>访客2</strong> - 2023.11.01
-                        <p>像素风太棒了！让我想起了老式电脑游戏。</p>
-                    </div>
-                </div>
+                    
                 
                 <!-- 留言表单 -->
-                <h3>留下你的评论</h3>
+                <h3>留言</h3>
                 <form class="comment-form" id="comment-form">
-                    <textarea rows="4" placeholder="写下你想说的话..."></textarea>
+                    <textarea rows="4" placeholder="写下你想说的话...如果可以请告诉我你是谁！"></textarea>
                     <button type="submit">提交评论</button>
                 </form>
             </div>
@@ -341,18 +337,14 @@
                 </ul>
             </div>
             
-            <div class="pixel-border">
-                <h2>网站统计</h2>
-                <p>访客数: 1234</p>
-                <p>建立日期: 2023.10.01</p>
-                <p>最后更新: 2023.11.02</p>
+            
             </div>
         </div>
     </div>
     
     <!-- === 页脚 === -->
     <footer>
-        <p>© 2023 我的二次元小窝 | 使用HTML和CSS制作</p>
+        <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
     </footer>
     
     <script>
@@ -414,14 +406,7 @@
             const textarea = this.querySelector('textarea');
             const commentText = textarea.value.trim();
             
-            if (commentText) {
-                const now = new Date();
-                const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
-                
-                const commentHTML = `
-                    <div class="comment">
-                        <strong>访客</strong> - ${dateStr}
-                        <p>${commentText}</p>
+           
                     </div>
                 `;
                 
