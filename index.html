@@ -24,7 +24,7 @@
         }
 
        .container {
-            width: 90%; /* 适当增加容器宽度在手机上的占比 */
+            width: 90%;
             max-width: 1000px;
             margin: 0 auto;
             padding: 15px;
@@ -57,21 +57,19 @@
 
         #main-container {
             display: flex;
-            flex-direction: column; /* 初始为垂直排列 */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
         #left-sidebar {
-            width: 100%; /* 手机上占满宽度 */
-            margin-bottom: 15px; /* 与主内容区有间隔 */
+            width: 180px;
+            margin-right: 15px;
             flex-shrink: 0;
         }
 
         #right-sidebar {
-            width: 100%; /* 手机上占满宽度 */
-            margin-top: 15px; /* 与主内容区有间隔 */
+            width: 20%;
             flex-shrink: 0;
         }
 
@@ -178,13 +176,13 @@
         #calendar {
             border-collapse: collapse;
             width: 100%;
-            font-size: 0.6em; /* 进一步缩小日历文字大小 */
+            font-size: 0.6em;
         }
 
         #calendar th,
         #calendar td {
             border: 1px solid #d9a3ff;
-            padding: 1px; /* 进一步缩小单元格内边距 */
+            padding: 1px;
             text-align: center;
         }
 
@@ -202,7 +200,7 @@
         /* 留言板滑动功能 */
         #comments {
             max-height: 120px;
-            width: 100%; /* 占满宽度 */
+            width: 100%;
             overflow-y: auto;
             font-size: 12px;
         }
@@ -218,34 +216,39 @@
 
         /* 响应式设计，针对手机屏幕（例如宽度小于768px时） */
         @media (max-width: 768px) {
-            body {
-                font-size: 14px; /* 增大基础字体大小 */
-            }
-
-            h1 {
-                font-size: 24px; /* 增大标题字体大小 */
-            }
-
-            h2 {
-                font-size: 20px; /* 增大二级标题字体大小 */
-            }
-
             #main-container {
-                flex-direction: column; /* 确保布局为垂直排列 */
+                flex-direction: column;
             }
 
             #left-sidebar,
             #right-sidebar {
-                width: 100%; /* 侧边栏占满宽度 */
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            #right-sidebar {
+                margin-top: 15px;
+            }
+
+            body {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
             }
 
             #comments {
-                max-height: 150px; /* 适当增加留言板高度 */
+                max-height: 150px;
             }
 
            .comment-form input,
            .comment-form textarea {
-                font-size: 14px; /* 增大输入框和文本域的字体大小 */
+                font-size: 14px;
             }
         }
     </style>
