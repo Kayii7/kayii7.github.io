@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
     <style>
+        /* 基础样式 */
         body {
             font-family: 'Courier New', monospace;
             background-color: #E6CCF1;
@@ -23,7 +24,7 @@
         }
 
        .container {
-            width: 80%;
+            width: 90%; /* 适当增加容器宽度在手机上的占比 */
             max-width: 1000px;
             margin: 0 auto;
             padding: 15px;
@@ -56,19 +57,21 @@
 
         #main-container {
             display: flex;
+            flex-direction: column; /* 初始为垂直排列 */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
         #left-sidebar {
-            width: 180px;
-            margin-right: 15px;
+            width: 100%; /* 手机上占满宽度 */
+            margin-bottom: 15px; /* 与主内容区有间隔 */
             flex-shrink: 0;
         }
 
         #right-sidebar {
-            width: 20%;
+            width: 100%; /* 手机上占满宽度 */
+            margin-top: 15px; /* 与主内容区有间隔 */
             flex-shrink: 0;
         }
 
@@ -199,7 +202,7 @@
         /* 留言板滑动功能 */
         #comments {
             max-height: 120px;
-            width: 120px;
+            width: 100%; /* 占满宽度 */
             overflow-y: auto;
             font-size: 12px;
         }
@@ -211,6 +214,39 @@
 
        .avatar-section div {
             margin-left: 10px;
+        }
+
+        /* 响应式设计，针对手机屏幕（例如宽度小于768px时） */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px; /* 增大基础字体大小 */
+            }
+
+            h1 {
+                font-size: 24px; /* 增大标题字体大小 */
+            }
+
+            h2 {
+                font-size: 20px; /* 增大二级标题字体大小 */
+            }
+
+            #main-container {
+                flex-direction: column; /* 确保布局为垂直排列 */
+            }
+
+            #left-sidebar,
+            #right-sidebar {
+                width: 100%; /* 侧边栏占满宽度 */
+            }
+
+            #comments {
+                max-height: 150px; /* 适当增加留言板高度 */
+            }
+
+           .comment-form input,
+           .comment-form textarea {
+                font-size: 14px; /* 增大输入框和文本域的字体大小 */
+            }
         }
     </style>
 </head>
@@ -257,8 +293,7 @@
                     <div class="pixel-divider"></div>
                     <h2>Updates</h2>
                     <p>04/04/2025 喵喵喵</p>
-                    
-            
+
                 </div>
             </div>
             <div id="right-sidebar">
@@ -389,4 +424,3 @@
 </body>
 
 </html>
-    
