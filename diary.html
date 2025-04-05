@@ -252,8 +252,8 @@
             }
         }
 
-        /* 聊天室样式 */
-       .chat-room {
+        /* 新的聊天室样式 */
+       .chat-container {
             border: 2px solid #F1E3F0;
             box-shadow: 3px 3px 0 #e8ccff;
             background-color: white;
@@ -382,7 +382,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="chat-room">
+                <!-- 新的聊天室部分 -->
+                <div class="chat-container">
                     <div class="chat-header">
                         <h2>Chat Room</h2>
                     </div>
@@ -401,102 +402,20 @@
             <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
-    <!-- Firebase 配置 -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-        // 请替换为你自己的 Firebase 配置
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // 加载聊天室消息
-        const chatCollection = collection(db, 'chat');
-        const chatQ = query(chatCollection, orderBy('timestamp', 'desc'));
-        onSnapshot(chatQ, (snapshot) => {
-            const chatMessagesDiv = document.getElementById('chat-messages');
-            chatMessagesDiv.innerHTML = '';
-            snapshot.forEach((doc) => {
-                const message = doc.data();
-                const messageHTML = `
-                    <div class="chat-message">
-                        <span class="user">${message.username}:</span> ${message.text}
-                    </div>
-                `;
-                chatMessagesDiv.insertAdjacentHTML('beforeend', messageHTML);
-            });
-        });
-
-        // 提交聊天室消息
-        document.getElementById('chat-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('chat-username').value;
-            const text = document.getElementById('chat-input').value.trim();
-            if (username && text) {
-                const timestamp = new Date();
-                try {
-                    await addDoc(chatCollection, {
-                        username: username,
-                        text: text,
-                        timestamp: timestamp
-                    });
-                    document.getElementById('chat-username').value = '';
-                    document.getElementById('chat-input').value = '';
-                } catch (error) {
-                    console.error('Error adding chat message: ', error);
-                }
-            }
-        });
-
-        // 生成日历
-        const today = new Date();
-        const currentDay = today.getDate();
-        const currentMonth = today.getMonth();
-        const currentYear = today.getFullYear();
-
-        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-        const startingDay = firstDayOfMonth.getDay();
-
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-
-        const calendarTitle = document.getElementById('calendar-title');
-        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
-        const calendarBody = document.getElementById('calendar-body');
-        let dayCounter = 1;
-        for (let i = 0; i < 6; i++) {
-            const row = document.createElement('tr');
-            for (let j = 0; j < 7; j++) {
-                const cell = document.createElement('td');
-                if (i === 0 && j < startingDay) {
-                    cell.textContent = '';
-                } else if (dayCounter > daysInMonth) {
-                    cell.textContent = '';
-                } else {
-                    cell.textContent = dayCounter;
-                    if (dayCounter === currentDay) {
-                        cell.classList.add('today');
-                    }
-                    dayCounter++;
-                }
-                row.appendChild(cell);
-            }
-            calendarBody.appendChild(row);
-        }
+    <!-- Tawk.to 聊天小工具代碼 -->
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/67f1b7af2d0ba1190b94c545/1io43b1ip';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
+    <!-- End of Tawk.to Script -->
 </body>
 
 </html>
