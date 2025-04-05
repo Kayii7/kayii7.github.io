@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
-    <!-- 引入FullCalendar的CSS和JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -23,22 +21,27 @@
             align-items: center;
             min-height: 100vh;
         }
-        .container {
-            width: 80%; /* 调整容器宽度，使边框更小巧 */
-            max-width: 1000px; /* 最大宽度限制 */
+
+       .container {
+            width: 80%;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 15px; /* 减少内边距 */
+            padding: 15px;
             background-color: white;
-            border: 3px solid #d9a3ff; /* 缩小边框宽度并设置为紫色 */
+            border: 3px solid #d9a3ff;
             border-radius: 10px;
         }
+
         header {
             text-align: center;
             margin-bottom: 15px;
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             color: #6a4c9c;
         }
+
         #banner {
             width: 100%;
             height: 150px;
@@ -50,39 +53,52 @@
             overflow: hidden;
             border-bottom: 3px solid #d9a3ff;
         }
+
         #banner-img {
             max-width: 100%;
             max-height: 100%;
         }
+
         #main-container {
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        #left-sidebar, #right-sidebar {
+
+        #left-sidebar {
             width: 180px;
             margin-right: 15px;
             flex-shrink: 0;
         }
+
+        #right-sidebar {
+            width: 30%;
+            flex-shrink: 0;
+        }
+
         #main-content {
             flex: 1;
         }
-        .pixel-border {
+
+       .pixel-border {
             border: 2px solid #F1E3F0;
             box-shadow: 3px 3px 0 #e8ccff;
             background-color: white;
             padding: 10px;
             margin-bottom: 15px;
         }
-        .nav-links {
+
+       .nav-links {
             list-style-type: none;
             padding: 0;
         }
-        .nav-links li {
+
+       .nav-links li {
             margin-bottom: 8px;
         }
-        .nav-links a {
+
+       .nav-links a {
             display: block;
             padding: 6px 8px;
             background-color: #f0d5ff;
@@ -91,11 +107,13 @@
             transition: all 0.3s;
             border-left: 3px solid #d9a3ff;
         }
-        .nav-links a:hover {
+
+       .nav-links a:hover {
             background-color: #d9a3ff;
             color: white;
             transform: translateX(3px);
         }
+
         footer {
             text-align: center;
             padding: 15px;
@@ -103,14 +121,16 @@
             background-color: #e8ccff;
             border-top: 3px solid #d9a3ff;
         }
-        .comment-form textarea {
+
+       .comment-form textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 8px;
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
-        .comment-form button {
+
+       .comment-form button {
             background-color: #d9a3ff;
             color: white;
             border: none;
@@ -118,28 +138,44 @@
             cursor: pointer;
             font-family: inherit;
         }
-        .comment-form button:hover {
+
+       .comment-form button:hover {
             background-color: #c28fe6;
         }
-        .avatar-img {
+
+       .avatar-img {
             width: 80px;
             height: 80px;
             object-fit: cover;
             border-radius: 50%;
         }
-        /* 调整日历组件的颜色为紫色主题 */
-        .fc-theme-standard .fc-h-event {
+
+        /* 日历样式 */
+        #calendar {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #calendar th,
+        #calendar td {
+            border: 1px solid #d9a3ff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #calendar th {
             background-color: #d9a3ff;
-            border-color: #d9a3ff;
+            color: white;
         }
-        .fc-theme-standard .fc-daygrid-day-number {
-            color: #6a4c9c;
-        }
-        .fc-theme-standard .fc-scrollgrid-sync-inner {
-            border-color: #d9a3ff;
+
+        /* 留言板滑动功能 */
+        #comments {
+            max-height: 300px;
+            overflow-y: auto;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -179,6 +215,72 @@
                     <p>0/0/00 -</p>
                     <p>0/0/00</p>
                 </div>
+            </div>
+            <div id="right-sidebar">
+                <div class="pixel-border">
+                    <h2>日历</h2>
+                    <table id="calendar">
+                        <thead>
+                            <tr>
+                                <th>日</th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th>六</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 这里可以根据需要动态生成日历内容 -->
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>29</td>
+                                <td>30</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="pixel-border">
                     <h2>留言板</h2>
                     <div id="comments">
@@ -195,27 +297,13 @@
                     </form>
                 </div>
             </div>
-            <div id="right-sidebar">
-                <div class="pixel-border">
-                    <h2>日历</h2>
-                    <div id="calendar"></div>
-                </div>
-            </div>
         </div>
         <footer>
             <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
         </footer>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                themeSystem:'standard'
-            });
-            calendar.render();
-        });
-        document.getElementById('comment-form').addEventListener('submit', function(e) {
+        document.getElementById('comment-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const username = this.querySelector('input[name="username"]').value || '访客';
             const message = this.querySelector('textarea').value.trim();
@@ -235,4 +323,5 @@
         });
     </script>
 </body>
+
 </html>
