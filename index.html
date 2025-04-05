@@ -210,6 +210,11 @@
        .avatar-section div {
             margin-left: 10px;
         }
+
+        /* 调整日历容器样式，避免突出 */
+        #right-sidebar .pixel-border {
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -331,10 +336,9 @@
                             <p>欢迎留言！</p>
                         </div>
                     </div>
-                    <h3>留言</h3>
                     <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 6px;">
-                        <textarea name="message" rows="3" placeholder="写下你想说的话..." required></textarea>
+                        <input type="text" name="username" placeholder="Your Name" style="margin-bottom: 6px;">
+                        <textarea name="message" rows="3" placeholder="Anything you want to say?" required></textarea>
                         <button type="submit">提交评论</button>
                     </form>
                 </div>
