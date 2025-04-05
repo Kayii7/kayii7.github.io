@@ -149,8 +149,8 @@
 
        .comment-form textarea {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 8px;
+            padding: 6px; /* 缩小textarea内边距 */
+            margin-bottom: 6px; /* 缩小textarea下边距 */
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
@@ -159,7 +159,7 @@
             background-color: #d9a3ff;
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 4px 8px; /* 缩小button内边距 */
             cursor: pointer;
             font-family: inherit;
         }
@@ -201,8 +201,9 @@
 
         /* 留言板滑动功能 */
         #comments {
-            max-height: 150px;
+            max-height: 100px; /* 进一步缩小留言板最大高度 */
             overflow-y: auto;
+            font-size: 12px; /* 缩小留言板文字大小 */
         }
 
        .avatar-section {
@@ -338,8 +339,8 @@
                     </div>
                     <h3>留言</h3>
                     <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
-                        <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 6px;">
+                        <textarea name="message" rows="3" placeholder="写下你想说的话..." required></textarea>
                         <button type="submit">提交评论</button>
                     </form>
                 </div>
