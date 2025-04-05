@@ -5,69 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
     <style>
-         body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border: 2px solid #333;
-    border-radius: 10px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-main {
-    padding: 20px;
-}
-
-.content {
-    border: 2px solid #ddd;
-    padding: 20px;
-    background-color: #fafafa;
-    border-radius: 10px;
-}
-
-h1, h2 {
-    color: #6a4c9c; /* 紫色 */
-}
-
-    </style>
-</head>
-        /* === 全局样式 === */
         body {
-    font-family: 'Courier New', monospace;
-    background-color: #E6CCF1;
-    /* 新增波点背景效果 */
-    background-image: radial-gradient(#F8EEE4 15%, transparent 16%),
-                     radial-gradient(#F8EEE4 15%, transparent 16%);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-        
-        /* === 像素风边框 === */
-        .pixel-border {
-            border: 3px solid #F1E3F0;
-            box-shadow: 5px 5px 0 #e8ccff;
+            font-family: 'Courier New', monospace;
+            background-color: #E6CCF1;
+            background-image: radial-gradient(#F8EEE4 15%, transparent 16%), radial-gradient(#F8EEE4 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
             background-color: white;
-            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        header {
+            text-align: center;
             margin-bottom: 20px;
         }
-        
-        /* === 顶部Banner === */
+        h1, h2 {
+            color: #6a4c9c;
+        }
         #banner {
             width: 100%;
             height: 200px;
@@ -79,48 +42,38 @@ h1, h2 {
             overflow: hidden;
             border-bottom: 4px solid #d9a3ff;
         }
-        
         #banner-img {
             max-width: 100%;
             max-height: 100%;
         }
-        
-        /* === 主要内容区域 === */
         #main-container {
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
-        /* === 左侧导航栏 === */
-        #left-sidebar {
+        #left-sidebar, #right-sidebar {
             width: 200px;
             margin-right: 20px;
             flex-shrink: 0;
         }
-        
-        /* === 中间内容区 === */
         #main-content {
             flex: 1;
-            margin-right: 20px;
         }
-        
-        /* === 右侧边栏 === */
-        #right-sidebar {
-            width: 200px;
-            flex-shrink: 0;
+        .pixel-border {
+            border: 3px solid #F1E3F0;
+            box-shadow: 5px 5px 0 #e8ccff;
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
         }
-        
         .nav-links {
             list-style-type: none;
             padding: 0;
         }
-        
         .nav-links li {
             margin-bottom: 10px;
         }
-        
         .nav-links a {
             display: block;
             padding: 8px 10px;
@@ -130,36 +83,18 @@ h1, h2 {
             transition: all 0.3s;
             border-left: 4px solid #d9a3ff;
         }
-        
         .nav-links a:hover {
             background-color: #d9a3ff;
             color: white;
             transform: translateX(5px);
         }
-        
-        /* 头像区域 */
-        .avatar-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #e8ccff;
+            border-top: 4px solid #d9a3ff;
         }
-        
-        .avatar-img {
-            width: 100px;
-            height: 100px;
-            border: 3px solid #d9a3ff;
-            margin-right: 15px;
-            object-fit: cover;
-        }
-        
-        /* 评论区域 */
-        .comment {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #f9f0ff;
-            border-left: 4px solid #d9a3ff;
-        }
-        
         .comment-form textarea {
             width: 100%;
             padding: 10px;
@@ -167,7 +102,6 @@ h1, h2 {
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
-        
         .comment-form button {
             background-color: #d9a3ff;
             color: white;
@@ -176,310 +110,112 @@ h1, h2 {
             cursor: pointer;
             font-family: inherit;
         }
-        
         .comment-form button:hover {
             background-color: #c28fe6;
         }
-        
-        /* 日历样式 - 已修复边框问题 */
-        .calendar {
-            width: 100%;
-            border-collapse: separate; /* 修改为separate解决边框冲突 */
-            border-spacing: 0;
-            border: 2px solid #e8ccff; /* 添加外边框 */
-        }
-        
-        .calendar th, .calendar td {
-            border: 1px solid #e8ccff;
-            padding: 5px;
-            text-align: center;
-            background-color: white; /* 添加白色背景 */
-        }
-        
-        .calendar th {
-            background-color: #f0d5ff;
-            border-bottom: 2px solid #d9a3ff; /* 加强表头边框 */
-        }
-        
-        .calendar .today {
-            background-color: #d9a3ff;
-            color: white;
-            font-weight: bold;
-        }
-        
-        /* 社交媒体链接 */
-        .social-links {
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .social-links li {
-            margin-bottom: 10px;
-        }
-        
-        .social-links a {
-            display: block;
-            padding: 8px 10px;
-            background-color: #f0d5ff;
-            color: #5F526E;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: #d9a3ff;
-            color: white;
-        }
-        
-        /* === 页脚 === */
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #e8ccff;
-            border-top: 4px solid #d9a3ff;
-        }
-        
-        /* === 像素风装饰元素 === */
-        .pixel-divider {
-            height: 4px;
-            background-color: #d9a3ff;
-            margin: 20px 0;
-            position: relative;
-        }
-        
-        .pixel-divider:before {
-            content: "";
-            display: block;
-            width: 10px;
-            height: 10px;
-            background-color: #f5e6ff;
-            position: absolute;
-            top: -3px;
-            left: 20px;
-            transform: rotate(45deg);
-        }
-        
-        /* === 响应式设计 === */
-        @media (max-width: 768px) {
-            #main-container {
-                flex-direction: column;
-            }
-            
-            #left-sidebar, #main-content, #right-sidebar {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-        }
     </style>
-</head>
-<body>
-    <div class="container">
-       <!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayii's Room</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Kayii's Room</h1>
         </header>
-        <main>
-            <div class="content">
-                <h2>欢迎来到 Kayii 的房间！</h2>
-                <p>这里是 Kayii 的个人网站。</p>
-                <!-- 这里可以添加更多内容 -->
-            </div>
-        </main>
-    </div>
-</body>
-</html>
+        
+        <div id="banner">
+            <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
+        </div>
 
-    </div>
-</body>
-    <!-- === Banner区域 === -->
-    <!-- 【自定义】替换下面的图片URL为你自己的Banner图片 -->
-    <div id="banner">
-        <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
-    </div>
-    
-    <div id="main-container">
-        <!-- === 左侧导航栏 === -->
-        <div id="left-sidebar">
-            <div class="pixel-border">
-                <h2>导航</h2>
-<ul class="nav-links">
-    <!-- 【自定义】修改下面的导航链接 -->
-    <li><a href="index.html">Home</a></li>               <!-- 返回首页 -->
-    <li><a href="blog.html">Blog</a></li>               <!-- 博客页面 -->
-    <li><a href="diary.html">Diary</a></li>             <!-- 日记页面（确认文件存在） -->
-    <li><a href="https://kayii.lol" target="_blank">Website</a></li>  <!-- 外部网站 -->
-    <li><a href="about.html">About</a></li>             <!-- 关于我页面 -->
-</ul>
-            </div>
-        </div>
-        
-        <!-- === 中间主要内容 === -->
-        <div id="main-content">
-            <div class="pixel-border">
-                <div class="avatar-section">
-                    <!-- 【自定义】替换下面的图片URL为你自己的头像 -->
-                    <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
-                    <div>
-                        <h1>Kayii's Room</h1>
-                        <p>http://kayii.lol/</p>
-                    </div>
+        <div id="main-container">
+            <div id="left-sidebar">
+                <div class="pixel-border">
+                    <h2>导航</h2>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="https://kayii.lol" target="_blank">Website</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
                 </div>
-                
-                <div class="pixel-divider"></div>
-                
-                <!-- 【自定义】修改下面的自我介绍内容 -->
-                <h2>我是Kayii</h2>
-                <p>没什么好介绍的 </p>
-               
-                
-                <div class="pixel-divider"></div>
-                
-                <!-- 【自定义】修改下面的最新动态 -->
-                <h2>动态</h2>
-                <p>04/04/2025 喵喵喵</p>
-                <p>0/0/00 -</p>
-                <p>0/0/00</p>
             </div>
-            
-            <div class="pixel-border">
-                <h2>留言板</h2>
-                <div id="comments">
-                    <div class="comment">
-                        <strong>Kayii</strong> - 2025.04.04
-                        <p>欢迎留言！</p>
+
+            <div id="main-content">
+                <div class="pixel-border">
+                    <div class="avatar-section">
+                        <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
+                        <div>
+                            <h1>Kayii's Room</h1>
+                            <p>http://kayii.lol/</p>
+                        </div>
                     </div>
-                </div>
-                
-                <h3>留言</h3>
-                <form class="comment-form" id="comment-form">
-                    <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
-                    <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
-                    <button type="submit">提交评论</button>
-                </form>
-            </div>
-        </div>
-        
-        <!-- === 右侧边栏 === -->
-        <div id="right-sidebar">
-            <div class="pixel-border">
-                <h2>日历</h2>
-                <table class="calendar">
-                    <thead>
-                        <tr>
-                            <th colspan="7" id="calendar-month"></th>
-                        </tr>
-                        <tr>
-                            <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body"></tbody>
-                </table>
-            </div>
-            
-            <div class="pixel-border">
-                <h2>社交媒体</h2>
-                <ul class="social-links">
-                    <!-- 【自定义】修改下面的社交媒体链接 -->
-                    <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-                    <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
-                    <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
+
+                    <div class="pixel-divider"></div>
+
+                    <h2>我是Kayii</h2>
+                    <p>没什么好介绍的。</p>
                     
-                </ul>
+                    <div class="pixel-divider"></div>
+
+                    <h2>动态</h2>
+                    <p>04/04/2025 喵喵喵</p>
+                    <p>0/0/00 -</p>
+                    <p>0/0/00</p>
+                </div>
+
+                <div class="pixel-border">
+                    <h2>留言板</h2>
+                    <div id="comments">
+                        <div class="comment">
+                            <strong>Kayii</strong> - 2025.04.04
+                            <p>欢迎留言！</p>
+                        </div>
+                    </div>
+
+                    <h3>留言</h3>
+                    <form class="comment-form" id="comment-form">
+                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
+                        <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                        <button type="submit">提交评论</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="right-sidebar">
+                <div class="pixel-border">
+                    <h2>社交媒体</h2>
+                    <ul class="social-links">
+                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
+                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
+                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+
+        <footer>
+            <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
+        </footer>
     </div>
-    
-    <!-- === 页脚 === -->
-    <footer>
-        <!-- 【自定义】修改下面的版权信息 -->
-        <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
-    </footer>
-    
+
     <script>
-        // === 日历生成脚本 ===
-        function generateCalendar() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth();
-            const today = now.getDate();
-            
-            // 设置月份标题
-            document.getElementById('calendar-month').textContent = 
-                `${year}年${month + 1}月`;
-            
-            // 获取当月第一天是星期几
-            const firstDay = new Date(year, month, 1).getDay();
-            
-            // 获取当月天数
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
-            // 生成日历表格
-            let calendarHTML = '';
-            let date = 1;
-            
-            for (let i = 0; i < 6; i++) {
-                if (date > daysInMonth) break;
-                
-                calendarHTML += '<tr>';
-                
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDay) {
-                        calendarHTML += '<td></td>';
-                    } else if (date > daysInMonth) {
-                        calendarHTML += '<td></td>';
-                    } else {
-                        if (date === today) {
-                            calendarHTML += `<td class="today">${date}</td>`;
-                        } else {
-                            calendarHTML += `<td>${date}</td>`;
-                        }
-                        date++;
-                    }
-                }
-                
-                calendarHTML += '</tr>';
-            }
-            
-            document.getElementById('calendar-body').innerHTML = calendarHTML;
-        }
-        
-        // === 评论表单处理 ===
         document.getElementById('comment-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const username = this.querySelector('input[name="username"]').value || '访客';
             const message = this.querySelector('textarea').value.trim();
-            
             if (message) {
                 const now = new Date();
                 const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
-                
                 const commentHTML = `
                     <div class="comment">
                         <strong>${username}</strong> - ${dateStr}
                         <p>${message}</p>
                     </div>
                 `;
-                
                 document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
                 this.querySelector('textarea').value = '';
                 this.querySelector('input[name="username"]').value = '';
             }
         });
-        
-        // 页面加载时生成日历
-        window.onload = generateCalendar;
     </script>
 </body>
 </html>
