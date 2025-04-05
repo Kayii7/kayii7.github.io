@@ -32,11 +32,7 @@
             border-radius: 10px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
+        /* 删除 header 部分的样式 */
         h1,
         h2 {
             color: #6a4c9c;
@@ -149,8 +145,8 @@
 
        .comment-form textarea {
             width: 100%;
-            padding: 6px; /* 缩小textarea内边距 */
-            margin-bottom: 6px; /* 缩小textarea下边距 */
+            padding: 6px;
+            margin-bottom: 6px;
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
@@ -159,7 +155,7 @@
             background-color: #d9a3ff;
             color: white;
             border: none;
-            padding: 4px 8px; /* 缩小button内边距 */
+            padding: 4px 8px;
             cursor: pointer;
             font-family: inherit;
         }
@@ -201,9 +197,10 @@
 
         /* 留言板滑动功能 */
         #comments {
-            max-height: 100px; /* 进一步缩小留言板最大高度 */
+            max-height: 120px; /* 进一步缩小留言板最大高度 */
+            width: 120px; /* 设置留言板宽度为正方形 */
             overflow-y: auto;
-            font-size: 12px; /* 缩小留言板文字大小 */
+            font-size: 12px;
         }
 
        .avatar-section {
@@ -219,9 +216,7 @@
 
 <body>
     <div class="container">
-        <header>
-            <h1>Kayii's Room</h1>
-        </header>
+        <!-- 删除 header 标签及其内容 -->
         <div id="banner">
             <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
         </div>
