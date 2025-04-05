@@ -168,6 +168,12 @@
             color: white;
         }
 
+        /* 当天日期样式 */
+       .today {
+            background-color: #d9a3ff;
+            color: white;
+        }
+
         /* 留言板滑动功能 */
         #comments {
             max-height: 200px; /* 缩小留言板最大高度 */
@@ -319,6 +325,16 @@
                 document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
                 this.querySelector('textarea').value = '';
                 this.querySelector('input[name="username"]').value = '';
+            }
+        });
+
+        // 标注当天日期
+        const today = new Date();
+        const currentDay = today.getDate();
+        const cells = document.querySelectorAll('#calendar td');
+        cells.forEach(cell => {
+            if (cell.textContent === currentDay.toString()) {
+                cell.classList.add('today');
             }
         });
     </script>
