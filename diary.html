@@ -58,10 +58,15 @@
             margin: 0 auto;
             padding: 0 15px;
         }
-        #left-sidebar, #right-sidebar {
+        #left-sidebar {
             width: 200px;
             margin-right: 20px;
             flex-shrink: 0;
+        }
+        #right-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
         #main-content {
             flex: 1;
@@ -126,6 +131,12 @@
             object-fit: cover; /* 保持图片比例并覆盖容器 */
             border-radius: 50%; /* 使头像变为圆形，可选 */
         }
+        /* 调整留言板样式 */
+        #comments-container {
+            width: 30%; /* 缩小留言板宽度 */
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -151,56 +162,47 @@
                     </ul>
                 </div>
             </div>
-
-            <div id="main-content">
-                <div class="pixel-border">
-                    <div class="avatar-section">
-                        <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
-                        <div>
-                            <h1>Kayii's Room</h1>
-                            <p>http://kayii.lol/</p>
+            <div id="right-content">
+                <div id="main-content">
+                    <div class="pixel-border">
+                        <div class="avatar-section">
+                            <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
+                            <div>
+                                <h1>Kayii's Room</h1>
+                                <p>http://kayii.lol/</p>
+                            </div>
                         </div>
+
+                        <div class="pixel-divider"></div>
+
+                        <h2>我是Kayii</h2>
+                        <p>没什么好介绍的。</p>
+                        
+                        <div class="pixel-divider"></div>
+
+                        <h2>动态</h2>
+                        <p>04/04/2025 喵喵喵</p>
+                        <p>0/0/00 -</p>
+                        <p>0/0/00</p>
                     </div>
-
-                    <div class="pixel-divider"></div>
-
-                    <h2>我是Kayii</h2>
-                    <p>没什么好介绍的。</p>
-                    
-                    <div class="pixel-divider"></div>
-
-                    <h2>动态</h2>
-                    <p>04/04/2025 喵喵喵</p>
-                    <p>0/0/00 -</p>
-                    <p>0/0/00</p>
                 </div>
-
-                <div class="pixel-border">
-                    <h2>留言板</h2>
-                    <div id="comments">
-                        <div class="comment">
-                            <strong>Kayii</strong> - 2025.04.04
-                            <p>欢迎留言！</p>
+                <div id="comments-container">
+                    <div class="pixel-border">
+                        <h2>留言板</h2>
+                        <div id="comments">
+                            <div class="comment">
+                                <strong>Kayii</strong> - 2025.04.04
+                                <p>欢迎留言！</p>
+                            </div>
                         </div>
+
+                        <h3>留言</h3>
+                        <form class="comment-form" id="comment-form">
+                            <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
+                            <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                            <button type="submit">提交评论</button>
+                        </form>
                     </div>
-
-                    <h3>留言</h3>
-                    <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
-                        <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
-                        <button type="submit">提交评论</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="right-sidebar">
-                <div class="pixel-border">
-                    <h2>社交媒体</h2>
-                    <ul class="social-links">
-                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
-                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
