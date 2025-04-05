@@ -176,7 +176,7 @@
         #calendar {
             border-collapse: collapse;
             width: 100%;
-            font-size: 0.6em; /* 调整日历字体大小以缩小日历 */
+            font-size: 0.6em;
         }
 
         #calendar th,
@@ -265,7 +265,6 @@
                     <h2>♡</h2>
                     <ul class="nav-links">
                         <li><a href="index.html">Home</a></li>
-
                         <li><a href="diary.html">Diary</a></li>
                         <li><a href="website.html">Website</a></li>
                         <li><a href="https://lit.link/en/kayii7">Me</a></li>
@@ -296,11 +295,9 @@
                     <p>如果給我留言我會很高興，請隨意留言（前提是保持友好）</p>
                     <p>∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴</p>
                     <p>我會將我所有能想到的陸續上傳到這個網站</p>
-
                     <div class="pixel-divider"></div>
                     <h2>Updates</h2>
                     <p>06/04/2025 更改主頁</p>
-
                 </div>
             </div>
             <div id="right-sidebar">
@@ -337,12 +334,32 @@
             <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
-    <script>
-        // 从localStorage中获取留言数据并显示
-        window.onload = function () {
-            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+    <!-- Firebase 配置 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+        // 请替换为你自己的 Firebase 配置
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 加载留言
+        const commentsCollection = collection(db, 'comments');
+        const q = query(commentsCollection, orderBy('date', 'desc'));
+        onSnapshot(q, (snapshot) => {
             const commentsDiv = document.getElementById('comments');
-            comments.forEach(comment => {
+            commentsDiv.innerHTML = '';
+            snapshot.forEach((doc) => {
+                const comment = doc.data();
                 const commentHTML = `
                     <div class="comment">
                         <strong>${comment.username}</strong> - ${comment.date}
@@ -351,84 +368,68 @@
                 `;
                 commentsDiv.insertAdjacentHTML('beforeend', commentHTML);
             });
+        });
 
-            // 生成日历
-            const today = new Date();
-            const currentDay = today.getDate();
-            const currentMonth = today.getMonth();
-            const currentYear = today.getFullYear();
-
-            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-            const startingDay = firstDayOfMonth.getDay();
-
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-
-            const calendarTitle = document.getElementById('calendar-title');
-            calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
-            const calendarBody = document.getElementById('calendar-body');
-            let dayCounter = 1;
-            for (let i = 0; i < 6; i++) {
-                const row = document.createElement('tr');
-                for (let j = 0; j < 7; j++) {
-                    const cell = document.createElement('td');
-                    if (i === 0 && j < startingDay) {
-                        cell.textContent = '';
-                    } else if (dayCounter > daysInMonth) {
-                        cell.textContent = '';
-                    } else {
-                        cell.textContent = dayCounter;
-                        if (dayCounter === currentDay) {
-                            cell.classList.add('today');
-                        }
-                        dayCounter++;
-                    }
-                    row.appendChild(cell);
-                }
-                calendarBody.appendChild(row);
-            }
-        };
-
-        document.getElementById('comment-form').addEventListener('submit', function (e) {
+        // 提交留言
+        document.getElementById('comment-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const username = this.querySelector('input[name="username"]').value || '访客';
-            const message = this.querySelector('textarea').value.trim();
+            const username = e.target.username.value || '访客';
+            const message = e.target.message.value.trim();
             if (message) {
                 const now = new Date();
                 const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
                 const date = now.toLocaleString('en-US', options);
-                const comment = {
-                    username: username,
-                    message: message,
-                    date: date
-                };
-
-                let comments = JSON.parse(localStorage.getItem('comments')) || [];
-                comments.push(comment);
-                localStorage.setItem('comments', JSON.stringify(comments));
-
-                const commentHTML = `
-                    <div class="comment">
-                        <strong>${username}</strong> - ${date}
-                        <p>${message}</p>
-                    </div>
-                `;
-                document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
-                this.querySelector('textarea').value = '';
-                this.querySelector('input[name="username"]').value = '';
+                try {
+                    await addDoc(commentsCollection, {
+                        username: username,
+                        message: message,
+                        date: date
+                    });
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error adding comment: ', error);
+                }
             }
         });
 
-        // 检查 localStorage 是否正常工作
-        try {
-            localStorage.setItem('test', 'test');
-            localStorage.removeItem('test');
-        } catch (e) {
-            console.error('LocalStorage 不可用:', e);
+        // 生成日历
+        const today = new Date();
+        const currentDay = today.getDate();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const startingDay = firstDayOfMonth.getDay();
+
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const calendarTitle = document.getElementById('calendar-title');
+        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+        const calendarBody = document.getElementById('calendar-body');
+        let dayCounter = 1;
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 7; j++) {
+                const cell = document.createElement('td');
+                if (i === 0 && j < startingDay) {
+                    cell.textContent = '';
+                } else if (dayCounter > daysInMonth) {
+                    cell.textContent = '';
+                } else {
+                    cell.textContent = dayCounter;
+                    if (dayCounter === currentDay) {
+                        cell.classList.add('today');
+                    }
+                    dayCounter++;
+                }
+                row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
         }
     </script>
 </body>
