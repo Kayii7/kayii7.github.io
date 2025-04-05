@@ -252,63 +252,43 @@
             }
         }
 
-        /* 新的聊天室样式 */
-       .chat-container {
-            border: 2px solid #F1E3F0;
-            box-shadow: 3px 3px 0 #e8ccff;
-            background-color: white;
+        /* 类似目标网站的聊天室样式 */
+       .chatbox {
+            border: 2px solid #d9a3ff;
             padding: 10px;
+            background-color: #fff;
             margin-bottom: 15px;
-            box-sizing: border-box;
         }
 
-       .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-       .chat-header h2 {
-            margin: 0;
+       .chatbox h2 {
+            margin-top: 0;
         }
 
        .chat-messages {
             max-height: 200px;
             overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
             margin-bottom: 10px;
         }
 
        .chat-message {
-            background-color: #f0d5ff;
-            padding: 8px;
-            border-radius: 5px;
             margin-bottom: 5px;
         }
 
-       .chat-message.user {
-            font-weight: bold;
-            margin-right: 5px;
-        }
-
-       .chat-input form {
-            display: flex;
-        }
-
        .chat-input input {
-            flex: 1;
-            padding: 6px;
-            border: 2px solid #d9a3ff;
-            font-family: inherit;
+            width: calc(100% - 70px);
+            padding: 5px;
+            border: 1px solid #ccc;
         }
 
        .chat-input button {
+            width: 60px;
+            padding: 5px;
             background-color: #d9a3ff;
             color: white;
             border: none;
-            padding: 6px 10px;
             cursor: pointer;
-            font-family: inherit;
         }
 
        .chat-input button:hover {
@@ -382,18 +362,13 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- 新的聊天室部分 -->
-                <div class="chat-container">
-                    <div class="chat-header">
-                        <h2>Chat Room</h2>
-                    </div>
+                <!-- 类似目标网站的聊天室 -->
+                <div class="chatbox">
+                    <h2>聊天室</h2>
                     <div class="chat-messages" id="chat-messages"></div>
                     <div class="chat-input">
-                        <form id="chat-form">
-                            <input type="text" id="chat-username" placeholder="Your Name" required style="margin-right: 10px;">
-                            <input type="text" id="chat-input" placeholder="Type your message here..." required>
-                            <button type="submit">Send</button>
-                        </form>
+                        <input type="text" id="chat-input-text" placeholder="输入消息...">
+                        <button onclick="sendMessage()">发送</button>
                     </div>
                 </div>
             </div>
@@ -402,7 +377,7 @@
             <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
-    <!-- Tawk.to 聊天小工具代碼 -->
+    <!-- Tawk.to 聊天小工具代码 -->
     <!-- Start of Tawk.to Script -->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -416,6 +391,61 @@
         })();
     </script>
     <!-- End of Tawk.to Script -->
+    <script>
+        // 生成日历
+        const today = new Date();
+        const currentDay = today.getDate();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const startingDay = firstDayOfMonth.getDay();
+
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const calendarTitle = document.getElementById('calendar-title');
+        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+        const calendarBody = document.getElementById('calendar-body');
+        let dayCounter = 1;
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 7; j++) {
+                const cell = document.createElement('td');
+                if (i === 0 && j < startingDay) {
+                    cell.textContent = '';
+                } else if (dayCounter > daysInMonth) {
+                    cell.textContent = '';
+                } else {
+                    cell.textContent = dayCounter;
+                    if (dayCounter === currentDay) {
+                        cell.classList.add('today');
+                    }
+                    dayCounter++;
+                }
+                row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
+        }
+
+        // 简单模拟发送消息
+        function sendMessage() {
+            const input = document.getElementById('chat-input-text');
+            const message = input.value;
+            if (message) {
+                const chatMessages = document.getElementById('chat-messages');
+                const newMessage = document.createElement('div');
+                newMessage.classList.add('chat-message');
+                newMessage.textContent = message;
+                chatMessages.appendChild(newMessage);
+                input.value = '';
+            }
+        }
+    </script>
 </body>
 
-</html>
+</html>    
