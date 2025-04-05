@@ -22,22 +22,14 @@
             min-height: 100vh;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1600px;
+       .container {
+            width: 80%;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             background-color: white;
-            border: 5px solid transparent;
-            border-image: linear-gradient(to right, #d9a3ff, #6a4c9c) 1;
+            border: 3px solid #d9a3ff;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
         }
 
         h1,
@@ -47,14 +39,14 @@
 
         #banner {
             width: 100%;
-            height: 200px;
+            height: 150px;
             background-color: #E6CCF1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-bottom: 4px solid #d9a3ff;
+            border-bottom: 3px solid #d9a3ff;
         }
 
         #banner-img {
@@ -64,66 +56,69 @@
 
         #main-container {
             display: flex;
-            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
         #left-sidebar {
-            width: 200px;
+            width: 180px;
+            margin-right: 15px;
             flex-shrink: 0;
-        }
-
-        #center-content {
-            flex: 1;
         }
 
         #right-sidebar {
-            width: 30%;
+            width: 20%;
             flex-shrink: 0;
         }
 
-        .pixel-border {
-            border: 3px solid #F1E3F0;
-            box-shadow: 5px 5px 0 #e8ccff;
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 20px;
+        #main-content {
+            flex: 1;
         }
 
-        .nav-links {
+       .pixel-border {
+            border: 2px solid #F1E3F0;
+            box-shadow: 3px 3px 0 #e8ccff;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+       .nav-links {
             list-style-type: none;
             padding: 0;
         }
 
-        .nav-links li {
-            margin-bottom: 10px;
+       .nav-links li {
+            margin-bottom: 8px;
         }
 
-        .nav-links a {
+       .nav-links a {
             display: block;
-            padding: 8px 10px;
+            padding: 6px 8px;
             background-color: #f0d5ff;
             color: #5F526E;
             text-decoration: none;
             transition: all 0.3s;
-            border-left: 4px solid #d9a3ff;
+            border-left: 3px solid #d9a3ff;
         }
 
-        .nav-links a:hover {
+       .nav-links a:hover {
             background-color: #d9a3ff;
             color: white;
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
-        .social-links {
+       .social-links {
             list-style-type: none;
             padding: 0;
         }
 
-        .social-links li {
+       .social-links li {
             margin-bottom: 10px;
         }
 
-        .social-links a {
+       .social-links a {
             display: block;
             padding: 8px 10px;
             background-color: #f0d5ff;
@@ -133,7 +128,7 @@
             border-left: 4px solid #d9a3ff;
         }
 
-        .social-links a:hover {
+       .social-links a:hover {
             background-color: #d9a3ff;
             color: white;
             transform: translateX(5px);
@@ -141,66 +136,103 @@
 
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+            padding: 15px;
+            margin-top: 20px;
             background-color: #e8ccff;
-            border-top: 4px solid #d9a3ff;
+            border-top: 3px solid #d9a3ff;
         }
 
-        .comment-form textarea {
+       .comment-form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 6px;
+            margin-bottom: 6px;
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
 
-        .comment-form button {
+       .comment-form button {
             background-color: #d9a3ff;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 4px 8px;
             cursor: pointer;
             font-family: inherit;
         }
 
-        .comment-form button:hover {
+       .comment-form button:hover {
             background-color: #c28fe6;
         }
 
-        .avatar-img {
-            width: 100px;
-            height: 100px;
+       .avatar-img {
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 50%;
+        }
+
+        /* 日历样式 */
+        #calendar {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #calendar th,
+        #calendar td {
+            border: 1px solid #d9a3ff;
+            padding: 3px;
+            text-align: center;
+        }
+
+        #calendar th {
+            background-color: #d9a3ff;
+            color: white;
+        }
+
+        /* 当天日期样式 */
+       .today {
+            background-color: #d9a3ff;
+            color: white;
+        }
+
+        /* 留言板滑动功能 */
+        #comments {
+            max-height: 120px;
+            width: 120px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+
+       .avatar-section {
+            display: flex;
+            align-items: center;
+        }
+
+       .avatar-section div {
+            margin-left: 10px;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <h1>Kayii's Room</h1>
-        </header>
-
         <div id="banner">
             <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
         </div>
-
         <div id="main-container">
             <div id="left-sidebar">
                 <div class="pixel-border">
-                    <h2>导航</h2>
+                    <h2>♡</h2>
                     <ul class="nav-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="diary.html">Diary</a></li>
                         <li><a href="https://kayii.lol" target="_blank">Website</a></li>
                         <li><a href="about.html">About</a></li>
+                        <li><a href="https://mikakawai.online/">My BF</a></li>
                     </ul>
                 </div>
                 <div class="pixel-border">
-                    <h2>社交媒体</h2>
+                    <h2>Social Media</h2>
                     <ul class="social-links">
                         <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
                         <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
@@ -208,7 +240,7 @@
                     </ul>
                 </div>
             </div>
-            <div id="center-content">
+            <div id="main-content">
                 <div class="pixel-border">
                     <div class="avatar-section">
                         <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
@@ -217,15 +249,11 @@
                             <p>http://kayii.lol/</p>
                         </div>
                     </div>
-
                     <div class="pixel-divider"></div>
-
                     <h2>我是Kayii</h2>
                     <p>没什么好介绍的。</p>
-
                     <div class="pixel-divider"></div>
-
-                    <h2>动态</h2>
+                    <h2>Updates</h2>
                     <p>04/04/2025 喵喵喵</p>
                     <p>0/0/00 -</p>
                     <p>0/0/00</p>
@@ -233,29 +261,89 @@
             </div>
             <div id="right-sidebar">
                 <div class="pixel-border">
-                    <h2>留言板</h2>
+                    <h2 id="calendar-title"></h2>
+                    <table id="calendar">
+                        <thead>
+                            <tr>
+                                <th>日</th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th>六</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>29</td>
+                                <td>30</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pixel-border">
+                    <h2>Chatbox</h2>
                     <div id="comments">
                         <div class="comment">
                             <strong>Kayii</strong> - 2025.04.04
                             <p>欢迎留言！</p>
                         </div>
                     </div>
-
                     <h3>留言</h3>
                     <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
-                        <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 6px;">
+                        <textarea name="message" rows="3" placeholder="写下你想说的话..." required></textarea>
                         <button type="submit">提交评论</button>
                     </form>
                 </div>
             </div>
         </div>
-
         <footer>
             <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
         </footer>
     </div>
-
     <script>
         document.getElementById('comment-form').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -275,6 +363,22 @@
                 this.querySelector('input[name="username"]').value = '';
             }
         });
+
+        // 标注当天日期
+        const today = new Date();
+        const currentDay = today.getDate();
+        const currentMonth = today.getMonth() + 1;
+        const currentYear = today.getFullYear();
+        const cells = document.querySelectorAll('#calendar td');
+        cells.forEach(cell => {
+            if (cell.textContent === currentDay.toString()) {
+                cell.classList.add('today');
+            }
+        });
+
+        // 设置日历标题为当前月份和年份
+        const calendarTitle = document.getElementById('calendar-title');
+        calendarTitle.textContent = `${currentYear}年${currentMonth}月`;
     </script>
 </body>
 
