@@ -6,39 +6,125 @@
     <title>Kayii's Room</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Courier New', monospace;
+            background-color: #E6CCF1;
+            background-image: radial-gradient(#F8EEE4 15%, transparent 16%), radial-gradient(#F8EEE4 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-
         .container {
-            width: 80%;
+            width: 90%; /* 调整容器宽度以实现横长方形 */
+            max-width: 1200px; /* 最大宽度限制 */
             margin: 0 auto;
             padding: 20px;
             background-color: white;
-            border: 2px solid #333;
+            border: 5px solid transparent; /* 先设置透明边框 */
+            border-image: linear-gradient(to right, #d9a3ff, #6a4c9c) 1; /* 添加紫色渐变花边 */
             border-radius: 10px;
         }
-
         header {
             text-align: center;
             margin-bottom: 20px;
         }
-
-        main {
-            padding: 20px;
-        }
-
-        .content {
-            border: 2px solid #ddd;
-            padding: 20px;
-            background-color: #fafafa;
-            border-radius: 10px;
-        }
-
         h1, h2 {
-            color: #6a4c9c; /* 紫色 */
+            color: #6a4c9c;
+        }
+        #banner {
+            width: 100%;
+            height: 200px;
+            background-color: #E6CCF1;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 4px solid #d9a3ff;
+        }
+        #banner-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        #left-sidebar, #right-sidebar {
+            width: 200px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        #main-content {
+            flex: 1;
+        }
+        .pixel-border {
+            border: 3px solid #F1E3F0;
+            box-shadow: 5px 5px 0 #e8ccff;
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .nav-links {
+            list-style-type: none;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-bottom: 10px;
+        }
+        .nav-links a {
+            display: block;
+            padding: 8px 10px;
+            background-color: #f0d5ff;
+            color: #5F526E;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid #d9a3ff;
+        }
+        .nav-links a:hover {
+            background-color: #d9a3ff;
+            color: white;
+            transform: translateX(5px);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #e8ccff;
+            border-top: 4px solid #d9a3ff;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #d9a3ff;
+            font-family: inherit;
+        }
+        .comment-form button {
+            background-color: #d9a3ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .comment-form button:hover {
+            background-color: #c28fe6;
+        }
+        /* 添加头像样式 */
+        .avatar-img {
+            width: 100px; /* 可根据需求调整宽度 */
+            height: 100px; /* 可根据需求调整高度 */
+            object-fit: cover; /* 保持图片比例并覆盖容器 */
+            border-radius: 50%; /* 使头像变为圆形，可选 */
         }
     </style>
 </head>
@@ -47,13 +133,103 @@
         <header>
             <h1>Kayii's Room</h1>
         </header>
-        <main>
-            <div class="content">
-                <h2>欢迎来到 Kayii 的房间！</h2>
-                <p>这里是 Kayii 的个人网站。</p>
-                <!-- 这里可以添加更多内容 -->
+        
+        <div id="banner">
+            <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
+        </div>
+
+        <div id="main-container">
+            <div id="left-sidebar">
+                <div class="pixel-border">
+                    <h2>导航</h2>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="https://kayii.lol" target="_blank">Website</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
             </div>
-        </main>
+
+            <div id="main-content">
+                <div class="pixel-border">
+                    <div class="avatar-section">
+                        <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
+                        <div>
+                            <h1>Kayii's Room</h1>
+                            <p>http://kayii.lol/</p>
+                        </div>
+                    </div>
+
+                    <div class="pixel-divider"></div>
+
+                    <h2>我是Kayii</h2>
+                    <p>没什么好介绍的。</p>
+                    
+                    <div class="pixel-divider"></div>
+
+                    <h2>动态</h2>
+                    <p>04/04/2025 喵喵喵</p>
+                    <p>0/0/00 -</p>
+                    <p>0/0/00</p>
+                </div>
+
+                <div class="pixel-border">
+                    <h2>留言板</h2>
+                    <div id="comments">
+                        <div class="comment">
+                            <strong>Kayii</strong> - 2025.04.04
+                            <p>欢迎留言！</p>
+                        </div>
+                    </div>
+
+                    <h3>留言</h3>
+                    <form class="comment-form" id="comment-form">
+                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
+                        <textarea name="message" rows="4" placeholder="写下你想说的话..." required></textarea>
+                        <button type="submit">提交评论</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="right-sidebar">
+                <div class="pixel-border">
+                    <h2>社交媒体</h2>
+                    <ul class="social-links">
+                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
+                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
+                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
+        </footer>
     </div>
+
+    <script>
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this.querySelector('input[name="username"]').value || '访客';
+            const message = this.querySelector('textarea').value.trim();
+            if (message) {
+                const now = new Date();
+                const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
+                const commentHTML = `
+                    <div class="comment">
+                        <strong>${username}</strong> - ${dateStr}
+                        <p>${message}</p>
+                    </div>
+                `;
+                document.getElementById('comments').insertAdjacentHTML('afterbegin', commentHTML);
+                this.querySelector('textarea').value = '';
+                this.querySelector('input[name="username"]').value = '';
+            }
+        });
+    </script>
 </body>
 </html>
+    
