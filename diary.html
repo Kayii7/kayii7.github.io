@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
     <style>
+        /* 基础样式 */
         body {
             font-family: 'Courier New', monospace;
             background-color: #E6CCF1;
@@ -23,7 +24,7 @@
         }
 
        .container {
-            width: 80%;
+            width: 90%; /* 适当增加容器宽度在手机上的占比 */
             max-width: 1000px;
             margin: 0 auto;
             padding: 15px;
@@ -32,7 +33,6 @@
             border-radius: 10px;
         }
 
-        /* 删除 header 部分的样式 */
         h1,
         h2 {
             color: #6a4c9c;
@@ -57,19 +57,21 @@
 
         #main-container {
             display: flex;
+            flex-direction: column; /* 初始为垂直排列 */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
         #left-sidebar {
-            width: 180px;
-            margin-right: 15px;
+            width: 100%; /* 手机上占满宽度 */
+            margin-bottom: 15px; /* 与主内容区有间隔 */
             flex-shrink: 0;
         }
 
         #right-sidebar {
-            width: 20%;
+            width: 100%; /* 手机上占满宽度 */
+            margin-top: 15px; /* 与主内容区有间隔 */
             flex-shrink: 0;
         }
 
@@ -83,6 +85,7 @@
             background-color: white;
             padding: 10px;
             margin-bottom: 15px;
+            box-sizing: border-box;
         }
 
        .nav-links {
@@ -175,12 +178,13 @@
         #calendar {
             border-collapse: collapse;
             width: 100%;
+            font-size: 0.6em; /* 进一步缩小日历文字大小 */
         }
 
         #calendar th,
         #calendar td {
             border: 1px solid #d9a3ff;
-            padding: 3px;
+            padding: 1px; /* 进一步缩小单元格内边距 */
             text-align: center;
         }
 
@@ -197,8 +201,8 @@
 
         /* 留言板滑动功能 */
         #comments {
-            max-height: 120px; /* 进一步缩小留言板最大高度 */
-            width: 120px; /* 设置留言板宽度为正方形 */
+            max-height: 120px;
+            width: 100%; /* 占满宽度 */
             overflow-y: auto;
             font-size: 12px;
         }
@@ -211,29 +215,62 @@
        .avatar-section div {
             margin-left: 10px;
         }
+
+        /* 响应式设计，针对手机屏幕（例如宽度小于768px时） */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px; /* 增大基础字体大小 */
+            }
+
+            h1 {
+                font-size: 24px; /* 增大标题字体大小 */
+            }
+
+            h2 {
+                font-size: 20px; /* 增大二级标题字体大小 */
+            }
+
+            #main-container {
+                flex-direction: column; /* 确保布局为垂直排列 */
+            }
+
+            #left-sidebar,
+            #right-sidebar {
+                width: 100%; /* 侧边栏占满宽度 */
+            }
+
+            #comments {
+                max-height: 150px; /* 适当增加留言板高度 */
+            }
+
+           .comment-form input,
+           .comment-form textarea {
+                font-size: 14px; /* 增大输入框和文本域的字体大小 */
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <!-- 删除 header 标签及其内容 -->
         <div id="banner">
             <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
         </div>
         <div id="main-container">
             <div id="left-sidebar">
                 <div class="pixel-border">
-                    <h2>导航</h2>
+                    <h2>♡</h2>
                     <ul class="nav-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="diary.html">Diary</a></li>
                         <li><a href="https://kayii.lol" target="_blank">Website</a></li>
                         <li><a href="about.html">About</a></li>
+                        <li><a href="https://mikakawai.online/">My BF</a></li>
                     </ul>
                 </div>
                 <div class="pixel-border">
-                    <h2>社交媒体</h2>
+                    <h2>Social Media</h2>
                     <ul class="social-links">
                         <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
                         <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
@@ -254,25 +291,24 @@
                     <h2>我是Kayii</h2>
                     <p>没什么好介绍的。</p>
                     <div class="pixel-divider"></div>
-                    <h2>动态</h2>
+                    <h2>Updates</h2>
                     <p>04/04/2025 喵喵喵</p>
-                    <p>0/0/00 -</p>
-                    <p>0/0/00</p>
+
                 </div>
             </div>
             <div id="right-sidebar">
                 <div class="pixel-border">
-                    <h2>日历</h2>
+                    <h2 id="calendar-title"></h2>
                     <table id="calendar">
                         <thead>
                             <tr>
-                                <th>日</th>
-                                <th>一</th>
-                                <th>二</th>
-                                <th>三</th>
-                                <th>四</th>
-                                <th>五</th>
-                                <th>六</th>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -325,24 +361,23 @@
                     </table>
                 </div>
                 <div class="pixel-border">
-                    <h2>留言板</h2>
+                    <h2>Chatbox</h2>
                     <div id="comments">
                         <div class="comment">
                             <strong>Kayii</strong> - 2025.04.04
-                            <p>欢迎留言！</p>
+                            <p>歡迎留言！</p>
                         </div>
                     </div>
-                    <h3>留言</h3>
                     <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 6px;">
-                        <textarea name="message" rows="3" placeholder="写下你想说的话..." required></textarea>
-                        <button type="submit">提交评论</button>
+                        <input type="text" name="username" placeholder="Your Name" style="margin-bottom: 6px;">
+                        <textarea name="message" rows="3" placeholder="Anything you want to say?" required></textarea>
+                        <button type="submit">OK!</button>
                     </form>
                 </div>
             </div>
         </div>
         <footer>
-            <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
+            <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
     <script>
@@ -368,14 +403,24 @@
         // 标注当天日期
         const today = new Date();
         const currentDay = today.getDate();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
         const cells = document.querySelectorAll('#calendar td');
         cells.forEach(cell => {
             if (cell.textContent === currentDay.toString()) {
                 cell.classList.add('today');
             }
         });
+
+        // 英文月份数组
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        // 设置日历标题为英文的月份和年份
+        const calendarTitle = document.getElementById('calendar-title');
+        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
     </script>
 </body>
 
 </html>
-    
