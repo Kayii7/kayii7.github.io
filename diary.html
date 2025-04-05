@@ -73,7 +73,7 @@
         }
 
         #right-sidebar {
-            width: 25%; /* 缩小右侧边栏宽度 */
+            width: 20%;
             flex-shrink: 0;
         }
 
@@ -112,6 +112,31 @@
             background-color: #d9a3ff;
             color: white;
             transform: translateX(3px);
+        }
+
+       .social-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+       .social-links li {
+            margin-bottom: 10px;
+        }
+
+       .social-links a {
+            display: block;
+            padding: 8px 10px;
+            background-color: #f0d5ff;
+            color: #5F526E;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid #d9a3ff;
+        }
+
+       .social-links a:hover {
+            background-color: #d9a3ff;
+            color: white;
+            transform: translateX(5px);
         }
 
         footer {
@@ -159,7 +184,7 @@
         #calendar th,
         #calendar td {
             border: 1px solid #d9a3ff;
-            padding: 5px; /* 缩小日历单元格内边距 */
+            padding: 3px;
             text-align: center;
         }
 
@@ -176,8 +201,17 @@
 
         /* 留言板滑动功能 */
         #comments {
-            max-height: 200px; /* 缩小留言板最大高度 */
+            max-height: 150px;
             overflow-y: auto;
+        }
+
+       .avatar-section {
+            display: flex;
+            align-items: center;
+        }
+
+       .avatar-section div {
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -200,6 +234,14 @@
                         <li><a href="diary.html">Diary</a></li>
                         <li><a href="https://kayii.lol" target="_blank">Website</a></li>
                         <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="pixel-border">
+                    <h2>社交媒体</h2>
+                    <ul class="social-links">
+                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
+                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
+                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
                     </ul>
                 </div>
             </div>
@@ -238,7 +280,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- 这里可以根据需要动态生成日历内容 -->
                             <tr>
                                 <td>1</td>
                                 <td>2</td>
