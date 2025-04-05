@@ -1,147 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kayii's Room</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://i.imgur.com/4M7IWwP.png">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Press Start 2P', cursive;
-      background-image: url('https://i.imgur.com/VkLdBkg.png');
-      background-size: 100px 100px;
-      color: #fff;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background: rgba(128, 0, 128, 0.6);
-      border-radius: 20px;
-      box-shadow: 0 0 10px #888;
-    }
-    header {
-      text-align: center;
-    }
-    .banner {
-      width: 100%;
-      max-height: 150px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-    h1 {
-      font-size: 24px;
-      margin: 10px 0;
-      color: #fff0ff;
-    }
-    .intro {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-      border-radius: 15px;
-    }
-    .avatar {
-      width: 100px;
-      border-radius: 50%;
-    }
-    .nav {
-      margin: 20px 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .nav a {
-      background-color: #ffffff99;
-      padding: 10px 15px;
-      border-radius: 25px;
-      color: purple;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .nav a:hover {
-      background-color: #fff;
-      transform: scale(1.1);
-    }
-    section {
-      margin: 30px 0;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-    }
-    footer {
-      text-align: center;
-      font-size: 12px;
-      padding: 20px;
-    }
-    audio {
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayii's Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .content {
+            border: 2px solid #ddd;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #6a4c9c; /* 紫色 */
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="https://i.imgur.com/XM6f6oN.gif" class="banner" alt="Kayii's Room Banner" />
-      <h1>Kayii's Room</h1>
-    </header>
-
-    <section class="intro">
-      <img src="https://i.imgur.com/0Xl4D4L.gif" alt="Kayii Avatar" class="avatar" />
-      <p>Hi! I'm Kayii. Welcome to my cozy purple room on the web 💜<br>
-      I love journaling, collecting cute things, and building my little digital corner~</p>
-    </section>
-
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#blog">Blog</a>
-      <a href="#diary">Diary</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#guestbook">Guestbook</a>
-      <a href="#links">Links</a>
-    </nav>
-
-    <section id="blog">
-      <h2>📝 Latest Blog</h2>
-      <p>April 5, 2025 — Just started building this site! It feels like decorating my own little virtual bedroom ✨</p>
-    </section>
-
-    <section id="calendar">
-      <h2>📅 Calendar</h2>
-      <iframe src="https://calendar.google.com/calendar/embed?src=en.hongkong%23holiday%40group.v.calendar.google.com&ctz=Asia%2FHong_Kong" style="border: 0" width="300" height="300" frameborder="0" scrolling="no"></iframe>
-    </section>
-
-    <section id="guestbook">
-      <h2>💌 Guestbook</h2>
-      <iframe src="https://www3.cbox.ws/box/?boxid=3526384&boxtag=UzTX3N" width="100%" height="200" allowtransparency="yes" frameborder="0"></iframe>
-    </section>
-
-    <section id="links">
-      <h2>🔗 Links</h2>
-      <ul>
-        <li><a href="https://tomboyish.neocities.org/" target="_blank">Inspo: tomboyish</a></li>
-        <li><a href="https://neocities.org/" target="_blank">Neocities</a></li>
-        <li><a href="https://kayii.lol/" target="_blank">Back to Home</a></li>
-      </ul>
-    </section>
-
-    <footer>
-      <p>Made with 💜 by Kayii | Cute cursor, pixel love, and pastel dreams.</p>
-      <audio controls autoplay loop>
-        <source src="https://vgmsite.com/soundtracks/animal-crossing-city-folk/zdwrqwvh/1-02%20Title.mp3" type="audio/mpeg">
-      </audio>
-    </footer>
-  </div>
-  <script>
-    document.body.style.cursor = "url('https://cur.cursors-4u.net/nature/nat-11/nat1074.cur'), auto";
-  </script>
+    <div class="container">
+        <header>
+            <h1>Kayii's Room</h1>
+        </header>
+        <main>
+            <div class="content">
+                <h2>欢迎来到 Kayii 的房间！</h2>
+                <p>这里是 Kayii 的个人网站。</p>
+                <!-- 这里可以添加更多内容 -->
+            </div>
+        </main>
+    </div>
 </body>
 </html>
