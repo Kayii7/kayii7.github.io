@@ -365,12 +365,7 @@
                 </div>
                 <div class="pixel-border">
                     <h2>Chatbox</h2>
-                    <div id="comments">
-                        <div class="comment">
-                            <strong>Kayii</strong> - 2025.04.04
-                            <p>歡迎留言！</p>
-                        </div>
-                    </div>
+                    <div id="comments"></div>
                     <form class="comment-form" id="comment-form">
                         <input type="text" name="username" placeholder="Your Name" style="margin-bottom: 6px;">
                         <textarea name="message" rows="3" placeholder="Anything you want to say?" required></textarea>
@@ -384,16 +379,42 @@
         </footer>
     </div>
     <script>
+        // 从localStorage中获取留言数据并显示
+        window.onload = function () {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            const commentsDiv = document.getElementById('comments');
+            comments.forEach(comment => {
+                const commentHTML = `
+                    <div class="comment">
+                        <strong>${comment.username}</strong> - ${comment.date}
+                        <p>${comment.message}</p>
+                    </div>
+                `;
+                commentsDiv.insertAdjacentHTML('beforeend', commentHTML);
+            });
+        };
+
         document.getElementById('comment-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const username = this.querySelector('input[name="username"]').value || '访客';
             const message = this.querySelector('textarea').value.trim();
             if (message) {
                 const now = new Date();
-                const dateStr = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
+                const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                const date = now.toLocaleString('en-US', options);
+                const comment = {
+                    username: username,
+                    message: message,
+                    date: date
+                };
+
+                let comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.push(comment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+
                 const commentHTML = `
                     <div class="comment">
-                        <strong>${username}</strong> - ${dateStr}
+                        <strong>${username}</strong> - ${date}
                         <p>${message}</p>
                     </div>
                 `;
