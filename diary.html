@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
+    <!-- 引入FullCalendar的CSS和JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -21,172 +23,131 @@
             align-items: center;
             min-height: 100vh;
         }
-
         .container {
-            width: 90%;
-            max-width: 1600px;
+            width: 80%; /* 调整容器宽度，使边框更小巧 */
+            max-width: 1000px; /* 最大宽度限制 */
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px; /* 减少内边距 */
             background-color: white;
-            border: 5px solid transparent;
-            border-image: linear-gradient(to right, #d9a3ff, #6a4c9c) 1;
+            border: 3px solid #d9a3ff; /* 缩小边框宽度并设置为紫色 */
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
         }
-
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
-        h1,
-        h2 {
+        h1, h2 {
             color: #6a4c9c;
         }
-
         #banner {
             width: 100%;
-            height: 200px;
+            height: 150px;
             background-color: #E6CCF1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            border-bottom: 4px solid #d9a3ff;
+            border-bottom: 3px solid #d9a3ff;
         }
-
         #banner-img {
             max-width: 100%;
             max-height: 100%;
         }
-
         #main-container {
             display: flex;
-            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
-
-        #left-sidebar {
-            width: 200px;
+        #left-sidebar, #right-sidebar {
+            width: 180px;
+            margin-right: 15px;
             flex-shrink: 0;
         }
-
-        #center-content {
+        #main-content {
             flex: 1;
         }
-
-        #right-sidebar {
-            width: 30%;
-            flex-shrink: 0;
-        }
-
         .pixel-border {
-            border: 3px solid #F1E3F0;
-            box-shadow: 5px 5px 0 #e8ccff;
+            border: 2px solid #F1E3F0;
+            box-shadow: 3px 3px 0 #e8ccff;
             background-color: white;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 10px;
+            margin-bottom: 15px;
         }
-
         .nav-links {
             list-style-type: none;
             padding: 0;
         }
-
         .nav-links li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-
         .nav-links a {
             display: block;
-            padding: 8px 10px;
+            padding: 6px 8px;
             background-color: #f0d5ff;
             color: #5F526E;
             text-decoration: none;
             transition: all 0.3s;
-            border-left: 4px solid #d9a3ff;
+            border-left: 3px solid #d9a3ff;
         }
-
         .nav-links a:hover {
             background-color: #d9a3ff;
             color: white;
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
-
-        .social-links {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .social-links li {
-            margin-bottom: 10px;
-        }
-
-        .social-links a {
-            display: block;
-            padding: 8px 10px;
-            background-color: #f0d5ff;
-            color: #5F526E;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 4px solid #d9a3ff;
-        }
-
-        .social-links a:hover {
-            background-color: #d9a3ff;
-            color: white;
-            transform: translateX(5px);
-        }
-
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+            padding: 15px;
+            margin-top: 20px;
             background-color: #e8ccff;
-            border-top: 4px solid #d9a3ff;
+            border-top: 3px solid #d9a3ff;
         }
-
         .comment-form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 8px;
+            margin-bottom: 8px;
             border: 2px solid #d9a3ff;
             font-family: inherit;
         }
-
         .comment-form button {
             background-color: #d9a3ff;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px;
             cursor: pointer;
             font-family: inherit;
         }
-
         .comment-form button:hover {
             background-color: #c28fe6;
         }
-
         .avatar-img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 50%;
         }
+        /* 调整日历组件的颜色为紫色主题 */
+        .fc-theme-standard .fc-h-event {
+            background-color: #d9a3ff;
+            border-color: #d9a3ff;
+        }
+        .fc-theme-standard .fc-daygrid-day-number {
+            color: #6a4c9c;
+        }
+        .fc-theme-standard .fc-scrollgrid-sync-inner {
+            border-color: #d9a3ff;
+        }
     </style>
 </head>
-
 <body>
     <div class="container">
         <header>
             <h1>Kayii's Room</h1>
         </header>
-
         <div id="banner">
             <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
         </div>
-
         <div id="main-container">
             <div id="left-sidebar">
                 <div class="pixel-border">
@@ -199,16 +160,8 @@
                         <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
-                <div class="pixel-border">
-                    <h2>社交媒体</h2>
-                    <ul class="social-links">
-                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
-                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
-                    </ul>
-                </div>
             </div>
-            <div id="center-content">
+            <div id="main-content">
                 <div class="pixel-border">
                     <div class="avatar-section">
                         <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
@@ -217,21 +170,15 @@
                             <p>http://kayii.lol/</p>
                         </div>
                     </div>
-
                     <div class="pixel-divider"></div>
-
                     <h2>我是Kayii</h2>
                     <p>没什么好介绍的。</p>
-
                     <div class="pixel-divider"></div>
-
                     <h2>动态</h2>
                     <p>04/04/2025 喵喵喵</p>
                     <p>0/0/00 -</p>
                     <p>0/0/00</p>
                 </div>
-            </div>
-            <div id="right-sidebar">
                 <div class="pixel-border">
                     <h2>留言板</h2>
                     <div id="comments">
@@ -240,7 +187,6 @@
                             <p>欢迎留言！</p>
                         </div>
                     </div>
-
                     <h3>留言</h3>
                     <form class="comment-form" id="comment-form">
                         <input type="text" name="username" placeholder="你的名字（可选）" style="margin-bottom: 8px;">
@@ -249,15 +195,27 @@
                     </form>
                 </div>
             </div>
+            <div id="right-sidebar">
+                <div class="pixel-border">
+                    <h2>日历</h2>
+                    <div id="calendar"></div>
+                </div>
+            </div>
         </div>
-
         <footer>
             <p>© 2025 Kayii's Room | 使用HTML和CSS制作</p>
         </footer>
     </div>
-
     <script>
-        document.getElementById('comment-form').addEventListener('submit', function (e) {
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                themeSystem:'standard'
+            });
+            calendar.render();
+        });
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = this.querySelector('input[name="username"]').value || '访客';
             const message = this.querySelector('textarea').value.trim();
@@ -277,6 +235,4 @@
         });
     </script>
 </body>
-
 </html>
-    
