@@ -265,13 +265,13 @@
                     <table id="calendar">
                         <thead>
                             <tr>
-                                <th>日</th>
-                                <th>一</th>
-                                <th>二</th>
-                                <th>三</th>
-                                <th>四</th>
-                                <th>五</th>
-                                <th>六</th>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -367,7 +367,7 @@
         // 标注当天日期
         const today = new Date();
         const currentDay = today.getDate();
-        const currentMonth = today.getMonth() + 1;
+        const currentMonth = today.getMonth();
         const currentYear = today.getFullYear();
         const cells = document.querySelectorAll('#calendar td');
         cells.forEach(cell => {
@@ -376,9 +376,14 @@
             }
         });
 
-        // 设置日历标题为当前月份和年份
+        // 英文月份数组
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        // 设置日历标题为英文的月份和年份
         const calendarTitle = document.getElementById('calendar-title');
-        calendarTitle.textContent = `${currentYear}年${currentMonth}月`;
+        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
     </script>
 </body>
 
