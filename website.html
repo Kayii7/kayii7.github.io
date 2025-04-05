@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Useful Links</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: white;
+            background-image: radial-gradient(#d9a3ff 10%, transparent 11%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+       .lined-paper {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border: 20px solid transparent;
+            border-image: url('https://example.com/flower-border.png') 30 round;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+
+       .lined-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(white 0px, white 24px, #d9a3ff 25px);
+            z-index: -1;
+        }
+
+       .link-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+       .link-list li {
+            margin-bottom: 10px;
+        }
+
+       .link-list a {
+            color: #6a4c9c;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+       .link-list a:hover {
+            color: #d9a3ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lined-paper">
+        <ul class="link-list">
+            <!-- 在这里添加你的链接 -->
+            <li><a href="https://www.example1.com">Example Link 1</a></li>
+            <li><a href="https://www.example2.com">Example Link 2</a></li>
+            <li><a href="https://www.example3.com">Example Link 3</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
