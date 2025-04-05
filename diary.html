@@ -251,6 +251,69 @@
                 font-size: 14px;
             }
         }
+
+        /* 新的聊天室样式 */
+       .chat-container {
+            border: 2px solid #F1E3F0;
+            box-shadow: 3px 3px 0 #e8ccff;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+       .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+       .chat-header h2 {
+            margin: 0;
+        }
+
+       .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+       .chat-message {
+            background-color: #f0d5ff;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+       .chat-message.user {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+       .chat-input form {
+            display: flex;
+        }
+
+       .chat-input input {
+            flex: 1;
+            padding: 6px;
+            border: 2px solid #d9a3ff;
+            font-family: inherit;
+        }
+
+       .chat-input button {
+            background-color: #d9a3ff;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+       .chat-input button:hover {
+            background-color: #c28fe6;
+        }
     </style>
 </head>
 
@@ -299,16 +362,6 @@
                     <h2>Updates</h2>
                     <p>06/04/2025 更改主頁</p>
                 </div>
-                <!-- 新嵌入的部分开始 -->
-                <header>
-                    <h1>歡迎來到我的網站！</h1>
-                    <p>這是一個簡單的範例網站，點擊下面的聊天按鈕與我們聯繫！</p>
-                </header>
-
-                <section>
-                    <p>這是網站的內容區域，你可以放置更多的文字、圖片、鏈接等。</p>
-                </section>
-                <!-- 新嵌入的部分结束 -->
             </div>
             <div id="right-sidebar">
                 <div class="pixel-border">
@@ -329,14 +382,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pixel-border">
-                    <h2>Chatbox</h2>
-                    <div id="comments"></div>
-                    <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="Your Name" style="margin-bottom: 6px;">
-                        <textarea name="message" rows="3" placeholder="Anything you want to say?" required></textarea>
-                        <button type="submit">OK!</button>
-                    </form>
+                <!-- 新的聊天室部分 -->
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>Chat Room</h2>
+                    </div>
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-input">
+                        <form id="chat-form">
+                            <input type="text" id="chat-input" placeholder="Type your message here..." required>
+                            <button type="submit">Send</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,7 +419,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // 加载留言
+        // 加载留言（这里保留原代码的逻辑，因为可能还有其他地方用到）
         const commentsCollection = collection(db, 'comments');
         const q = query(commentsCollection, orderBy('date', 'desc'));
         onSnapshot(q, (snapshot) => {
@@ -380,7 +437,7 @@
             });
         });
 
-        // 提交留言
+        // 提交留言（这里保留原代码的逻辑，因为可能还有其他地方用到）
         document.getElementById('comment-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = e.target.username.value || '访客';
@@ -435,27 +492,3 @@
                     if (dayCounter === currentDay) {
                         cell.classList.add('today');
                     }
-                    dayCounter++;
-                }
-                row.appendChild(cell);
-            }
-            calendarBody.appendChild(row);
-        }
-    </script>
-    <!-- Tawk.to 聊天小工具代碼 -->
-    <!-- Start of Tawk.to Script -->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/67f1b7af2d0ba1190b94c545/1io43b1ip';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!-- End of Tawk.to Script -->
-</body>
-
-</html>
