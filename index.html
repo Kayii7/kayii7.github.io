@@ -252,21 +252,43 @@
             }
         }
 
-        /* 留言表单样式 */
-       .message-form {
+        /* 聊天框样式 */
+       .chatbox {
             border: 2px solid #d9a3ff;
             padding: 10px;
             background-color: #fff;
             margin-bottom: 15px;
         }
 
-       .message-form label {
+       .chatbox h2 {
+            margin-top: 0;
+        }
+
+       .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+       .chat-message {
+            border: 1px solid #d9a3ff;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+       .chat-input label {
             display: block;
             margin-bottom: 5px;
         }
 
-       .message-form input,
-       .message-form textarea {
+       .chat-input input,
+       .chat-input textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
@@ -274,7 +296,7 @@
             border-radius: 3px;
         }
 
-       .message-form button {
+       .chat-input button {
             background-color: #d9a3ff;
             color: white;
             padding: 10px 15px;
@@ -283,21 +305,8 @@
             cursor: pointer;
         }
 
-       .message-form button:hover {
+       .chat-input button:hover {
             background-color: #c28fe6;
-        }
-
-       .message-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-       .message-list li {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-bottom: 10px;
-            background-color: #fff;
         }
     </style>
 </head>
@@ -367,18 +376,20 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- 留言表单 -->
-                <div class="message-form">
-                    <h2>留言板</h2>
-                    <form id="message-form">
-                        <label for="name">姓名：</label>
-                        <input type="text" id="name" required>
-                        <label for="message">留言内容：</label>
-                        <textarea id="message" required></textarea>
-                        <button type="submit">提交留言</button>
-                    </form>
+                <!-- 聊天框 -->
+                <div class="chatbox">
+                    <h2>Chatbox</h2>
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-input">
+                        <form id="message-form">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                            <label for="message">Comment</label>
+                            <textarea id="message" required></textarea>
+                            <button type="submit">提交留言</button>
+                        </form>
+                    </div>
                 </div>
-                <ul id="message-list" class="message-list"></ul>
             </div>
         </div>
         <footer>
@@ -427,7 +438,7 @@
         }
 
         // 获取留言列表和表单元素
-        const messageList = document.getElementById('message-list');
+        const messageList = document.getElementById('chat-messages');
         const messageForm = document.getElementById('message-form');
 
         // 从本地存储获取留言数据并显示
@@ -436,8 +447,9 @@
             if (storedMessages) {
                 const messages = JSON.parse(storedMessages);
                 messages.forEach(message => {
-                    const li = document.createElement('li');
-                    li.textContent = `Name：${message.name}\nComment：${message.message}`;
+                    const li = document.createElement('div');
+                    li.classList.add('chat-message');
+                    li.textContent = `Name: ${message.name}\nComment: ${message.message}`;
                     messageList.appendChild(li);
                 });
             }
@@ -469,8 +481,9 @@
             localStorage.setItem('messages', JSON.stringify(messages));
 
             // 在页面上显示新留言
-            const li = document.createElement('li');
-            li.textContent = `Name：${name}\nComment：${message}`;
+            const li = document.createElement('div');
+            li.classList.add('chat-message');
+            li.textContent = `Name: ${name}\nComment: ${message}`;
             messageList.appendChild(li);
 
             // 清空表单
