@@ -251,6 +251,54 @@
                 font-size: 14px;
             }
         }
+
+        /* 留言表单样式 */
+       .message-form {
+            border: 2px solid #d9a3ff;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 15px;
+        }
+
+       .message-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+       .message-form input,
+       .message-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+       .message-form button {
+            background-color: #d9a3ff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+       .message-form button:hover {
+            background-color: #c28fe6;
+        }
+
+       .message-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+       .message-list li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -319,79 +367,25 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pixel-border">
-                    <h2>Chatbox</h2>
-                    <div id="comments"></div>
-                    <form class="comment-form" id="comment-form">
-                        <input type="text" name="username" placeholder="Your Name" style="margin-bottom: 6px;">
-                        <textarea name="message" rows="3" placeholder="Anything you want to say?" required></textarea>
-                        <button type="submit">OK!</button>
+                <!-- 留言表单 -->
+                <div class="message-form">
+                    <h2>留言板</h2>
+                    <form id="message-form">
+                        <label for="name">姓名：</label>
+                        <input type="text" id="name" required>
+                        <label for="message">留言内容：</label>
+                        <textarea id="message" required></textarea>
+                        <button type="submit">提交留言</button>
                     </form>
                 </div>
+                <ul id="message-list" class="message-list"></ul>
             </div>
         </div>
         <footer>
             <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
-    <!-- Firebase 配置 -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-        // 请替换为你自己的 Firebase 配置
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // 加载留言
-        const commentsCollection = collection(db, 'comments');
-        const q = query(commentsCollection, orderBy('date', 'desc'));
-        onSnapshot(q, (snapshot) => {
-            const commentsDiv = document.getElementById('comments');
-            commentsDiv.innerHTML = '';
-            snapshot.forEach((doc) => {
-                const comment = doc.data();
-                const commentHTML = `
-                    <div class="comment">
-                        <strong>${comment.username}</strong> - ${comment.date}
-                        <p>${comment.message}</p>
-                    </div>
-                `;
-                commentsDiv.insertAdjacentHTML('beforeend', commentHTML);
-            });
-        });
-
-        // 提交留言
-        document.getElementById('comment-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = e.target.username.value || '访客';
-            const message = e.target.message.value.trim();
-            if (message) {
-                const now = new Date();
-                const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                const date = now.toLocaleString('en-US', options);
-                try {
-                    await addDoc(commentsCollection, {
-                        username: username,
-                        message: message,
-                        date: date
-                    });
-                    e.target.reset();
-                } catch (error) {
-                    console.error('Error adding comment: ', error);
-                }
-            }
-        });
-
+    <script>
         // 生成日历
         const today = new Date();
         const currentDay = today.getDate();
@@ -431,6 +425,57 @@
             }
             calendarBody.appendChild(row);
         }
+
+        // 获取留言列表和表单元素
+        const messageList = document.getElementById('message-list');
+        const messageForm = document.getElementById('message-form');
+
+        // 从本地存储获取留言数据并显示
+        window.addEventListener('load', () => {
+            const storedMessages = localStorage.getItem('messages');
+            if (storedMessages) {
+                const messages = JSON.parse(storedMessages);
+                messages.forEach(message => {
+                    const li = document.createElement('li');
+                    li.textContent = `Name：${message.name}\nComment：${message.message}`;
+                    messageList.appendChild(li);
+                });
+            }
+        });
+
+        // 提交留言处理
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+
+            // 创建留言对象
+            const newMessage = {
+                name: name,
+                message: message
+            };
+
+            // 从本地存储获取已有的留言数据
+            const storedMessages = localStorage.getItem('messages');
+            let messages = [];
+            if (storedMessages) {
+                messages = JSON.parse(storedMessages);
+            }
+
+            // 将新留言添加到数组中
+            messages.push(newMessage);
+
+            // 将更新后的留言数据存储到本地存储
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            // 在页面上显示新留言
+            const li = document.createElement('li');
+            li.textContent = `Name：${name}\nComment：${message}`;
+            messageList.appendChild(li);
+
+            // 清空表单
+            messageForm.reset();
+        });
     </script>
 </body>
 
