@@ -280,23 +280,6 @@
             font-size: 12px;
             word-wrap: break-word;
             white-space: normal;
-            position: relative;
-        }
-
-       .delete-button {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 2px 5px;
-            cursor: pointer;
-        }
-
-       .delete-button:hover {
-            background-color: #ff4757;
         }
 
        .chat-input label {
@@ -471,19 +454,10 @@
             const storedMessages = localStorage.getItem('messages');
             if (storedMessages) {
                 const messages = JSON.parse(storedMessages);
-                messages.forEach((message, index) => {
+                messages.forEach((message) => {
                     const li = document.createElement('div');
                     li.classList.add('chat-message');
                     li.textContent = `Name: ${message.name}\nComment: ${message.message}`;
-
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = '删除';
-                    deleteButton.classList.add('delete-button');
-                    deleteButton.addEventListener('click', () => {
-                        deleteMessage(index);
-                    });
-                    li.appendChild(deleteButton);
-
                     messageList.appendChild(li);
                 });
             }
@@ -518,15 +492,6 @@
             const li = document.createElement('div');
             li.classList.add('chat-message');
             li.textContent = `Name: ${name}\nComment: ${message}`;
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = '删除';
-            deleteButton.classList.add('delete-button');
-            deleteButton.addEventListener('click', () => {
-                deleteMessage(messages.length - 1);
-            });
-            li.appendChild(deleteButton);
-
             messageList.appendChild(li);
 
             // 显示可复制的留言信息
@@ -535,33 +500,6 @@
             // 清空表单
             messageForm.reset();
         });
-
-        // 删除留言函数
-        function deleteMessage(index) {
-            const storedMessages = localStorage.getItem('messages');
-            if (storedMessages) {
-                let messages = JSON.parse(storedMessages);
-                messages.splice(index, 1);
-                localStorage.setItem('messages', JSON.stringify(messages));
-                // 重新渲染留言列表
-                messageList.innerHTML = '';
-                messages.forEach((message, newIndex) => {
-                    const li = document.createElement('div');
-                    li.classList.add('chat-message');
-                    li.textContent = `Name: ${message.name}\nComment: ${message.message}`;
-
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = '删除';
-                    deleteButton.classList.add('delete-button');
-                    deleteButton.addEventListener('click', () => {
-                        deleteMessage(newIndex);
-                    });
-                    li.appendChild(deleteButton);
-
-                    messageList.appendChild(li);
-                });
-            }
-        }
     </script>
 </body>
 
