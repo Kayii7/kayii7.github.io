@@ -326,8 +326,10 @@
             background-color: #c28fe6;
         }
 
-       .password-input {
-            margin-bottom: 10px;
+       .message-copy {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -402,8 +404,6 @@
                     <h2>Chatbox</h2>
                     <div class="chat-messages" id="chat-messages"></div>
                     <div class="chat-input">
-                        <label for="password">密码:</label>
-                        <input type="password" id="password" class="password-input">
                         <form id="message-form">
                             <label for="name">Name</label>
                             <input type="text" id="name" required>
@@ -411,6 +411,7 @@
                             <textarea id="message" required></textarea>
                             <button type="submit">OK！</button>
                         </form>
+                        <textarea class="message-copy" id="message-copy" readonly></textarea>
                     </div>
                 </div>
             </div>
@@ -420,8 +421,6 @@
         </footer>
     </div>
     <script>
-        const PASSWORD = 'your_password'; // 请替换为你自己的密码
-
         // 生成日历
         const today = new Date();
         const currentDay = today.getDate();
@@ -465,7 +464,7 @@
         // 获取留言列表和表单元素
         const messageList = document.getElementById('chat-messages');
         const messageForm = document.getElementById('message-form');
-        const passwordInput = document.getElementById('password');
+        const messageCopy = document.getElementById('message-copy');
 
         // 从本地存储获取留言数据并显示
         window.addEventListener('load', () => {
@@ -481,12 +480,7 @@
                     deleteButton.textContent = '删除';
                     deleteButton.classList.add('delete-button');
                     deleteButton.addEventListener('click', () => {
-                        const inputPassword = prompt('请输入密码:');
-                        if (inputPassword === PASSWORD) {
-                            deleteMessage(index);
-                        } else {
-                            alert('密码错误！');
-                        }
+                        deleteMessage(index);
                     });
                     li.appendChild(deleteButton);
 
@@ -498,56 +492,48 @@
         // 提交留言处理
         messageForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const inputPassword = passwordInput.value;
-            if (inputPassword === PASSWORD) {
-                const name = document.getElementById('name').value;
-                const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
 
-                // 创建留言对象
-                const newMessage = {
-                    name: name,
-                    message: message
-                };
+            // 创建留言对象
+            const newMessage = {
+                name: name,
+                message: message
+            };
 
-                // 从本地存储获取已有的留言数据
-                const storedMessages = localStorage.getItem('messages');
-                let messages = [];
-                if (storedMessages) {
-                    messages = JSON.parse(storedMessages);
-                }
-
-                // 将新留言添加到数组中
-                messages.push(newMessage);
-
-                // 将更新后的留言数据存储到本地存储
-                localStorage.setItem('messages', JSON.stringify(messages));
-
-                // 在页面上显示新留言
-                const li = document.createElement('div');
-                li.classList.add('chat-message');
-                li.textContent = `Name: ${name}\nComment: ${message}`;
-
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = '删除';
-                deleteButton.classList.add('delete-button');
-                deleteButton.addEventListener('click', () => {
-                    const inputPassword = prompt('请输入密码:');
-                    if (inputPassword === PASSWORD) {
-                        deleteMessage(messages.length - 1);
-                    } else {
-                        alert('密码错误！');
-                    }
-                });
-                li.appendChild(deleteButton);
-
-                messageList.appendChild(li);
-
-                // 清空表单
-                messageForm.reset();
-                passwordInput.value = '';
-            } else {
-                alert('密码错误！');
+            // 从本地存储获取已有的留言数据
+            const storedMessages = localStorage.getItem('messages');
+            let messages = [];
+            if (storedMessages) {
+                messages = JSON.parse(storedMessages);
             }
+
+            // 将新留言添加到数组中
+            messages.push(newMessage);
+
+            // 将更新后的留言数据存储到本地存储
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            // 在页面上显示新留言
+            const li = document.createElement('div');
+            li.classList.add('chat-message');
+            li.textContent = `Name: ${name}\nComment: ${message}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '删除';
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', () => {
+                deleteMessage(messages.length - 1);
+            });
+            li.appendChild(deleteButton);
+
+            messageList.appendChild(li);
+
+            // 显示可复制的留言信息
+            messageCopy.value += `Name: ${name}\nComment: ${message}\n\n`;
+
+            // 清空表单
+            messageForm.reset();
         });
 
         // 删除留言函数
@@ -565,15 +551,10 @@
                     li.textContent = `Name: ${message.name}\nComment: ${message.message}`;
 
                     const deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'delete';
+                    deleteButton.textContent = '删除';
                     deleteButton.classList.add('delete-button');
                     deleteButton.addEventListener('click', () => {
-                        const inputPassword = prompt('请输入密码:114514');
-                        if (inputPassword === PASSWORD) {
-                            deleteMessage(newIndex);
-                        } else {
-                            alert('密码错误！');
-                        }
+                        deleteMessage(newIndex);
                     });
                     li.appendChild(deleteButton);
 
