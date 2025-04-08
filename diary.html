@@ -1,439 +1,84 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayii's Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
-        /* 基础样式 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
         body {
-            font-family: 'Courier New', monospace;
-            background-color: #f3e5f5;
-            background-image: radial-gradient(#ffffff 10%, transparent 11%), radial-gradient(#ffffff 10%, transparent 11%);
-            background-size: 10px 10px;
-            background-position: 0 0, 5px 5px;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F5F6;
+            color: #AAAAAA;
         }
-
-       .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 15px;
+        /* 线圈本样式 */
+      .coil-book {
+            position: relative;
             background-color: white;
-            border: 3px solid #d9a3ff;
-            border-radius: 10px;
-        }
-
-        h1,
-        h2 {
-            color: #6a4c9c;
-        }
-
-        #banner {
-            width: 100%;
-            height: 150px;
-            background-color: #E6CCF1;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid #F2BED1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
             overflow: hidden;
-            border-bottom: 3px solid #d9a3ff;
         }
-
-        #banner-img {
-            max-width: 100%;
-            max-height: 100%;
+      .coil-book::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background-image: radial-gradient(circle, #AAAAAA 3px, transparent 4px);
+            background-size: 20px 20px;
+            background-position: center;
         }
-
-        #main-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+        /* 动态气泡样式 */
+      .post-bubble {
+            background-color: #F8E8EE;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.5s ease-out;
         }
-
-        #left-sidebar {
-            width: 180px;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        #right-sidebar {
-            width: 20%;
-            flex-shrink: 0;
-        }
-
-        #main-content {
-            flex: 1;
-        }
-
-       .pixel-border {
-            border: 2px solid #F1E3F0;
-            box-shadow: 3px 3px 0 #e8ccff;
-            background-color: white;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-       .nav-links {
-            list-style-type: none;
-            padding: 0;
-        }
-
-       .nav-links li {
-            margin-bottom: 8px;
-        }
-
-       .nav-links a {
-            display: block;
-            padding: 6px 8px;
-            background-color: #f0d5ff;
-            color: #5F526E;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid #d9a3ff;
-        }
-
-       .nav-links a:hover {
-            background-color: #d9a3ff;
-            color: white;
-            transform: translateX(3px);
-        }
-
-       .social-links {
-            list-style-type: none;
-            padding: 0;
-        }
-
-       .social-links li {
-            margin-bottom: 10px;
-        }
-
-       .social-links a {
-            display: block;
-            padding: 8px 10px;
-            background-color: #f0d5ff;
-            color: #5F526E;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 4px solid #d9a3ff;
-        }
-
-       .social-links a:hover {
-            background-color: #d9a3ff;
-            color: white;
-            transform: translateX(5px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #e8ccff;
-            border-top: 3px solid #d9a3ff;
-        }
-
-       .comment-form textarea {
-            width: 100%;
-            padding: 6px;
-            margin-bottom: 6px;
-            border: 2px solid #d9a3ff;
-            font-family: inherit;
-        }
-
-       .comment-form button {
-            background-color: #d9a3ff;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-       .comment-form button:hover {
-            background-color: #c28fe6;
-        }
-
-       .avatar-img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        /* 日历样式 */
-        #calendar {
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 0.6em;
-        }
-
-        #calendar th,
-        #calendar td {
-            border: 1px solid #d9a3ff;
-            padding: 1px;
-            text-align: center;
-        }
-
-        #calendar th {
-            background-color: #d9a3ff;
-            color: white;
-        }
-
-        /* 当天日期样式 */
-       .today {
-            background-color: #d9a3ff;
-            color: white;
-        }
-
-        /* 留言板滑动功能 */
-        #comments {
-            max-height: 120px;
-            width: 100%;
-            overflow-y: auto;
-            font-size: 12px;
-        }
-
-       .avatar-section {
-            display: flex;
-            align-items: center;
-        }
-
-       .avatar-section div {
-            margin-left: 10px;
-        }
-
-        /* 响应式设计，针对手机屏幕（例如宽度小于768px时） */
-        @media (max-width: 768px) {
-            #main-container {
-                flex-direction: column;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-
-            #left-sidebar,
-            #right-sidebar {
-                width: 100%;
-                margin-bottom: 15px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-
-            #right-sidebar {
-                margin-top: 15px;
-            }
-
-            body {
-                font-size: 14px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            #comments {
-                max-height: 150px;
-            }
-
-           .comment-form input,
-           .comment-form textarea {
-                font-size: 14px;
-            }
-        }
-
-        /* 聊天框样式 */
-       .chatbox {
-            border: 2px solid #d9a3ff;
-            padding: 10px;
-            background-color: #fff;
-            margin-bottom: 15px;
-        }
-
-       .chatbox h2 {
-            margin-top: 0;
-        }
-
-       .chat-messages {
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-
-       .chat-message {
-            border: 1px solid #d9a3ff;
-            border-radius: 4px;
-            padding: 8px;
-            margin-bottom: 8px;
-            font-size: 12px;
-            word-wrap: break-word;
-            white-space: normal;
-        }
-
-       .chat-input label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-       .chat-input input,
-       .chat-input textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-       .chat-input button {
-            background-color: #d9a3ff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-       .chat-input button:hover {
-            background-color: #c28fe6;
-        }
-
-       .message-copy {
-            width: 100%;
-            height: 100px;
-            margin-top: 10px;
         }
     </style>
+    <title>个人网站 - 动态主画面</title>
 </head>
 
-<body>
-    <div class="container">
-        <div id="banner">
-            <img id="banner-img" src="https://kayii7.github.io/images/IMG_5050 (1).png" alt="网站Banner">
-        </div>
-        <div id="main-container">
-            <div id="left-sidebar">
-                <div class="pixel-border">
-                    <h2>♡</h2>
-                    <ul class="nav-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="diary.html">Diary</a></li>
-                        <li><a href="website.html">Website</a></li>
-                        <li><a href="https://lit.link/en/kayii7">Me</a></li>
-                        <li><a href="https://mikakawai.online/">My BF</a></li>
-                    </ul>
-                </div>
-                <div class="pixel-border">
-                    <h2>Social Media</h2>
-                    <ul class="social-links">
-                        <li><a href="https://www.instagram.com/mymysleelee?igsh=MWY0d2NndGgxMnU5dQ==" target="_blank">Instagram</a></li>
-                        <li><a href="https://x.com/kayiikawaii?s=21" target="_blank">Twitter</a></li>
-                        <li><a href="https://steamcommunity.com/id/Kayii7/" target="_blank">Steam</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="main-content">
-                <div class="pixel-border">
-                    <div class="avatar-section">
-                        <img class="avatar-img" src="https://kayii7.github.io/images/myicon.jpg" alt="我的头像">
-                        <div>
-                            <h1>Kayii's Room</h1>
-                            <p>http://kayii.lol/</p>
-                        </div>
-                    </div>
-                    <div class="pixel-divider"></div>
-                    <h2>我是Kayii</h2>
-                    <p>歡迎瀏覽我的主頁</p>
-                    <p>如果給我留言我會很高興，請隨意留言（前提是保持友好）</p>
-                    <p>∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴</p>
-                    <p>我會將我所有能想到的陸續上傳到這個網站</p>
-                    <div class="pixel-divider"></div>
-                    <h2>Updates</h2>
-                    <p>06/04/2025 更改主頁</p>
-                </div>
-            </div>
-            <div id="right-sidebar">
-                <div class="pixel-border">
-                    <h2 id="calendar-title"></h2>
-                    <table id="calendar">
-                        <thead>
-                            <tr>
-                                <th>Sun</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-body">
-                        </tbody>
-                    </table>
-                </div>
-                <!-- 第三方留言板 -->
-                <div class="chatbox">
-                    <h2>Chatbox</h2>
-                    <iframe src="https://www3.cbox.ws/box/?boxid=3545551&boxtag=OcMA6m" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <p>© 2025 Kayii's Room </p>
-        </footer>
+<body class="flex flex-col items-center">
+    <!-- 左侧边栏 -->
+    <div class="w-full md:w-1/4 bg-F8E8EE p-6 md:fixed md:left-0 md:top-0 md:h-full">
+        <h2 class="text-2xl font-semibold text-FDCEDF">个人简介</h2>
+        <p class="mt-4">(个人简介内容。)</p>
     </div>
-    <script>
-        // 生成日历
-        const today = new Date();
-        const currentDay = today.getDate();
-        const currentMonth = today.getMonth();
-        const currentYear = today.getFullYear();
-
-        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-        const startingDay = firstDayOfMonth.getDay();
-
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-
-        const calendarTitle = document.getElementById('calendar-title');
-        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
-        const calendarBody = document.getElementById('calendar-body');
-        let dayCounter = 1;
-        for (let i = 0; i < 6; i++) {
-            const row = document.createElement('tr');
-            for (let j = 0; j < 7; j++) {
-                const cell = document.createElement('td');
-                if (i === 0 && j < startingDay) {
-                    cell.textContent = '';
-                } else if (dayCounter > daysInMonth) {
-                    cell.textContent = '';
-                } else {
-                    cell.textContent = dayCounter;
-                    if (dayCounter === currentDay) {
-                        cell.classList.add('today');
-                    }
-                    dayCounter++;
-                }
-                row.appendChild(cell);
-            }
-            calendarBody.appendChild(row);
-        }
-    </script>
+    <!-- 中间线圈本 -->
+    <div class="coil-book w-full md:w-2/3">
+        <h2 class="text-2xl font-semibold text-FDCEDF mb-4">动态内容</h2>
+        <!-- 游戏动态 -->
+        <div class="post-bubble">
+            <h3 class="text-xl font-semibold text-F2BED1">游戏动态</h3>
+            <p class="mt-2">Game</p>
+        </div>
+        <!-- 生活动态 -->
+        <div class="post-bubble">
+            <h3 class="text-xl font-semibold text-F2BED1">My Life</h3>
+            <p class="mt-2">text text text</p>
+        </div>
+    </div>
 </body>
 
 </html>
+    
