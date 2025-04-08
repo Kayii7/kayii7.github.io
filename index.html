@@ -382,20 +382,10 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- 聊天框 -->
+                <!-- 第三方留言板 -->
                 <div class="chatbox">
                     <h2>Chatbox</h2>
-                    <div class="chat-messages" id="chat-messages"></div>
-                    <div class="chat-input">
-                        <form id="message-form">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" required>
-                            <label for="message">Comment</label>
-                            <textarea id="message" required></textarea>
-                            <button type="submit">OK！</button>
-                        </form>
-                        <textarea class="message-copy" id="message-copy" readonly></textarea>
-                    </div>
+                    <iframe src="https://www3.cbox.ws/box/?boxid=3545551&boxtag=OcMA6m" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
                 </div>
             </div>
         </div>
@@ -443,64 +433,7 @@
             }
             calendarBody.appendChild(row);
         }
-
-        // 获取留言列表和表单元素
-        const messageList = document.getElementById('chat-messages');
-        const messageForm = document.getElementById('message-form');
-        const messageCopy = document.getElementById('message-copy');
-
-        // 从本地存储获取留言数据并显示
-        window.addEventListener('load', () => {
-            const storedMessages = localStorage.getItem('messages');
-            if (storedMessages) {
-                const messages = JSON.parse(storedMessages);
-                messages.forEach((message) => {
-                    const li = document.createElement('div');
-                    li.classList.add('chat-message');
-                    li.textContent = `Name: ${message.name}\nComment: ${message.message}`;
-                    messageList.appendChild(li);
-                });
-            }
-        });
-
-        // 提交留言处理
-        messageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-
-            // 创建留言对象
-            const newMessage = {
-                name: name,
-                message: message
-            };
-
-            // 从本地存储获取已有的留言数据
-            const storedMessages = localStorage.getItem('messages');
-            let messages = [];
-            if (storedMessages) {
-                messages = JSON.parse(storedMessages);
-            }
-
-            // 将新留言添加到数组中
-            messages.push(newMessage);
-
-            // 将更新后的留言数据存储到本地存储
-            localStorage.setItem('messages', JSON.stringify(messages));
-
-            // 在页面上显示新留言
-            const li = document.createElement('div');
-            li.classList.add('chat-message');
-            li.textContent = `Name: ${name}\nComment: ${message}`;
-            messageList.appendChild(li);
-
-            // 显示可复制的留言信息
-            messageCopy.value += `Name: ${name}\nComment: ${message}\n\n`;
-
-            // 清空表单
-            messageForm.reset();
-        });
     </script>
 </body>
 
-</html>    
+</html>
