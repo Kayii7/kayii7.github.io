@@ -44,6 +44,14 @@
             margin-bottom: 1rem;
             animation: fadeIn 0.5s ease-out;
         }
+      .post-bubble a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+      .post-bubble a:hover {
+            text-decoration: underline;
+        }
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -55,27 +63,31 @@
             }
         }
     </style>
-    <title>个人网站 - 动态主画面</title>
+    <title>Kayii's Diary</title>
 </head>
 
 <body class="flex flex-col items-center">
     <!-- 左侧边栏 -->
     <div class="w-full md:w-1/4 bg-F8E8EE p-6 md:fixed md:left-0 md:top-0 md:h-full">
         <h2 class="text-2xl font-semibold text-FDCEDF">个人简介</h2>
-        <p class="mt-4">(个人简介内容。)</p>
+        <p class="mt-4">个人简介内容。</p>
     </div>
     <!-- 中间线圈本 -->
     <div class="coil-book w-full md:w-2/3">
-        <h2 class="text-2xl font-semibold text-FDCEDF mb-4">动态内容</h2>
+        <h2 class="text-2xl font-semibold text-FDCEDF mb-4">Diary</h2>
         <!-- 游戏动态 -->
         <div class="post-bubble">
-            <h3 class="text-xl font-semibold text-F2BED1">游戏动态</h3>
-            <p class="mt-2">Game</p>
+            <a href="#">
+                <h3 class="text-xl font-semibold text-F2BED1">游戲</h3>
+                <p class="mt-2">text</p>
+            </a>
         </div>
         <!-- 生活动态 -->
         <div class="post-bubble">
-            <h3 class="text-xl font-semibold text-F2BED1">My Life</h3>
-            <p class="mt-2">text text text</p>
+            <a href="#">
+                <h3 class="text-xl font-semibold text-F2BED1">生活</h3>
+                <p class="mt-2">text</p>
+            </a>
         </div>
     </div>
 </body>
