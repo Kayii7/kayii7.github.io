@@ -1,97 +1,375 @@
-<!DOCTYPE html>
-<html lang="en">
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
+const bodyParser = require('body-parser');
+const path = require('path');
+const fs = require('fs');
 
+// 創建public文件夾（存放前端頁面）
+if (!fs.existsSync('./public')) {
+  fs.mkdirSync('./public');
+}
+
+// 寫入index.html到public文件夾
+fs.writeFileSync('./public/index.html', `
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>我的粉色日記</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F9F5F6;
-            color: #AAAAAA;
-        }
-        /* 线圈本样式 */
-      .coil-book {
-            position: relative;
-            background-color: white;
-            border: 1px solid #F2BED1;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0;
             padding: 2rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            overflow: hidden;
+            background-color: #fff5f8;
+            font-family: "微軟正黑體", sans-serif;
         }
-      .coil-book::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 20px;
-            background-image: radial-gradient(circle, #AAAAAA 3px, transparent 4px);
-            background-size: 20px 20px;
-            background-position: center;
+        .diary-book {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(220, 180, 190, 0.2);
+            border: 1px solid #f3d9e1;
         }
-        /* 动态气泡样式 */
-      .post-bubble {
-            background-color: #F8E8EE;
-            border-radius: 10px;
-            padding: 1rem;
+        .diary-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #a67c88;
+        }
+        .diary-title h1 {
+            font-size: 2rem;
+            font-style: italic;
+            letter-spacing: 2px;
             margin-bottom: 1rem;
-            animation: fadeIn 0.5s ease-out;
         }
-      .post-bubble a {
-            display: block;
+        .diary-title p {
+            color: #c49ba8;
+            margin: 0.5rem 0;
+        }
+        .add-btn {
+            display: inline-block;
+            background-color: #e8c3cf;
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
             text-decoration: none;
-            color: inherit;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s;
         }
-      .post-bubble a:hover {
-            text-decoration: underline;
+        .add-btn:hover {
+            background-color: #d9a7b6;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .diary-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #fdf2f5;
+            border-radius: 8px;
+            border-left: 4px solid #e8c3cf;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .diary-item:hover {
+            background-color: #f9e9ef;
+        }
+        .diary-item .date {
+            color: #a67c88;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        .diary-item .title {
+            color: #8a6a74;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .diary-content-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 245, 248, 0.95);
+            z-index: 100;
+            padding: 3rem;
+            box-sizing: border-box;
+        }
+        .content-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(220, 180, 190, 0.3);
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #e8c3cf;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .content-date {
+            color: #a67c88;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .content-text {
+            color: #665056;
+            line-height: 1.8;
+            white-space: pre-line;
         }
     </style>
-    <title>Kayii's Diary</title>
 </head>
-
-<body class="flex flex-col items-center">
-    <!-- 左侧边栏 -->
-    <div class="w-full md:w-1/4 bg-F8E8EE p-6 md:fixed md:left-0 md:top-0 md:h-full">
-        <h2 class="text-2xl font-semibold text-FDCEDF">歡迎你來！</h2>
-        <p class="mt-4">將會記錄一些生活以及游戲</p>
-        <p class="mt-4">∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵</p>
+<body>
+    <div class="diary-book">
+        <div class="diary-title">
+            <h1>我的日常筆記</h1>
+            <p>在這裡分享生活點滴，點擊標題查看內容吧~</p>
+            <a href="/add" class="add-btn">+ 新增日記</a>
+        </div>
+        <div class="diary-list" id="diaryList"></div>
     </div>
-    <!-- 中间线圈本 -->
-    <div class="coil-book w-full md:w-2/3">
-        <h2 class="text-2xl font-semibold text-FDCEDF mb-4">Diary</h2>
-        <!-- 游戏动态 -->
-        <div class="post-bubble">
-            <a href="#">
-                <h3 class="text-xl font-semibold text-F2BED1">游戲</h3>
-                <p class="mt-2">text</p>
-            </a>
+
+    <div class="diary-content-modal" id="modal">
+        <div class="content-wrapper">
+            <button class="close-btn" id="closeBtn">×</button>
+            <div class="content-date" id="modalDate"></div>
+            <div class="content-text" id="modalText"></div>
         </div>
-        <!-- 生活动态 -->
-        <div class="post-bubble">
-            <a href="#">
-                <h3 class="text-xl font-semibold text-F2BED1">生活</h3>
-                <p class="mt-2">text</p>
-            </a>
-        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            fetch('/api/diaries')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        const diaryList = document.getElementById('diaryList');
+                        data.data.forEach(diary => {
+                            const diaryItem = document.createElement('div');
+                            diaryItem.className = 'diary-item';
+                            diaryItem.setAttribute('data-content', diary.content);
+                            diaryItem.innerHTML = \`
+                                <div class="date">\${diary.date}</div>
+                                <div class="title">\${diary.title}</div>
+                            \`;
+                            diaryList.appendChild(diaryItem);
+                        });
+                    } else {
+                        alert('加載日記失敗：' + data.err);
+                    }
+                });
+
+            const modal = document.getElementById('modal');
+            const modalDate = document.getElementById('modalDate');
+            const modalText = document.getElementById('modalText');
+            const closeBtn = document.getElementById('closeBtn');
+
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.diary-item')) {
+                    const item = e.target.closest('.diary-item');
+                    const date = item.querySelector('.date').textContent;
+                    const content = item.getAttribute('data-content');
+                    modalDate.textContent = date;
+                    modalText.textContent = content;
+                    modal.style.display = 'block';
+                }
+            });
+
+            closeBtn.addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+        };
+    </script>
+</body>
+</html>
+`);
+
+// 寫入add.html到public文件夾
+fs.writeFileSync('./public/add.html', `
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增日記</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+            background-color: #fff5f8;
+            font-family: "微軟正黑體", sans-serif;
+        }
+        .add-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(220, 180, 190, 0.2);
+            border: 1px solid #f3d9e1;
+        }
+        .add-title {
+            text-align: center;
+            color: #a67c88;
+            margin-bottom: 2rem;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            color: #8a6a74;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #f3d9e1;
+            border-radius: 8px;
+            background-color: #fdf2f5;
+            color: #665056;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            font-size: 1.1rem;
+        }
+        textarea {
+            height: 200px;
+            resize: vertical;
+            line-height: 1.8;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .submit-btn, .back-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .submit-btn {
+            background-color: #e8c3cf;
+            color: #fff;
+        }
+        .submit-btn:hover {
+            background-color: #d9a7b6;
+        }
+        .back-btn {
+            background-color: #f3d9e1;
+            color: #8a6a74;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-btn:hover {
+            background-color: #e8c3cf;
+        }
+    </style>
+</head>
+<body>
+    <div class="add-container">
+        <h1 class="add-title">新增我的日記</h1>
+        <form action="/api/add-diary" method="POST">
+            <div class="form-group">
+                <label for="title">日記標題</label>
+                <input type="text" id="title" name="title" required placeholder="輸入日記標題...">
+            </div>
+            <div class="form-group">
+                <label for="content">日記內容</label>
+                <textarea id="content" name="content" required placeholder="分享今天的心情或趣事..."></textarea>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="submit-btn">發布日記</button>
+                <a href="/" class="back-btn">返回列表</a>
+            </div>
+        </form>
     </div>
 </body>
-
 </html>
-    
+`);
+
+// 初始化Express
+const app = express();
+const port = 3000;
+
+// 配置靜態文件和表單解析
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// 連接數據庫
+const db = new sqlite3.Database('./diary.db', (err) => {
+  if (err) console.error('數據庫連接失敗：', err.message);
+  else console.log('SQLite數據庫連接成功');
+});
+
+// 創建日記表
+db.run(`CREATE TABLE IF NOT EXISTS diaries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  date TEXT NOT NULL
+)`);
+
+// 路由：首頁
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// 路由：新增日記頁面
+app.get('/add', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'add.html'));
+});
+
+// 接口：新增日記
+app.post('/api/add-diary', (req, res) => {
+  const { title, content } = req.body;
+  const date = new Date().toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  db.run(
+    'INSERT INTO diaries (title, content, date) VALUES (?, ?, ?)',
+    [title, content, date],
+    (err) => {
+      if (err) return res.send('新增日記失敗：' + err.message);
+      res.redirect('/');
+    }
+  );
+});
+
+// 接口：獲取所有日記
+app.get('/api/diaries', (req, res) => {
+  db.all('SELECT * FROM diaries ORDER BY date DESC', (err, diaries) => {
+    if (err) return res.json({ success: false, err: err.message });
+    res.json({ success: true, data: diaries });
+  });
+});
+
+// 啟動服務器
+app.listen(port, () => {
+  console.log(`日記網站已啟動：http://localhost:${port}`);
+  console.log('按 Ctrl+C 可以關閉服務器');
+});
