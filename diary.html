@@ -1,16 +1,3 @@
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
-const bodyParser = require('body-parser');
-const path = require('path');
-const fs = require('fs');
-
-// 創建public文件夾（存放前端頁面）
-if (!fs.existsSync('./public')) {
-  fs.mkdirSync('./public');
-}
-
-// 寫入index.html到public文件夾
-fs.writeFileSync('./public/index.html', `
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -18,12 +5,15 @@ fs.writeFileSync('./public/index.html', `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的粉色日記</title>
     <style>
+        /* 整體風格：低飽和粉色系 */
         body {
             margin: 0;
             padding: 2rem;
-            background-color: #fff5f8;
+            background-color: #fff5f8; /* 淺粉色背景 */
             font-family: "微軟正黑體", sans-serif;
         }
+
+        /* 日記本容器 */
         .diary-book {
             max-width: 600px;
             margin: 0 auto;
@@ -33,34 +23,24 @@ fs.writeFileSync('./public/index.html', `
             box-shadow: 0 4px 12px rgba(220, 180, 190, 0.2);
             border: 1px solid #f3d9e1;
         }
+
+        /* 日記標題區 */
         .diary-title {
             text-align: center;
             margin-bottom: 2rem;
-            color: #a67c88;
+            color: #a67c88; /* 低飽和粉棕 */
         }
         .diary-title h1 {
             font-size: 2rem;
             font-style: italic;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
         }
         .diary-title p {
             color: #c49ba8;
             margin: 0.5rem 0;
         }
-        .add-btn {
-            display: inline-block;
-            background-color: #e8c3cf;
-            color: #fff;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s;
-        }
-        .add-btn:hover {
-            background-color: #d9a7b6;
-        }
+
+        /* 日記列表項目 */
         .diary-item {
             margin-bottom: 1rem;
             padding: 1rem;
@@ -83,8 +63,10 @@ fs.writeFileSync('./public/index.html', `
             font-size: 1.1rem;
             font-weight: bold;
         }
+
+        /* 日記內容彈出層 */
         .diary-content-modal {
-            display: none;
+            display: none; /* 預設隱藏 */
             position: fixed;
             top: 0;
             left: 0;
@@ -115,7 +97,6 @@ fs.writeFileSync('./public/index.html', `
             border-radius: 50%;
             color: #fff;
             cursor: pointer;
-            font-size: 16px;
         }
         .content-date {
             color: #a67c88;
@@ -125,251 +106,84 @@ fs.writeFileSync('./public/index.html', `
         .content-text {
             color: #665056;
             line-height: 1.8;
-            white-space: pre-line;
         }
     </style>
 </head>
 <body>
     <div class="diary-book">
+        <!-- 日記標題區 -->
         <div class="diary-title">
             <h1>我的日常筆記</h1>
             <p>在這裡分享生活點滴，點擊標題查看內容吧~</p>
-            <a href="/add" class="add-btn">+ 新增日記</a>
         </div>
-        <div class="diary-list" id="diaryList"></div>
+
+        <!-- 日記列表 -->
+        <div class="diary-list">
+            <!-- 日記項目1 -->
+            <div class="diary-item" data-content="今天玩了Minecraft新模組，搭了一個粉紅色的小屋，還遇到了可愛的小動物！晚上吃了草莓蛋糕，超滿足~">
+                <div class="date">2025年4月5日</div>
+                <div class="title">Minecraft 粉紅小屋冒險！</div>
+            </div>
+
+            <!-- 日記項目2 -->
+            <div class="diary-item" data-content="最近換了新的筆電，終於可以順利剪影片啦！下午去公園散步，看到滿地的落葉，秋天的風好舒服~">
+                <div class="date">2024年10月15日</div>
+                <div class="title">生活小更新：新設備+秋遊</div>
+            </div>
+
+            <!-- 日記項目3 -->
+            <div class="diary-item" data-content="Artfight活動開始啦！畫了一張朋友的OC，配色用了喜歡的淡紫色+粉色，被對方回覆說很可愛，超開心~">
+                <div class="date">2024年7月8日</div>
+                <div class="title">Artfight 創作日記</div>
+            </div>
+
+            <!-- 日記項目4 -->
+            <div class="diary-item" data-content="好久沒寫日記啦！最近忙著準備期末報告，今天終於結束了，晚上和朋友去吃了火鍋，聊了好多趣事~">
+                <div class="date">2024年7月7日</div>
+                <div class="title">好久不見的日常</div>
+            </div>
+        </div>
     </div>
 
-    <div class="diary-content-modal" id="modal">
+    <!-- 日記內容彈出層 -->
+    <div class="diary-content-modal">
         <div class="content-wrapper">
-            <button class="close-btn" id="closeBtn">×</button>
-            <div class="content-date" id="modalDate"></div>
-            <div class="content-text" id="modalText"></div>
+            <button class="close-btn">×</button>
+            <div class="content-date"></div>
+            <div class="content-text"></div>
         </div>
     </div>
 
     <script>
-        window.onload = () => {
-            fetch('/api/diaries')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        const diaryList = document.getElementById('diaryList');
-                        data.data.forEach(diary => {
-                            const diaryItem = document.createElement('div');
-                            diaryItem.className = 'diary-item';
-                            diaryItem.setAttribute('data-content', diary.content);
-                            diaryItem.innerHTML = \`
-                                <div class="date">\${diary.date}</div>
-                                <div class="title">\${diary.title}</div>
-                            \`;
-                            diaryList.appendChild(diaryItem);
-                        });
-                    } else {
-                        alert('加載日記失敗：' + data.err);
-                    }
-                });
+        // 獲取元素
+        const diaryItems = document.querySelectorAll('.diary-item');
+        const modal = document.querySelector('.diary-content-modal');
+        const modalDate = document.querySelector('.content-date');
+        const modalText = document.querySelector('.content-text');
+        const closeBtn = document.querySelector('.close-btn');
 
-            const modal = document.getElementById('modal');
-            const modalDate = document.getElementById('modalDate');
-            const modalText = document.getElementById('modalText');
-            const closeBtn = document.getElementById('closeBtn');
-
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.diary-item')) {
-                    const item = e.target.closest('.diary-item');
-                    const date = item.querySelector('.date').textContent;
-                    const content = item.getAttribute('data-content');
-                    modalDate.textContent = date;
-                    modalText.textContent = content;
-                    modal.style.display = 'block';
-                }
+        // 點擊日記項目，打開內容
+        diaryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const date = item.querySelector('.date').textContent;
+                const content = item.getAttribute('data-content');
+                
+                modalDate.textContent = date;
+                modalText.textContent = content;
+                modal.style.display = 'block';
             });
+        });
 
-            closeBtn.addEventListener('click', () => modal.style.display = 'none');
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
-        };
+        // 關閉彈出層
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        // 點擊彈出層外部關閉
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
-`);
-
-// 寫入add.html到public文件夾
-fs.writeFileSync('./public/add.html', `
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增日記</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 2rem;
-            background-color: #fff5f8;
-            font-family: "微軟正黑體", sans-serif;
-        }
-        .add-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(220, 180, 190, 0.2);
-            border: 1px solid #f3d9e1;
-        }
-        .add-title {
-            text-align: center;
-            color: #a67c88;
-            margin-bottom: 2rem;
-            font-style: italic;
-            letter-spacing: 2px;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        label {
-            display: block;
-            color: #8a6a74;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #f3d9e1;
-            border-radius: 8px;
-            background-color: #fdf2f5;
-            color: #665056;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-        input[type="text"] {
-            font-size: 1.1rem;
-        }
-        textarea {
-            height: 200px;
-            resize: vertical;
-            line-height: 1.8;
-        }
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        .submit-btn, .back-btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        .submit-btn {
-            background-color: #e8c3cf;
-            color: #fff;
-        }
-        .submit-btn:hover {
-            background-color: #d9a7b6;
-        }
-        .back-btn {
-            background-color: #f3d9e1;
-            color: #8a6a74;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .back-btn:hover {
-            background-color: #e8c3cf;
-        }
-    </style>
-</head>
-<body>
-    <div class="add-container">
-        <h1 class="add-title">新增我的日記</h1>
-        <form action="/api/add-diary" method="POST">
-            <div class="form-group">
-                <label for="title">日記標題</label>
-                <input type="text" id="title" name="title" required placeholder="輸入日記標題...">
-            </div>
-            <div class="form-group">
-                <label for="content">日記內容</label>
-                <textarea id="content" name="content" required placeholder="分享今天的心情或趣事..."></textarea>
-            </div>
-            <div class="btn-group">
-                <button type="submit" class="submit-btn">發布日記</button>
-                <a href="/" class="back-btn">返回列表</a>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
-`);
-
-// 初始化Express
-const app = express();
-const port = 3000;
-
-// 配置靜態文件和表單解析
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// 連接數據庫
-const db = new sqlite3.Database('./diary.db', (err) => {
-  if (err) console.error('數據庫連接失敗：', err.message);
-  else console.log('SQLite數據庫連接成功');
-});
-
-// 創建日記表
-db.run(`CREATE TABLE IF NOT EXISTS diaries (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  content TEXT NOT NULL,
-  date TEXT NOT NULL
-)`);
-
-// 路由：首頁
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// 路由：新增日記頁面
-app.get('/add', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'add.html'));
-});
-
-// 接口：新增日記
-app.post('/api/add-diary', (req, res) => {
-  const { title, content } = req.body;
-  const date = new Date().toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  db.run(
-    'INSERT INTO diaries (title, content, date) VALUES (?, ?, ?)',
-    [title, content, date],
-    (err) => {
-      if (err) return res.send('新增日記失敗：' + err.message);
-      res.redirect('/');
-    }
-  );
-});
-
-// 接口：獲取所有日記
-app.get('/api/diaries', (req, res) => {
-  db.all('SELECT * FROM diaries ORDER BY date DESC', (err, diaries) => {
-    if (err) return res.json({ success: false, err: err.message });
-    res.json({ success: true, data: diaries });
-  });
-});
-
-// 啟動服務器
-app.listen(port, () => {
-  console.log(`日記網站已啟動：http://localhost:${port}`);
-  console.log('按 Ctrl+C 可以關閉服務器');
-});
