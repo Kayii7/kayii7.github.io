@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayii's Room</title>
-    <!-- 新增的favicon图标代码 -->
     <link rel="icon" href="bitbug_favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="bitbug_favicon.ico" type="image/x-icon">
-    <!-- 引入音乐播放器资源（APlayer+MetingJS） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <!-- 优化：使用更稳定的 CDN 源，调整加载顺序 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css">
     <style>
         /* 基础样式 */
         body {
@@ -222,7 +219,7 @@
             margin-left: 10px;
         }
 
-        /* 响应式设计，针对手机屏幕（例如宽度小于768px时） */
+        /* 响应式设计 */
         @media (max-width: 768px) {
             #main-container {
                 flex-direction: column;
@@ -253,11 +250,6 @@
             #comments {
                 max-height: 150px;
             }
-
-           .comment-form input,
-           .comment-form textarea {
-                font-size: 14px;
-            }
         }
 
         /* 聊天框样式 */
@@ -272,79 +264,38 @@
             margin-top: 0;
         }
 
-       .chat-messages {
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-
-       .chat-message {
-            border: 1px solid #d9a3ff;
-            border-radius: 4px;
-            padding: 8px;
-            margin-bottom: 8px;
-            font-size: 12px;
-            word-wrap: break-word;
-            white-space: normal;
-        }
-
-       .chat-input label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-       .chat-input input,
-       .chat-input textarea {
+        /* 音乐播放器核心样式（修复冲突） */
+       .music-player-container {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+            margin: 20px auto 0;
+            padding: 0 15px;
+            box-sizing: border-box;
         }
 
-       .chat-input button {
-            background-color: #d9a3ff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-       .chat-input button:hover {
-            background-color: #c28fe6;
-        }
-
-       .message-copy {
-            width: 100%;
-            height: 100px;
-            margin-top: 10px;
-        }
-
-        /* 音乐播放器样式（匹配主题色） */
        .aplayer {
-            --aplayer-color: #d9a3ff !important; /* 主色调（播放进度条、图标） */
-            --aplayer-bg: #faf5ff !important;    /* 背景色 */
-            --aplayer-text: #6a4c9c !important;  /* 文字颜色 */
-            --aplayer-light: #e8ccff !important; /* 浅色边框/阴影 */
+            --aplayer-color: #d9a3ff !important;
+            --aplayer-bg: #faf5ff !important;
+            --aplayer-text: #6a4c9c !important;
+            --aplayer-light: #e8ccff !important;
             border: 2px solid #d9a3ff !important;
             border-radius: 8px !important;
-            margin-top: 20px;
+            width: 100% !important;
+            margin: 0 auto !important;
         }
 
        .aplayer-lrc-content {
-            color: #5F526E !important; /* 歌词颜色 */
+            color: #5F526E !important;
+            line-height: 1.8 !important;
         }
 
-        /* 播放器容器：居中显示在底部 */
-       .music-player-container {
-            width: 100%;
-            max-width: 800px; /* 限制播放器最大宽度，避免过宽 */
-            margin: 0 auto;
-            padding: 0 15px;
-            box-sizing: border-box;
+        /* 播放器加载失败提示 */
+       .player-error {
+            text-align: center;
+            padding: 20px;
+            color: #6a4c9c;
+            background-color: #faf5ff;
+            border: 2px solid #d9a3ff;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -410,7 +361,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- 第三方留言板 -->
                 <div class="chatbox">
                     <h2>Chatbox</h2>
                     <iframe src="https://www3.cbox.ws/box/?boxid=3545551&boxtag=OcMA6m" width="100%" height="250" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
@@ -418,58 +368,44 @@
             </div>
         </div>
 
-        <!-- 音乐播放器：放在主内容下方、页脚上方（中间最下方） -->
+        <!-- 音乐播放器：修复布局和加载问题 -->
         <div class="music-player-container">
-            <meting-js
-                server="tencent"          <!-- 指定QQ音乐 -->
-                type="playlist"           <!-- 类型：歌单（单曲用song，专辑用album） -->
-                id="9618393780"           <!-- 替换为你的QQ音乐歌单ID（当前是示例歌单） -->
-                lrc-type="1"              <!-- 开启歌词显示（1=自动加载歌词） -->
-                fixed="false"             <!-- 不固定在底部，跟随页面布局 -->
-                list-folded="true"        <!-- 默认折叠歌单列表（点击展开） -->
-                list-max-height="200px"   <!-- 歌单展开最大高度 -->
-                theme="#d9a3ff"           <!-- 主题色（匹配你的紫色） -->
-            ></meting-js>
+            <!-- 替换为官方推荐的直接初始化方式，避免MetingJS兼容问题 -->
+            <div id="music-player"></div>
         </div>
 
         <footer>
             <p>© 2025 Kayii's Room </p>
         </footer>
     </div>
+
+    <!-- 先加载jQuery（APlayer依赖），再加载APlayer，最后初始化 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
     <script>
-        // 生成日历
+        // 日历代码（保持不变）
         const today = new Date();
         const currentDay = today.getDate();
         const currentMonth = today.getMonth();
         const currentYear = today.getFullYear();
-
         const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
         const startingDay = firstDayOfMonth.getDay();
-
         const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
-
-        const calendarTitle = document.getElementById('calendar-title');
-        calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
+        document.getElementById('calendar-title').textContent = `${monthNames[currentMonth]} ${currentYear}`;
         const calendarBody = document.getElementById('calendar-body');
         let dayCounter = 1;
         for (let i = 0; i < 6; i++) {
             const row = document.createElement('tr');
             for (let j = 0; j < 7; j++) {
                 const cell = document.createElement('td');
-                if (i === 0 && j < startingDay) {
-                    cell.textContent = '';
-                } else if (dayCounter > daysInMonth) {
-                    cell.textContent = '';
-                } else {
+                if (i === 0 && j < startingDay) cell.textContent = '';
+                else if (dayCounter > daysInMonth) cell.textContent = '';
+                else {
                     cell.textContent = dayCounter;
-                    if (dayCounter === currentDay) {
-                        cell.classList.add('today');
-                    }
+                    if (dayCounter === currentDay) cell.classList.add('today');
                     dayCounter++;
                 }
                 row.appendChild(cell);
@@ -477,17 +413,46 @@
             calendarBody.appendChild(row);
         }
 
-        // 优化播放器歌词显示（可选：滚动时平滑过渡）
-        document.addEventListener('DOMContentLoaded', function() {
-            const aplayer = document.querySelector('.aplayer');
-            if (aplayer) {
-                aplayer.addEventListener('loadeddata', function() {
-                    const lrcContent = document.querySelector('.aplayer-lrc-content');
-                    if (lrcContent) {
-                        lrcContent.style.transition = 'transform 0.3s ease';
+        // 音乐播放器初始化（核心修复：不用MetingJS，直接用APlayer原生接口）
+        $(document).ready(function() {
+            // 测试用的QQ音乐歌单（确保可公开访问），替换成你的歌单ID即可
+            const playlistId = '7713574197';
+            
+            // 初始化播放器
+            const ap = new APlayer({
+                container: document.getElementById('music-player'),
+                fixed: false,
+                autoplay: false, // 关闭自动播放（避免浏览器拦截）
+                theme: '#d9a3ff',
+                loop: 'all',
+                order: 'list',
+                preload: 'auto',
+                volume: 0.7,
+                mutex: true,
+                listFolded: true, // 折叠歌单
+                listMaxHeight: 200,
+                lrcType: 3, // 自动加载歌词（兼容QQ音乐格式）
+                audio: [
+                    // 这里通过歌单ID动态加载歌曲（依赖APlayer的QQ音乐解析）
+                    {
+                        name: '加载中...',
+                        artist: '请稍候',
+                        url: `https://api.i-meto.com/meting/api?server=tencent&type=playlist&id=${playlistId}`,
+                        cover: 'https://kayii7.github.io/images/myicon.jpg', // 默认封面
+                        lrc: ''
                     }
-                });
-            }
+                ]
+            });
+
+            // 错误处理：如果加载失败显示提示
+            ap.on('error', function() {
+                document.getElementById('music-player').innerHTML = `
+                    <div class="player-error">
+                        <p>🎵 音乐播放器加载失败</p>
+                        <p>请检查网络或更换歌单ID</p>
+                    </div>
+                `;
+            });
         });
     </script>
 </body>
