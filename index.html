@@ -8,6 +8,10 @@
     <!-- 新增的favicon图标代码 -->
     <link rel="icon" href="bitbug_favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="bitbug_favicon.ico" type="image/x-icon">
+    <!-- 引入音乐播放器资源（APlayer+MetingJS） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
     <style>
         /* 基础样式 */
         body {
@@ -34,6 +38,8 @@
             background-color: white;
             border: 3px solid #d9a3ff;
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
         }
 
         h1,
@@ -200,7 +206,6 @@
             color: white;
         }
 
-        
         #comments {
             max-height: 120px;
             width: 100%;
@@ -317,6 +322,30 @@
             height: 100px;
             margin-top: 10px;
         }
+
+        /* 音乐播放器样式（匹配主题色） */
+       .aplayer {
+            --aplayer-color: #d9a3ff !important; /* 主色调（播放进度条、图标） */
+            --aplayer-bg: #faf5ff !important;    /* 背景色 */
+            --aplayer-text: #6a4c9c !important;  /* 文字颜色 */
+            --aplayer-light: #e8ccff !important; /* 浅色边框/阴影 */
+            border: 2px solid #d9a3ff !important;
+            border-radius: 8px !important;
+            margin-top: 20px;
+        }
+
+       .aplayer-lrc-content {
+            color: #5F526E !important; /* 歌词颜色 */
+        }
+
+        /* 播放器容器：居中显示在底部 */
+       .music-player-container {
+            width: 100%;
+            max-width: 800px; /* 限制播放器最大宽度，避免过宽 */
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -330,11 +359,9 @@
                 <div class="pixel-border">
                     <h2>♡</h2>
                     <ul class="nav-links">
-                        
                         <li><a href="diary.html">Diary</a></li>
                         <li><a href="website.html">Website</a></li>
                         <li><a href="https://lit.link/en/kayii7">Me</a></li>
-                        
                     </ul>
                 </div>
                 <div class="pixel-border">
@@ -362,7 +389,6 @@
                     <p>∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴ ୨୧ ∴∵∴</p>
                     <p>我會將我所有能想到的陸續上傳到這個網站</p>
                     <div class="pixel-divider"></div>
-                    
                 </div>
             </div>
             <div id="right-sidebar">
@@ -391,6 +417,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- 音乐播放器：放在主内容下方、页脚上方（中间最下方） -->
+        <div class="music-player-container">
+            <meting-js
+                server="tencent"          <!-- 指定QQ音乐 -->
+                type="playlist"           <!-- 类型：歌单（单曲用song，专辑用album） -->
+                id="9618393780"           <!-- 替换为你的QQ音乐歌单ID（当前是示例歌单） -->
+                lrc-type="1"              <!-- 开启歌词显示（1=自动加载歌词） -->
+                fixed="false"             <!-- 不固定在底部，跟随页面布局 -->
+                list-folded="true"        <!-- 默认折叠歌单列表（点击展开） -->
+                list-max-height="200px"   <!-- 歌单展开最大高度 -->
+                theme="#d9a3ff"           <!-- 主题色（匹配你的紫色） -->
+            ></meting-js>
+        </div>
+
         <footer>
             <p>© 2025 Kayii's Room </p>
         </footer>
@@ -435,7 +476,20 @@
             }
             calendarBody.appendChild(row);
         }
+
+        // 优化播放器歌词显示（可选：滚动时平滑过渡）
+        document.addEventListener('DOMContentLoaded', function() {
+            const aplayer = document.querySelector('.aplayer');
+            if (aplayer) {
+                aplayer.addEventListener('loadeddata', function() {
+                    const lrcContent = document.querySelector('.aplayer-lrc-content');
+                    if (lrcContent) {
+                        lrcContent.style.transition = 'transform 0.3s ease';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 
-</html>    
+</html>
